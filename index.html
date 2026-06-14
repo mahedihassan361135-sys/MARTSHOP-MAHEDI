@@ -3,211 +3,604 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MartShop | Elevate Your Commerce</title>
+    <title>NOIR | The Future of Commerce</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .hero-gradient { background: radial-gradient(circle at 50% 50%, #1e293b 0%, #020617 100%); }
-        .accent-glow { box-shadow: 0 0 50px -12px #3b82f6; }
-        .hidden-element { opacity: 0; transform: translateY(30px); }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #080808;
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bento-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .stamp-rotate {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+
+        .cart-drawer {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
+
+        .modal-overlay {
+            background: rgba(0,0,0,0.8);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
-<body class="bg-[#020617] text-slate-200">
+<body class="selection:bg-[#0066FF] selection:text-white">
+
+    <!-- Glowing Background Orbs -->
+    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#0066FF] rounded-full blur-[120px] opacity-20 pointer-events-none z-0"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#7000FF] rounded-full blur-[120px] opacity-10 pointer-events-none z-0"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-6 py-4 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-2xl px-6 py-3">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white">M</div>
-                <span class="text-xl font-extrabold tracking-tight text-white">MartShop</span>
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center glass">
+        <div class="flex items-center gap-12">
+            <a href="#" class="text-2xl font-extrabold tracking-tighter">NOIR.</a>
+            <div class="hidden md:flex gap-8 text-sm font-medium opacity-70">
+                <a href="#shop" class="hover:opacity-100 transition-opacity">Collections</a>
+                <a href="#featured" class="hover:opacity-100 transition-opacity">Featured</a>
+                <a href="#" onclick="toggleModal('admin-panel')" class="hover:opacity-100 transition-opacity text-[#0066FF]">Admin Portal</a>
             </div>
-            <div class="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-                <a href="#features" class="hover:text-blue-400 transition-colors">Features</a>
-                <a href="#solutions" class="hover:text-blue-400 transition-colors">Solutions</a>
-                <a href="#pricing" class="hover:text-blue-400 transition-colors">Pricing</a>
+        </div>
+        
+        <div class="flex items-center gap-6">
+            <div class="hidden sm:flex glass rounded-full px-4 py-1.5 items-center gap-2">
+                <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <input type="text" placeholder="Search curated goods..." class="bg-transparent border-none focus:ring-0 text-xs w-48 outline-none">
             </div>
-            <div>
-                <button onclick="handleAuth('login')" class="px-5 py-2 text-sm font-semibold hover:text-white transition-colors">Sign In</button>
-                <button onclick="handleAuth('signup')" class="bg-blue-600 hover:bg-blue-500 px-5 py-2 rounded-xl text-sm font-bold text-white transition-all transform hover:scale-105 active:scale-95 accent-glow">
-                    Join Now
-                </button>
-            </div>
+            
+            <button onclick="toggleCart()" class="relative p-2 hover:bg-white/10 rounded-full transition-all">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                <span id="cart-count" class="absolute top-0 right-0 bg-[#0066FF] text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">0</span>
+            </button>
+            
+            <button onclick="toggleModal('auth-modal')" class="magnetic flex items-center gap-2 bg-white text-black px-5 py-2 rounded-full font-bold text-sm hover:scale-105 transition-transform">
+                Sign In
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center pt-20 hero-gradient">
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full"></div>
-            <div class="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-indigo-600/10 blur-[120px] rounded-full"></div>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 text-center z-10">
-            <div id="hero-pill" class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 bg-blue-500/5 text-blue-400 text-xs font-bold mb-8 hidden-element">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-                V2.0 IS NOW LIVE
-            </div>
-            <h1 id="hero-title" class="text-5xl md:text-8xl font-extrabold text-white mb-6 tracking-tight hidden-element leading-tight">
-                Modern Commerce <br/> <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">Redefined.</span>
-            </h1>
-            <p id="hero-subtitle" class="max-w-2xl mx-auto text-slate-400 text-lg md:text-xl mb-10 hidden-element">
-                Empower your business with the ultimate digital storefront. Scalable, lightning fast, and built for the future of global trade.
-            </p>
-            <div id="hero-cta" class="flex flex-col sm:flex-row items-center justify-center gap-4 hidden-element">
-                <button id="main-join-btn" class="w-full sm:w-auto px-8 py-4 bg-white text-slate-900 font-extrabold rounded-2xl hover:bg-blue-50 transition-all transform hover:scale-105 active:scale-95">
-                    Start Your Shop
-                </button>
-                <button class="w-full sm:w-auto px-8 py-4 glass text-white font-semibold rounded-2xl hover:bg-white/10 transition-all">
-                    View Demo
-                </button>
+    <section class="relative h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
+        <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10">
+                <span class="inline-block py-1 px-3 rounded-full border border-white/20 bg-white/5 text-[10px] uppercase tracking-widest mb-6 hero-reveal">Winter Collection 2024</span>
+                <h1 class="text-7xl md:text-8xl font-extrabold tracking-tight leading-[0.9] mb-8 hero-reveal">
+                    Elegance <br> <span class="gradient-text">Redefined.</span>
+                </h1>
+                <p class="text-lg opacity-60 max-w-md mb-10 hero-reveal">
+                    Curated luxury tech and high-fashion essentials for the modern minimalist. Precision engineered, aesthetically perfected.
+                </p>
+                <div class="flex gap-4 hero-reveal">
+                    <button class="magnetic group relative px-8 py-4 bg-white text-black font-bold rounded-full overflow-hidden transition-all">
+                        <span class="relative z-10">Shop Collection</span>
+                        <div class="absolute inset-0 bg-[#0066FF] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                    </button>
+                    <button class="px-8 py-4 glass font-bold rounded-full hover:bg-white/10 transition-all">
+                        Watch Film
+                    </button>
+                </div>
             </div>
 
-            <!-- Stats -->
-            <div id="hero-stats" class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-24 max-w-4xl mx-auto hidden-element">
-                <div>
-                    <div class="text-3xl font-bold text-white">99.9%</div>
-                    <div class="text-slate-500 text-sm">Uptime</div>
+            <div class="relative hero-reveal">
+                <div class="relative z-10 rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Hero" class="w-full h-full object-cover scale-110" id="hero-img">
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-white">24/7</div>
-                    <div class="text-slate-500 text-sm">Support</div>
+                <!-- Glass Card Overlay -->
+                <div class="absolute -bottom-10 -left-10 glass p-6 rounded-2xl z-20 max-w-[240px] animate-bounce-slow">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-[10px] uppercase opacity-50">Authenticated</p>
+                            <p class="text-sm font-bold">Genuine Luxury</p>
+                        </div>
+                    </div>
+                    <p class="text-[11px] opacity-60 leading-relaxed">Each item in NOIR is verified by our team of global curators.</p>
                 </div>
-                <div>
-                    <div class="text-3xl font-bold text-white">150+</div>
-                    <div class="text-slate-500 text-sm">Countries</div>
-                </div>
-                <div>
-                    <div class="text-3xl font-bold text-white">0%</div>
-                    <div class="text-slate-500 text-sm">Fees</div>
+                <!-- Rotating Stamp -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 z-20 hidden md:block">
+                    <svg viewBox="0 0 100 100" class="stamp-rotate">
+                        <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
+                        <text class="text-[10px] uppercase font-bold fill-white/30 tracking-[0.2em]">
+                            <textPath xlink:href="#circlePath">NOIR PREMIUM GOODS • EST 2024 • FINEST QUALITY •</textPath>
+                        </text>
+                    </svg>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-24 bg-[#020617] relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Built for performance</h2>
-                <p class="text-slate-400">Everything you need to dominate the marketplace.</p>
+    <!-- Featured Categories (Bento Grid) -->
+    <section id="featured" class="py-32 px-6">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4">Curated Verticals</h2>
+                    <p class="opacity-60 max-w-sm">Explore our hand-picked selection across premium lifestyle categories.</p>
+                </div>
+                <a href="#" class="text-sm font-bold border-b-2 border-white/20 pb-1 hover:border-white transition-all">View All Products</a>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[800px]">
+                <div class="md:col-span-2 md:row-span-2 bento-card glass rounded-[2.5rem] p-10 flex flex-col justify-between group cursor-pointer overflow-hidden relative">
+                    <img src="https://picsum.photos/1920/1080?random=10" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-700" alt="">
+                    <div class="relative z-10">
+                        <span class="text-xs uppercase tracking-widest bg-white/10 px-3 py-1 rounded-full">New Arrivals</span>
+                        <h3 class="text-5xl font-extrabold mt-6">Avant <br> Chronos</h3>
+                    </div>
+                    <div class="relative z-10 flex justify-between items-end">
+                        <p class="max-w-[200px] text-sm opacity-60">The definitive collection of minimalist timepieces.</p>
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-black">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 bento-card glass rounded-[2.5rem] p-10 group cursor-pointer overflow-hidden relative">
+                    <img src="https://picsum.photos/1920/1080?random=11" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-700" alt="">
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-extrabold mb-2">Sonic Glass</h3>
+                        <p class="text-sm opacity-60 mb-6">High-fidelity audio meets transparency.</p>
+                        <span class="text-xs font-bold border-b border-white/30">Explore Audio</span>
+                    </div>
+                </div>
+
+                <div class="bento-card glass rounded-[2.5rem] p-8 group cursor-pointer overflow-hidden relative">
+                    <img src="https://picsum.photos/1920/1080?random=12" class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-30 transition-opacity duration-700" alt="">
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <h3 class="text-xl font-bold">Apparel</h3>
+                        <div class="w-10 h-10 glass rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card glass rounded-[2.5rem] p-8 group cursor-pointer overflow-hidden relative bg-[#0066FF]/10">
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <h3 class="text-xl font-bold">Tech Wear</h3>
+                        <p class="text-xs opacity-60">Future-proof designs for urban exploration.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section id="shop" class="py-32 bg-[#0a0a0a]">
+        <div class="container mx-auto px-6">
+            <div class="mb-16 text-center">
+                <h2 class="text-5xl font-bold mb-6">Trending Gear</h2>
+                <div class="flex justify-center gap-4">
+                    <button class="px-6 py-2 rounded-full glass text-xs font-bold bg-white/10">All</button>
+                    <button class="px-6 py-2 rounded-full glass text-xs font-bold hover:bg-white/10 transition-all">Watches</button>
+                    <button class="px-6 py-2 rounded-full glass text-xs font-bold hover:bg-white/10 transition-all">Audio</button>
+                    <button class="px-6 py-2 rounded-full glass text-xs font-bold hover:bg-white/10 transition-all">Fashion</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" id="product-list">
+                <!-- Products dynamically injected here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="fixed top-0 right-0 h-full w-full md:w-[450px] bg-[#0c0c0c] z-[100] p-10 cart-drawer border-l border-white/10">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl font-extrabold tracking-tighter">Your Bag</h2>
+            <button onclick="toggleCart()" class="p-2 hover:bg-white/10 rounded-full transition-all">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        
+        <div id="cart-items" class="space-y-6 h-[calc(100%-250px)] overflow-y-auto pr-4 mb-6">
+            <!-- Cart items here -->
+            <p class="opacity-40 text-center py-20 italic">Your bag is currently empty.</p>
+        </div>
+
+        <div class="border-t border-white/10 pt-8">
+            <div class="flex justify-between items-center mb-6">
+                <span class="opacity-60">Subtotal</span>
+                <span id="cart-total" class="text-2xl font-bold tracking-tighter">$0.00</span>
+            </div>
+            <button onclick="checkout()" class="magnetic w-full py-5 bg-[#0066FF] text-white font-bold rounded-2xl hover:brightness-110 transition-all shadow-xl shadow-[#0066FF]/20">
+                Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="fixed inset-0 z-[200] flex items-center justify-center modal-overlay p-6">
+        <div class="glass w-full max-w-md p-10 rounded-[2rem] relative">
+            <button onclick="toggleModal('auth-modal')" class="absolute top-6 right-6 opacity-50 hover:opacity-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <h3 class="text-3xl font-extrabold mb-2">Welcome Back.</h3>
+            <p class="opacity-60 mb-8 text-sm">Access your curated dashboard and saved items.</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="feature-card glass p-8 rounded-3xl group hover:border-blue-500/50 transition-all">
-                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Lightning Speed</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Proprietary caching engine that ensures your products load under 100ms globally.</p>
+            <form class="space-y-4">
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest opacity-50 mb-2 block">Email Address</label>
+                    <input type="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#0066FF] transition-all" placeholder="name@noir.com">
                 </div>
-
-                <!-- Card 2 -->
-                <div class="feature-card glass p-8 rounded-3xl group hover:border-indigo-500/50 transition-all">
-                    <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-6 text-indigo-500 group-hover:bg-indigo-500 group-hover:text-white transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04kM12 21.75c-3.11 0-5.924-1.19-8.03-3.138A11.952 11.952 0 0012 20.056c3.11 0 5.924-1.19 8.03-3.138A11.952 11.952 0 0012 21.75z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Secure Vault</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Enterprise-grade encryption for all transactions and customer data management.</p>
+                <div>
+                    <label class="text-[10px] uppercase tracking-widest opacity-50 mb-2 block">Password</label>
+                    <input type="password" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#0066FF] transition-all" placeholder="••••••••">
                 </div>
+                <button type="button" onclick="login()" class="w-full py-4 bg-white text-black font-bold rounded-xl hover:scale-[1.02] transition-transform mt-4">
+                    Sign In
+                </button>
+            </form>
+            <p class="mt-8 text-center text-xs opacity-40">Don't have an account? <a href="#" class="text-white font-bold">Join the Circle</a></p>
+        </div>
+    </div>
 
-                <!-- Card 3 -->
-                <div class="feature-card glass p-8 rounded-3xl group hover:border-emerald-500/50 transition-all">
-                    <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center mb-6 text-emerald-500 group-hover:bg-emerald-500 group-hover:text-white transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-                        </svg>
+    <!-- Admin Panel Modal -->
+    <div id="admin-panel" class="fixed inset-0 z-[200] flex items-center justify-center modal-overlay p-6">
+        <div class="glass w-full max-w-2xl p-10 rounded-[2rem] relative h-[80vh] overflow-y-auto">
+            <button onclick="toggleModal('admin-panel')" class="absolute top-6 right-6 opacity-50 hover:opacity-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <h3 class="text-3xl font-extrabold mb-8 flex items-center gap-3">
+                <svg class="w-8 h-8 text-[#0066FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                Inventory Management
+            </h3>
+            
+            <div class="space-y-8">
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest opacity-50 mb-2 block">Product Name</label>
+                        <input id="admin-name" type="text" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#0066FF] transition-all" placeholder="e.g. Noir Horizon Watch">
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-3">Deep Analytics</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Real-time behavior tracking and AI-driven insights to maximize your conversion rate.</p>
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest opacity-50 mb-2 block">Category</label>
+                        <select id="admin-category" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#0066FF] transition-all appearance-none">
+                            <option>Watches</option>
+                            <option>Audio</option>
+                            <option>Fashion</option>
+                            <option>Accessories</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest opacity-50 mb-2 block">Price ($)</label>
+                        <input id="admin-price" type="number" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#0066FF] transition-all" placeholder="1299">
+                    </div>
+                    <div>
+                        <label class="text-[10px] uppercase tracking-widest opacity-50 mb-2 block">Image Index (1-50)</label>
+                        <input id="admin-img" type="number" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-[#0066FF] transition-all" placeholder="25">
+                    </div>
+                </div>
+                <button onclick="addProductFromAdmin()" class="w-full py-4 bg-[#0066FF] text-white font-bold rounded-xl hover:brightness-110 transition-all">
+                    Add New Product
+                </button>
+
+                <div class="border-t border-white/10 pt-8">
+                    <h4 class="font-bold mb-4">Current Catalog</h4>
+                    <div id="admin-catalog" class="space-y-4">
+                        <!-- catalog list -->
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Backend Integration Hint Footer -->
-    <footer class="py-12 border-t border-slate-800 bg-[#020617]">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex items-center gap-2 opacity-50">
-                <div class="w-6 h-6 bg-slate-400 rounded flex items-center justify-center font-bold text-slate-900 text-xs">M</div>
-                <span class="font-bold text-slate-400 tracking-tight">MartShop &copy; 2023</span>
+    <!-- Footer -->
+    <footer class="py-20 px-6 border-t border-white/10 relative overflow-hidden">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+            <div class="md:col-span-2">
+                <h2 class="text-4xl font-extrabold tracking-tighter mb-6">NOIR.</h2>
+                <p class="opacity-50 max-w-sm mb-10 leading-relaxed text-sm">
+                    Designing the future of luxury commerce. Every piece in our collection is curated for those who demand excellence in every detail.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                    </a>
+                    <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
             </div>
-            <div class="flex gap-6 text-slate-500 text-sm">
-                <a href="#" class="hover:text-white">Privacy Policy</a>
-                <a href="#" class="hover:text-white">Terms of Service</a>
-                <a href="#" class="hover:text-white">API Docs</a>
+            <div>
+                <h4 class="font-bold mb-6">Experience</h4>
+                <ul class="space-y-4 text-sm opacity-50">
+                    <li><a href="#" class="hover:opacity-100">Bespoke Design</a></li>
+                    <li><a href="#" class="hover:opacity-100">Limited Drops</a></li>
+                    <li><a href="#" class="hover:opacity-100">Care Program</a></li>
+                    <li><a href="#" class="hover:opacity-100">Sustainability</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6">Company</h4>
+                <ul class="space-y-4 text-sm opacity-50">
+                    <li><a href="#" class="hover:opacity-100">Manifesto</a></li>
+                    <li><a href="#" class="hover:opacity-100">Careers</a></li>
+                    <li><a href="#" class="hover:opacity-100">Contact</a></li>
+                    <li><a href="#" class="hover:opacity-100">Legal</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto mt-20 pt-10 border-t border-white/5 flex justify-between items-center text-[10px] uppercase tracking-widest opacity-30">
+            <p>© 2024 NOIR ENTERPRISES. ALL RIGHTS RESERVED.</p>
+            <div class="flex gap-8">
+                <span>TERMS</span>
+                <span>PRIVACY</span>
             </div>
         </div>
     </footer>
 
     <script>
-        // GSAP Initialization
+        // --- Data ---
+        let products = [
+            { id: 1, name: "Horizon Chrono", price: 1250, cat: "Watches", img: 20 },
+            { id: 2, name: "Sonic Echo Gen-X", price: 890, cat: "Audio", img: 21 },
+            { id: 3, name: "Urban Shell Jacket", price: 450, cat: "Fashion", img: 22 },
+            { id: 4, name: "Onyx Shades", price: 290, cat: "Accessories", img: 23 },
+            { id: 5, name: "Titanium Strap", price: 150, cat: "Watches", img: 24 },
+            { id: 6, name: "Ghost Buds", price: 320, cat: "Audio", img: 25 },
+            { id: 7, name: "Stealth Knit", price: 190, cat: "Fashion", img: 26 },
+            { id: 8, name: "Cipher Wallet", price: 110, cat: "Accessories", img: 27 },
+        ];
+
+        let cart = [];
+
+        // --- GSAP Animations ---
         gsap.registerPlugin(ScrollTrigger);
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const tl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1 }});
-
-            // Hero Animations
-            tl.to("#hero-pill", { opacity: 1, y: 0, duration: 0.8 }, 0.2)
-              .to("#hero-title", { opacity: 1, y: 0, duration: 0.8 }, 0.4)
-              .to("#hero-subtitle", { opacity: 1, y: 0, duration: 0.8 }, 0.6)
-              .to("#hero-cta", { opacity: 1, y: 0, duration: 0.8 }, 0.8)
-              .to("#hero-stats", { opacity: 1, y: 0, duration: 0.8 }, 1.0);
-
-            // Scroll animations for feature cards
-            gsap.from(".feature-card", {
-                scrollTrigger: {
-                    trigger: "#features",
-                    start: "top 80%",
-                },
-                opacity: 0,
+        function initAnimations() {
+            gsap.from(".hero-reveal", {
                 y: 50,
+                opacity: 0,
+                duration: 1.2,
                 stagger: 0.2,
-                duration: 0.8,
-                ease: "power3.out"
+                ease: "power4.out"
             });
 
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const nav = document.getElementById('navbar');
-                if (window.scrollY > 50) {
-                    nav.classList.add('py-2', 'bg-[#020617]/80');
-                    nav.classList.remove('py-4');
-                } else {
-                    nav.classList.remove('py-2', 'bg-[#020617]/80');
-                    nav.classList.add('py-4');
-                }
+            gsap.to("#hero-img", {
+                scale: 1,
+                duration: 2,
+                ease: "power2.out"
             });
-        });
 
-        // Backend Integration Bridge
-        function handleAuth(type) {
-            console.log(`Redirecting to auth backend: ${type}`);
-            
-            // Example Integration:
-            // window.location.href = `/auth/${type}`;
-            
-            // For demo: Simple visual feedback
-            const btn = event.currentTarget;
-            btn.innerHTML = `<span class="inline-block animate-spin mr-2">◌</span> Processing...`;
-            setTimeout(() => {
-                alert(`Backend Integration Ready: Initializing ${type} flow.`);
-                btn.innerText = type === 'login' ? 'Sign In' : 'Join Now';
-            }, 800);
+            // Scroll animations for products
+            gsap.utils.toArray('.product-card').forEach((card, i) => {
+                gsap.from(card, {
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%",
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    delay: i % 4 * 0.1
+                });
+            });
         }
 
-        document.getElementById('main-join-btn').addEventListener('click', () => handleAuth('signup'));
+        // --- Core Functions ---
+        function renderProducts() {
+            const list = document.getElementById('product-list');
+            list.innerHTML = products.map(p => `
+                <div class="product-card group">
+                    <div class="relative aspect-[4/5] overflow-hidden rounded-3xl bg-[#111] mb-6">
+                        <img src="https://picsum.photos/800/1000?random=${p.img}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                            <button onclick="addToCart(${p.id})" class="magnetic p-4 bg-white text-black rounded-full hover:bg-[#0066FF] hover:text-white transition-colors">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-[10px] uppercase opacity-40 mb-1">${p.cat}</p>
+                            <h3 class="font-bold text-lg">${p.name}</h3>
+                        </div>
+                        <span class="font-extrabold text-white/90">$${p.price.toLocaleString()}</span>
+                    </div>
+                </div>
+            `).join('');
+            
+            updateAdminCatalog();
+        }
+
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            cart.push(prod);
+            updateCartUI();
+            
+            // Notification toast
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-10 left-1/2 -translate-x-1/2 glass px-8 py-4 rounded-full font-bold z-[300] animate-bounce";
+            toast.innerText = `Added ${prod.name} to bag`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        function updateCartUI() {
+            const count = document.getElementById('cart-count');
+            const items = document.getElementById('cart-items');
+            const total = document.getElementById('cart-total');
+            
+            count.innerText = cart.length;
+            
+            if(cart.length === 0) {
+                items.innerHTML = `<p class="opacity-40 text-center py-20 italic">Your bag is currently empty.</p>`;
+                total.innerText = "$0.00";
+                return;
+            }
+
+            items.innerHTML = cart.map((p, index) => `
+                <div class="flex gap-4 items-center glass p-4 rounded-2xl">
+                    <img src="https://picsum.photos/100/100?random=${p.img}" class="w-16 h-16 rounded-xl object-cover">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm">${p.name}</h4>
+                        <p class="text-xs opacity-50">$${p.price}</p>
+                    </div>
+                    <button onclick="removeFromCart(${index})" class="text-red-500/50 hover:text-red-500">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    </button>
+                </div>
+            `).join('');
+
+            const sum = cart.reduce((acc, p) => acc + p.price, 0);
+            total.innerText = `$${sum.toLocaleString()}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('open');
+        }
+
+        function toggleModal(id) {
+            document.getElementById(id).classList.toggle('active');
+        }
+
+        function login() {
+            alert("Signed in as Premium Member.");
+            toggleModal('auth-modal');
+        }
+
+        function checkout() {
+            if(cart.length === 0) return alert("Bag is empty");
+            alert("Securely processing payment via saved vault details...");
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // --- Admin Functions ---
+        function addProductFromAdmin() {
+            const name = document.getElementById('admin-name').value;
+            const cat = document.getElementById('admin-category').value;
+            const price = document.getElementById('admin-price').value;
+            const img = document.getElementById('admin-img').value;
+
+            if(!name || !price) return alert("Please fill all fields");
+
+            const newProd = {
+                id: Date.now(),
+                name: name,
+                cat: cat,
+                price: parseInt(price),
+                img: img || Math.floor(Math.random() * 50) + 1
+            };
+
+            products.unshift(newProd);
+            renderProducts();
+            
+            // Reset fields
+            document.getElementById('admin-name').value = '';
+            document.getElementById('admin-price').value = '';
+        }
+
+        function updateAdminCatalog() {
+            const list = document.getElementById('admin-catalog');
+            list.innerHTML = products.map(p => `
+                <div class="flex justify-between items-center bg-white/5 p-3 rounded-xl">
+                    <span class="text-sm font-bold">${p.name}</span>
+                    <button onclick="removeProduct(${p.id})" class="text-xs text-red-500 opacity-50 hover:opacity-100 uppercase font-bold tracking-widest">Delete</button>
+                </div>
+            `).join('');
+        }
+
+        function removeProduct(id) {
+            products = products.filter(p => p.id !== id);
+            renderProducts();
+        }
+
+        // --- Magnetic Buttons ---
+        function initMagnetic() {
+            const buttons = document.querySelectorAll('.magnetic');
+            buttons.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    gsap.to(btn, {
+                        x: x * 0.3,
+                        y: y * 0.3,
+                        duration: 0.3,
+                        ease: "power2.out"
+                    });
+                });
+                btn.addEventListener('mouseleave', () => {
+                    gsap.to(btn, {
+                        x: 0,
+                        y: 0,
+                        duration: 0.5,
+                        ease: "elastic.out(1, 0.3)"
+                    });
+                });
+            });
+        }
+
+        // Initial Launch
+        window.addEventListener('load', () => {
+            renderProducts();
+            initAnimations();
+            initMagnetic();
+        });
+
     </script>
 </body>
 </html>
