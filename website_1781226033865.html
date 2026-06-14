@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehdi's Awesome Purple World | Elite Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0a0118;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .purple-gradient-text {
+            background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 50%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-orb {
+            position: absolute;
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #a855f7;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .bento-card:hover .glow-effect {
+            opacity: 1;
+        }
+
+        .glow-effect {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-transparent">
+        <div class="text-2xl font-extrabold tracking-tighter">
+            M<span class="text-[#a855f7]">.</span>
+        </div>
+        <div class="glass px-8 py-3 rounded-full flex gap-8 text-sm font-medium">
+            <a href="#hero" class="hover:text-[#a855f7] transition-colors">Home</a>
+            <a href="#about" class="hover:text-[#a855f7] transition-colors">About</a>
+            <a href="#services" class="hover:text-[#a855f7] transition-colors">Expertise</a>
+            <a href="#contact" class="hover:text-[#a855f7] transition-colors">Contact</a>
+        </div>
+        <button class="magnetic px-6 py-3 bg-[#a855f7] text-white rounded-full text-sm font-bold hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all">
+            Let's Talk
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Flair -->
+        <div class="hero-orb w-[500px] h-[500px] bg-purple-600 top-[-100px] left-[-100px]"></div>
+        <div class="hero-orb w-[400px] h-[400px] bg-indigo-600 bottom-[-100px] right-[-100px]"></div>
+        
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-8">
+                <div class="reveal inline-block px-4 py-1 rounded-full glass border border-purple-500/30 text-purple-300 text-xs font-bold tracking-widest uppercase">
+                    Available for Freelance
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold leading-tight tracking-tight reveal">
+                    Mehdi's <br/>
+                    <span class="purple-gradient-text">Awesome Purple</span> <br/>
+                    World
+                </h1>
+                <p class="text-gray-400 text-xl max-w-lg reveal">
+                    Crafting digital experiences that exist at the intersection of aesthetic brilliance and technical precision.
+                </p>
+                <div class="flex gap-6 reveal">
+                    <button class="magnetic px-8 py-4 bg-white text-black rounded-xl font-bold hover:scale-105 transition-transform">
+                        View Projects
+                    </button>
+                    <button class="magnetic px-8 py-4 glass rounded-xl font-bold border border-white/10 hover:bg-white/5 transition-colors">
+                        My Story
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:block reveal-img">
+                <!-- Rotating Stamp -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 rotating-stamp z-20">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
+                        <text class="fill-purple-400 font-bold text-[8px] uppercase tracking-[0.2em]">
+                            <textPath xlink:href="#circlePath">EST 2024 • PREMIUM QUALITY • MEHDI'S WORLD •</textPath>
+                        </text>
+                    </svg>
+                </div>
+
+                <!-- Hero Image with Glass Cards -->
+                <div class="relative">
+                    <img src="https://picsum.photos/1920/1080?random=12" alt="Hero" class="rounded-3xl w-full h-[600px] object-cover shadow-2xl border border-white/10">
+                    
+                    <div class="absolute top-10 -left-10 glass p-6 rounded-2xl shadow-xl floating animate-bounce-slow">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400">High Velocity</div>
+                                <div class="font-bold">Lightning Performance</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-10 -right-10 glass p-6 rounded-2xl shadow-xl floating-delayed">
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/150?img=12" class="w-10 h-10 rounded-full border-2 border-purple-500">
+                            <div>
+                                <div class="text-xs text-gray-400">Happy Client</div>
+                                <div class="font-bold text-sm">"Absolutely stunning work!"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Mission -->
+    <section id="about" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl">
+                <h2 class="text-purple-400 font-bold tracking-widest text-sm uppercase mb-6 reveal">About the Visionary</h2>
+                <h3 class="text-4xl md:text-6xl font-bold leading-tight mb-12 reveal">
+                    I believe that every pixel should tell a story and every interaction should <span class="text-[#a855f7]">feel like magic.</span>
+                </h3>
+                <div class="grid md:grid-cols-2 gap-12 reveal">
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Mehdi is a designer and developer who thrives on the edge of innovation. With a deep passion for clean code and vibrant aesthetics, I transform complex ideas into intuitive digital realities. 
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        My work is defined by a commitment to quality and a obsession with the "vibe". In this purple-tinted world, we prioritize performance, accessibility, and breathtaking visuals.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Bento Grid -->
+    <section id="services" class="py-32 bg-[#0d0221]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold reveal">The Creative Arsenal</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[600px]">
+                <div class="bento-card md:col-span-2 glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end group reveal">
+                    <div class="glow-effect"></div>
+                    <div class="absolute top-8 right-8">
+                        <svg class="w-12 h-12 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-2">Frontend Engineering</h4>
+                    <p class="text-gray-400">React, Vue, and GSAP mastery for buttery smooth interactions.</p>
+                </div>
+
+                <div class="bento-card glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end group reveal">
+                    <div class="glow-effect"></div>
+                    <div class="absolute top-8 right-8">
+                        <svg class="w-10 h-10 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Visual Design</h4>
+                    <p class="text-sm text-gray-400">Premium UI design focusing on typography and spacing.</p>
+                </div>
+
+                <div class="bento-card glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end group reveal">
+                    <div class="glow-effect"></div>
+                    <h4 class="text-xl font-bold mb-2">Strategy</h4>
+                    <p class="text-sm text-gray-400">Data-driven approaches for maximum conversion.</p>
+                </div>
+
+                <div class="bento-card glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end group reveal">
+                    <div class="glow-effect"></div>
+                    <div class="absolute top-8 right-8">
+                        <svg class="w-10 h-10 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Motion Design</h4>
+                    <p class="text-sm text-gray-400">Bringing interfaces to life with physics-based animation.</p>
+                </div>
+
+                <div class="bento-card md:col-span-3 glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-center group reveal">
+                    <div class="glow-effect"></div>
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="max-w-md">
+                            <h4 class="text-3xl font-bold mb-4">Web3 & AI Integration</h4>
+                            <p class="text-gray-400">Building for the future with blockchain and machine learning capabilities built into modern web apps.</p>
+                        </div>
+                        <div class="flex -space-x-4">
+                            <img src="https://i.pravatar.cc/150?img=1" class="w-16 h-16 rounded-full border-4 border-[#0d0221]">
+                            <img src="https://i.pravatar.cc/150?img=2" class="w-16 h-16 rounded-full border-4 border-[#0d0221]">
+                            <img src="https://i.pravatar.cc/150?img=3" class="w-16 h-16 rounded-full border-4 border-[#0d0221]">
+                            <div class="w-16 h-16 rounded-full bg-purple-600 flex items-center justify-center text-xs font-bold">+200</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase -->
+    <section class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-5xl font-extrabold reveal">Selected <br/>Work</h2>
+                <div class="text-purple-400 font-bold mb-2 cursor-pointer hover:underline">View All (12)</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="group cursor-pointer reveal">
+                    <div class="overflow-hidden rounded-3xl mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=15" alt="Work 1" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <h4 class="text-2xl font-bold">Lumina Dashboard</h4>
+                    <p class="text-gray-400">Fintech Platform Design</p>
+                </div>
+                <div class="group cursor-pointer reveal">
+                    <div class="overflow-hidden rounded-3xl mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=22" alt="Work 2" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <h4 class="text-2xl font-bold">Aura E-Commerce</h4>
+                    <p class="text-gray-400">Fashion Brand Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative bg-[#12022b]">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto glass p-12 md:p-20 rounded-[4rem] border border-purple-500/20 shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-20">
+                    <div>
+                        <h2 class="text-5xl font-bold mb-8">Ready to start your <span class="purple-gradient-text">Purple</span> journey?</h2>
+                        <p class="text-gray-300 text-lg mb-12">
+                            Fill out the form and I'll get back to you within 24 hours. Let's make something legendary.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 glass rounded-full flex items-center justify-center text-purple-400">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <span class="text-lg">Mehdi's Main St, Purple City</span>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 glass rounded-full flex items-center justify-center text-purple-400">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                </div>
+                                <span class="text-lg">+1 (555) 777-MEHDI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-gray-400 px-2 uppercase tracking-widest">Full Name</label>
+                            <input type="text" placeholder="Mehdi" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-purple-500 outline-none transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-gray-400 px-2 uppercase tracking-widest">Address</label>
+                            <input type="text" placeholder="123 Awesome St, Design District" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-purple-500 outline-none transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-gray-400 px-2 uppercase tracking-widest">Mobile Number</label>
+                            <input type="tel" placeholder="+1 234 567 890" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-purple-500 outline-none transition-all">
+                        </div>
+                        <button class="magnetic w-full py-5 bg-[#a855f7] text-white rounded-2xl font-bold text-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-[12vw] font-extrabold opacity-5 leading-none mb-20 pointer-events-none">MEHDI</h2>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="text-gray-500 text-sm italic font-medium">
+                    &copy; 2024 Mehdi's Awesome Purple World. All Rights Reserved.
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-purple-500 transition-colors">Dribbble</a>
+                    <a href="#" class="hover:text-purple-500 transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-purple-500 transition-colors">Twitter</a>
+                    <a href="#" class="hover:text-purple-500 transition-colors">Instagram</a>
+                </div>
+                <div class="text-xs text-gray-500 uppercase tracking-widest">
+                    Crafted with ❤️ and Purple Vibes
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        // Magnetic Buttons
+        const magnets = document.querySelectorAll('.magnetic');
+        magnets.forEach((btn) => {
+            btn.addEventListener('mousemove', (e) => {
+                const bounding = btn.getBoundingClientRect();
+                const x = (e.clientX - bounding.left) - (bounding.width / 2);
+                const y = (e.clientY - bounding.top) - (bounding.height / 2);
+                
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Animations
+        gsap.from('.reveal', {
+            scrollTrigger: {
+                trigger: '.reveal',
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+
+        gsap.from('.reveal-img', {
+            scrollTrigger: {
+                trigger: '.reveal-img',
+                start: 'top 70%',
+            },
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.5,
+            ease: "elastic.out(1, 0.5)"
+        });
+
+        // Scroll Reveal For All Sections
+        document.querySelectorAll('section').forEach((section) => {
+            gsap.from(section.querySelectorAll('.reveal'), {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out"
+            });
+        });
+
+        // Floating Animations
+        gsap.to('.floating', {
+            y: 20,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        gsap.to('.floating-delayed', {
+            y: -20,
+            duration: 2.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 0.5
+        });
+
+        // Orb Movement
+        gsap.to('.hero-orb', {
+            x: 'random(-50, 50)',
+            y: 'random(-50, 50)',
+            duration: 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 1
+        });
+    </script>
+</body>
+</html>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehdi's Awesome Purple World | Elite Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0a0118;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .purple-gradient-text {
+            background: linear-gradient(135deg, #d8b4fe 0%, #a855f7 50%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-orb {
+            position: absolute;
+            filter: blur(100px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #a855f7;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .bento-card:hover .glow-effect {
+            opacity: 1;
+        }
+
+        .glow-effect {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center bg-transparent">
+        <div class="text-2xl font-extrabold tracking-tighter">
+            M<span class="text-[#a855f7]">.</span>
+        </div>
+        <div class="glass px-8 py-3 rounded-full flex gap-8 text-sm font-medium">
+            <a href="#hero" class="hover:text-[#a855f7] transition-colors">Home</a>
+            <a href="#about" class="hover:text-[#a855f7] transition-colors">About</a>
+            <a href="#services" class="hover:text-[#a855f7] transition-colors">Expertise</a>
+            <a href="#contact" class="hover:text-[#a855f7] transition-colors">Contact</a>
+        </div>
+        <button class="magnetic px-6 py-3 bg-[#a855f7] text-white rounded-full text-sm font-bold hover:shadow-[0_0_20px_rgba(168,85,247,0.5)] transition-all">
+            Let's Talk
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Flair -->
+        <div class="hero-orb w-[500px] h-[500px] bg-purple-600 top-[-100px] left-[-100px]"></div>
+        <div class="hero-orb w-[400px] h-[400px] bg-indigo-600 bottom-[-100px] right-[-100px]"></div>
+        
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-8">
+                <div class="reveal inline-block px-4 py-1 rounded-full glass border border-purple-500/30 text-purple-300 text-xs font-bold tracking-widest uppercase">
+                    Available for Freelance
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold leading-tight tracking-tight reveal">
+                    Mehdi's <br/>
+                    <span class="purple-gradient-text">Awesome Purple</span> <br/>
+                    World
+                </h1>
+                <p class="text-gray-400 text-xl max-w-lg reveal">
+                    Crafting digital experiences that exist at the intersection of aesthetic brilliance and technical precision.
+                </p>
+                <div class="flex gap-6 reveal">
+                    <button class="magnetic px-8 py-4 bg-white text-black rounded-xl font-bold hover:scale-105 transition-transform">
+                        View Projects
+                    </button>
+                    <button class="magnetic px-8 py-4 glass rounded-xl font-bold border border-white/10 hover:bg-white/5 transition-colors">
+                        My Story
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative hidden lg:block reveal-img">
+                <!-- Rotating Stamp -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 rotating-stamp z-20">
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                        <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
+                        <text class="fill-purple-400 font-bold text-[8px] uppercase tracking-[0.2em]">
+                            <textPath xlink:href="#circlePath">EST 2024 • PREMIUM QUALITY • MEHDI'S WORLD •</textPath>
+                        </text>
+                    </svg>
+                </div>
+
+                <!-- Hero Image with Glass Cards -->
+                <div class="relative">
+                    <img src="https://picsum.photos/1920/1080?random=12" alt="Hero" class="rounded-3xl w-full h-[600px] object-cover shadow-2xl border border-white/10">
+                    
+                    <div class="absolute top-10 -left-10 glass p-6 rounded-2xl shadow-xl floating animate-bounce-slow">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400">High Velocity</div>
+                                <div class="font-bold">Lightning Performance</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute bottom-10 -right-10 glass p-6 rounded-2xl shadow-xl floating-delayed">
+                        <div class="flex items-center gap-4">
+                            <img src="https://i.pravatar.cc/150?img=12" class="w-10 h-10 rounded-full border-2 border-purple-500">
+                            <div>
+                                <div class="text-xs text-gray-400">Happy Client</div>
+                                <div class="font-bold text-sm">"Absolutely stunning work!"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Mission -->
+    <section id="about" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl">
+                <h2 class="text-purple-400 font-bold tracking-widest text-sm uppercase mb-6 reveal">About the Visionary</h2>
+                <h3 class="text-4xl md:text-6xl font-bold leading-tight mb-12 reveal">
+                    I believe that every pixel should tell a story and every interaction should <span class="text-[#a855f7]">feel like magic.</span>
+                </h3>
+                <div class="grid md:grid-cols-2 gap-12 reveal">
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Mehdi is a designer and developer who thrives on the edge of innovation. With a deep passion for clean code and vibrant aesthetics, I transform complex ideas into intuitive digital realities. 
+                    </p>
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        My work is defined by a commitment to quality and a obsession with the "vibe". In this purple-tinted world, we prioritize performance, accessibility, and breathtaking visuals.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Bento Grid -->
+    <section id="services" class="py-32 bg-[#0d0221]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-5xl font-bold reveal">The Creative Arsenal</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[600px]">
+                <div class="bento-card md:col-span-2 glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end group reveal">
+                    <div class="glow-effect"></div>
+                    <div class="absolute top-8 right-8">
+                        <svg class="w-12 h-12 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-2">Frontend Engineering</h4>
+                    <p class="text-gray-400">React, Vue, and GSAP mastery for buttery smooth interactions.</p>
+                </div>
+
+                <div class="bento-card glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end group reveal">
+                    <div class="glow-effect"></div>
+                    <div class="absolute top-8 right-8">
+                        <svg class="w-10 h-10 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Visual Design</h4>
+                    <p class="text-sm text-gray-400">Premium UI design focusing on typography and spacing.</p>
+                </div>
+
+                <div class="bento-card glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end group reveal">
+                    <div class="glow-effect"></div>
+                    <h4 class="text-xl font-bold mb-2">Strategy</h4>
+                    <p class="text-sm text-gray-400">Data-driven approaches for maximum conversion.</p>
+                </div>
+
+                <div class="bento-card glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end group reveal">
+                    <div class="glow-effect"></div>
+                    <div class="absolute top-8 right-8">
+                        <svg class="w-10 h-10 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Motion Design</h4>
+                    <p class="text-sm text-gray-400">Bringing interfaces to life with physics-based animation.</p>
+                </div>
+
+                <div class="bento-card md:col-span-3 glass rounded-3xl p-8 relative overflow-hidden flex flex-col justify-center group reveal">
+                    <div class="glow-effect"></div>
+                    <div class="flex flex-col md:flex-row items-center gap-12">
+                        <div class="max-w-md">
+                            <h4 class="text-3xl font-bold mb-4">Web3 & AI Integration</h4>
+                            <p class="text-gray-400">Building for the future with blockchain and machine learning capabilities built into modern web apps.</p>
+                        </div>
+                        <div class="flex -space-x-4">
+                            <img src="https://i.pravatar.cc/150?img=1" class="w-16 h-16 rounded-full border-4 border-[#0d0221]">
+                            <img src="https://i.pravatar.cc/150?img=2" class="w-16 h-16 rounded-full border-4 border-[#0d0221]">
+                            <img src="https://i.pravatar.cc/150?img=3" class="w-16 h-16 rounded-full border-4 border-[#0d0221]">
+                            <div class="w-16 h-16 rounded-full bg-purple-600 flex items-center justify-center text-xs font-bold">+200</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase -->
+    <section class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-5xl font-extrabold reveal">Selected <br/>Work</h2>
+                <div class="text-purple-400 font-bold mb-2 cursor-pointer hover:underline">View All (12)</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="group cursor-pointer reveal">
+                    <div class="overflow-hidden rounded-3xl mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=15" alt="Work 1" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <h4 class="text-2xl font-bold">Lumina Dashboard</h4>
+                    <p class="text-gray-400">Fintech Platform Design</p>
+                </div>
+                <div class="group cursor-pointer reveal">
+                    <div class="overflow-hidden rounded-3xl mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=22" alt="Work 2" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-110">
+                    </div>
+                    <h4 class="text-2xl font-bold">Aura E-Commerce</h4>
+                    <p class="text-gray-400">Fashion Brand Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative bg-[#12022b]">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto glass p-12 md:p-20 rounded-[4rem] border border-purple-500/20 shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-20">
+                    <div>
+                        <h2 class="text-5xl font-bold mb-8">Ready to start your <span class="purple-gradient-text">Purple</span> journey?</h2>
+                        <p class="text-gray-300 text-lg mb-12">
+                            Fill out the form and I'll get back to you within 24 hours. Let's make something legendary.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 glass rounded-full flex items-center justify-center text-purple-400">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <span class="text-lg">Mehdi's Main St, Purple City</span>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 glass rounded-full flex items-center justify-center text-purple-400">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                                </div>
+                                <span class="text-lg">+1 (555) 777-MEHDI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-gray-400 px-2 uppercase tracking-widest">Full Name</label>
+                            <input type="text" placeholder="Mehdi" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-purple-500 outline-none transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-gray-400 px-2 uppercase tracking-widest">Address</label>
+                            <input type="text" placeholder="123 Awesome St, Design District" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-purple-500 outline-none transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-gray-400 px-2 uppercase tracking-widest">Mobile Number</label>
+                            <input type="tel" placeholder="+1 234 567 890" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 focus:border-purple-500 outline-none transition-all">
+                        </div>
+                        <button class="magnetic w-full py-5 bg-[#a855f7] text-white rounded-2xl font-bold text-lg hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-[12vw] font-extrabold opacity-5 leading-none mb-20 pointer-events-none">MEHDI</h2>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="text-gray-500 text-sm italic font-medium">
+                    &copy; 2024 Mehdi's Awesome Purple World. All Rights Reserved.
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-purple-500 transition-colors">Dribbble</a>
+                    <a href="#" class="hover:text-purple-500 transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-purple-500 transition-colors">Twitter</a>
+                    <a href="#" class="hover:text-purple-500 transition-colors">Instagram</a>
+                </div>
+                <div class="text-xs text-gray-500 uppercase tracking-widest">
+                    Crafted with ❤️ and Purple Vibes
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        // Magnetic Buttons
+        const magnets = document.querySelectorAll('.magnetic');
+        magnets.forEach((btn) => {
+            btn.addEventListener('mousemove', (e) => {
+                const bounding = btn.getBoundingClientRect();
+                const x = (e.clientX - bounding.left) - (bounding.width / 2);
+                const y = (e.clientY - bounding.top) - (bounding.height / 2);
+                
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Animations
+        gsap.from('.reveal', {
+            scrollTrigger: {
+                trigger: '.reveal',
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            },
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+
+        gsap.from('.reveal-img', {
+            scrollTrigger: {
+                trigger: '.reveal-img',
+                start: 'top 70%',
+            },
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.5,
+            ease: "elastic.out(1, 0.5)"
+        });
+
+        // Scroll Reveal For All Sections
+        document.querySelectorAll('section').forEach((section) => {
+            gsap.from(section.querySelectorAll('.reveal'), {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out"
+            });
+        });
+
+        // Floating Animations
+        gsap.to('.floating', {
+            y: 20,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        gsap.to('.floating-delayed', {
+            y: -20,
+            duration: 2.5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 0.5
+        });
+
+        // Orb Movement
+        gsap.to('.hero-orb', {
+            x: 'random(-50, 50)',
+            y: 'random(-50, 50)',
+            duration: 5,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 1
+        });
+    </script>
+</body>
+</html>

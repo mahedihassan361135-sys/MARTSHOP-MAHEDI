@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS | Next-Gen Mobile Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-electric { color: #00f2ff; }
+        .bg-electric { background-color: #00f2ff; }
+        .border-electric { border-color: #00f2ff; }
+        .text-gold { color: #d4af37; }
+        .bg-gold { background-color: #d4af37; }
+
+        .gradient-text {
+            background: linear-gradient(to right, #ffffff, #00f2ff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #00f2ff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f2ff; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between glass px-8 py-4 rounded-full">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-electric rounded-lg flex items-center justify-center rotate-45">
+                    <div class="w-4 h-4 bg-black rounded-sm -rotate-45"></div>
+                </div>
+                <span class="text-xl font-extrabold tracking-tighter">NEXUS</span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium opacity-80">
+                <a href="#phones" class="hover:text-electric transition-colors">Smartphones</a>
+                <a href="#chargers" class="hover:text-electric transition-colors">Chargers</a>
+                <a href="#audio" class="hover:text-electric transition-colors">Audio</a>
+                <a href="#about" class="hover:text-electric transition-colors">Brand</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden lg:flex items-center glass rounded-full px-4 py-1.5 border-white/5">
+                    <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" placeholder="Search tech..." class="bg-transparent border-none outline-none text-xs ml-2 w-32 focus:w-48 transition-all">
+                </div>
+                <div class="relative group cursor-pointer">
+                    <svg class="w-6 h-6 group-hover:text-electric transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span class="absolute -top-2 -right-2 bg-gold text-black text-[10px] font-bold px-1.5 rounded-full">3</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Orbs -->
+        <div class="orb w-[500px] h-[500px] bg-electric top-[-10%] left-[-10%]"></div>
+        <div class="orb w-[400px] h-[400px] bg-gold bottom-[-5%] right-[-5%]"></div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 glass text-[10px] font-bold tracking-widest text-gold mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
+                    </span>
+                    GLOBAL LAUNCH 2024
+                </div>
+                <h1 class="text-7xl lg:text-9xl font-extrabold leading-[0.9] tracking-tighter mb-8 hero-title">
+                    EVOLVE <br> <span class="gradient-text">YOUR TECH</span>
+                </h1>
+                <p class="text-lg opacity-60 max-w-md mb-10 leading-relaxed hero-para">
+                    Experience the pinnacle of mobile engineering. Precision-crafted smartphones and accessories for the global elite.
+                </p>
+                <div class="flex items-center gap-6">
+                    <div class="magnetic-wrap">
+                        <button class="bg-electric text-black px-10 py-5 rounded-full font-bold text-sm hover:shadow-[0_0_30px_rgba(0,242,255,0.4)] transition-all magnetic-content">
+                            SHOP THE COLLECTION
+                        </button>
+                    </div>
+                    <button class="flex items-center gap-3 font-semibold text-sm group">
+                        <span class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:border-electric transition-colors">
+                            <svg class="w-4 h-4 fill-white group-hover:fill-electric" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </span>
+                        Watch Film
+                    </button>
+                </div>
+            </div>
+
+            <div class="relative hero-image-container">
+                <!-- Rotating Stamp -->
+                <div class="absolute -top-10 -right-10 z-20 hidden md:block">
+                    <svg class="rotating-stamp w-32 h-32" viewBox="0 0 100 100">
+                        <defs><path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/></defs>
+                        <text class="text-[8px] uppercase tracking-widest fill-white/40 font-bold">
+                            <textPath href="#circlePath">Premium Quality • Global Shipping • Next Gen •</textPath>
+                        </text>
+                    </svg>
+                </div>
+
+                <div class="relative z-10 glass p-4 rounded-[3rem] border-white/20 rotate-6 hover:rotate-0 transition-transform duration-700">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Next Gen Mobile" class="rounded-[2.5rem] w-full h-[600px] object-cover">
+                    <!-- Glass Card -->
+                    <div class="absolute bottom-10 -left-10 glass p-6 rounded-2xl border-white/20 animate-bounce shadow-2xl">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-electric/20 flex items-center justify-center">
+                                <svg class="w-6 h-6 text-electric" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            </div>
+                            <div>
+                                <p class="text-[10px] opacity-50 font-bold uppercase">Battery Life</p>
+                                <p class="font-extrabold">72H ACTIVE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Grid (Bento) -->
+    <section id="categories" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-bold mb-4">CURATED <br><span class="text-electric">ECOSYSTEM</span></h2>
+                    <p class="opacity-50 max-w-sm">Seamlessly connected devices designed to empower your digital life.</p>
+                </div>
+                <div class="text-right">
+                    <span class="text-8xl font-black opacity-5">01</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[800px]">
+                <div class="md:col-span-2 md:row-span-2 glass rounded-[2.5rem] overflow-hidden group relative p-8">
+                    <img src="https://picsum.photos/1920/1080?random=12" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" alt="Phones">
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div>
+                            <span class="bg-electric text-black text-[10px] font-bold px-3 py-1 rounded-full">FLAGSHIP</span>
+                            <h3 class="text-4xl font-bold mt-4">NEXUS X-1</h3>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm opacity-80">Starting at $999</p>
+                            <button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-2 md:row-span-1 glass rounded-[2.5rem] overflow-hidden group relative p-8">
+                    <img src="https://picsum.photos/1920/1080?random=15" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-110 transition-transform duration-700" alt="Audio">
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <h3 class="text-3xl font-bold">SONIC BUDS PRO</h3>
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm opacity-80">Pure Gold Edition Available</p>
+                            <span class="text-gold font-bold">$249</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-1 md:row-span-1 glass rounded-[2.5rem] overflow-hidden group relative p-6">
+                    <img src="https://picsum.photos/1920/1080?random=20" class="absolute inset-0 w-full h-full object-cover opacity-30" alt="Charger">
+                    <div class="relative z-10">
+                        <p class="text-[10px] font-bold tracking-widest text-electric">FAST CHARGE</p>
+                        <h4 class="text-xl font-bold">ULTRA HUB</h4>
+                    </div>
+                </div>
+                <div class="md:col-span-1 md:row-span-1 bg-gold rounded-[2.5rem] p-6 group flex flex-col justify-between cursor-pointer hover:bg-white transition-colors duration-500">
+                    <div class="flex justify-between items-start">
+                        <svg class="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12z"></path></svg>
+                        <span class="text-black font-bold text-xs uppercase">Limited</span>
+                    </div>
+                    <div class="text-black">
+                        <p class="text-xs font-bold opacity-60">Bundle Deal</p>
+                        <p class="text-xl font-extrabold leading-tight">SAVE 20% ON ACCESSORIES</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="phones" class="py-32 px-6 bg-[#080808]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold mb-6">BEST SELLERS</h2>
+                <div class="flex justify-center gap-4 text-xs font-bold tracking-widest">
+                    <button class="px-6 py-2 rounded-full border border-electric text-electric">ALL PRODUCTS</button>
+                    <button class="px-6 py-2 rounded-full border border-white/10 hover:border-white transition-colors">SMARTPHONES</button>
+                    <button class="px-6 py-2 rounded-full border border-white/10 hover:border-white transition-colors">AUDIO</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative glass rounded-[2rem] p-8 mb-6 overflow-hidden">
+                        <div class="absolute top-6 left-6 z-10">
+                            <span class="bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold">NEW</span>
+                        </div>
+                        <img src="https://picsum.photos/1920/1080?random=21" class="product-img w-full h-[350px] object-cover rounded-2xl transition-transform duration-500" alt="Nexus Phone">
+                        <button class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
+                            ADD TO CART
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold">Nexus Alpha v2</h3>
+                            <p class="text-sm opacity-50">Titanium Silver • 512GB</p>
+                        </div>
+                        <p class="text-xl font-bold text-electric">$1,299</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative glass rounded-[2rem] p-8 mb-6 overflow-hidden">
+                        <img src="https://picsum.photos/1920/1080?random=22" class="product-img w-full h-[350px] object-cover rounded-2xl transition-transform duration-500" alt="Nexus Buds">
+                        <button class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
+                            ADD TO CART
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold">Sonic Buds Air</h3>
+                            <p class="text-sm opacity-50">Active Noise Cancelling</p>
+                        </div>
+                        <p class="text-xl font-bold text-gold">$189</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative glass rounded-[2rem] p-8 mb-6 overflow-hidden">
+                        <div class="absolute top-6 left-6 z-10">
+                            <span class="bg-gold text-black px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Gold Edition</span>
+                        </div>
+                        <img src="https://picsum.photos/1920/1080?random=23" class="product-img w-full h-[350px] object-cover rounded-2xl transition-transform duration-500" alt="Nexus Watch">
+                        <button class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white text-black px-6 py-3 rounded-full font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity translate-y-4 group-hover:translate-y-0 duration-300">
+                            ADD TO CART
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-xl font-bold">Titan Chrono X</h3>
+                            <p class="text-sm opacity-50">Smart Wearable Luxury</p>
+                        </div>
+                        <p class="text-xl font-bold text-electric">$450</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Reach / Mission -->
+    <section id="about" class="py-32 px-6 relative overflow-hidden">
+        <div class="orb w-[600px] h-[600px] bg-electric bottom-[-20%] left-[20%] opacity-20"></div>
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="text-xs font-bold tracking-[0.5em] text-white/40 mb-8 block uppercase">Beyond Boundaries</span>
+            <h2 class="text-4xl md:text-7xl font-extrabold mb-12 leading-tight reveal-text">
+                REDEFINING THE <span class="text-gold">GLOBAL</span> SHOPPING EXPERIENCE.
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <p class="text-3xl font-bold text-electric">150+</p>
+                    <p class="text-xs opacity-50 font-bold uppercase tracking-widest mt-2">Countries</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-electric">2M+</p>
+                    <p class="text-xs opacity-50 font-bold uppercase tracking-widest mt-2">Users</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-electric">24H</p>
+                    <p class="text-xs opacity-50 font-bold uppercase tracking-widest mt-2">Support</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-bold text-electric">5YR</p>
+                    <p class="text-xs opacity-50 font-bold uppercase tracking-widest mt-2">Warranty</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 px-6">
+        <div class="max-w-7xl mx-auto glass rounded-[3rem] p-12 md:p-24 relative overflow-hidden text-center">
+            <div class="absolute inset-0 bg-gradient-to-tr from-electric/10 to-transparent"></div>
+            <div class="relative z-10">
+                <h2 class="text-5xl md:text-8xl font-black mb-10 tracking-tighter">READY FOR THE <br><span class="text-electric">FUTURE?</span></h2>
+                <div class="magnetic-wrap">
+                    <button class="bg-white text-black px-12 py-6 rounded-full font-bold text-lg hover:scale-110 transition-transform duration-500 magnetic-content">
+                        JOIN THE ECOSYSTEM
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-16 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="w-8 h-8 bg-electric rounded-lg flex items-center justify-center rotate-45">
+                            <div class="w-4 h-4 bg-black rounded-sm -rotate-45"></div>
+                        </div>
+                        <span class="text-2xl font-extrabold tracking-tighter">NEXUS</span>
+                    </div>
+                    <p class="text-xl opacity-60 max-w-sm">Crafting the tools for the modern digital pioneer. Worldwide.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-gold">EXPLORE</h4>
+                    <ul class="space-y-4 opacity-50 text-sm">
+                        <li><a href="#" class="hover:text-electric transition-colors">Latest Releases</a></li>
+                        <li><a href="#" class="hover:text-electric transition-colors">Exclusive Bundles</a></li>
+                        <li><a href="#" class="hover:text-electric transition-colors">Corporate Orders</a></li>
+                        <li><a href="#" class="hover:text-electric transition-colors">Global Logistics</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-gold">SUPPORT</h4>
+                    <ul class="space-y-4 opacity-50 text-sm">
+                        <li><a href="#" class="hover:text-electric transition-colors">Nexus Care+</a></li>
+                        <li><a href="#" class="hover:text-electric transition-colors">Track Order</a></li>
+                        <li><a href="#" class="hover:text-electric transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-electric transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
+                <p class="text-xs opacity-40">© 2024 NEXUS GLOBAL ECOSYSTEM. ALL RIGHTS RESERVED.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="opacity-40 hover:opacity-100 transition-opacity">IG</a>
+                    <a href="#" class="opacity-40 hover:opacity-100 transition-opacity">TW</a>
+                    <a href="#" class="opacity-40 hover:opacity-100 transition-opacity">YT</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // GSAP Initialization
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        // Hero Animations
+        const tl = gsap.timeline();
+        tl.from(".hero-title", {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            ease: "power4.out"
+        })
+        .from(".hero-para", {
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        }, "-=0.6")
+        .from(".hero-image-container", {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.2,
+            ease: "expo.out"
+        }, "-=0.8");
+
+        // Reveal animations on scroll
+        gsap.utils.toArray('.product-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                },
+                y: 60,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Magnetic Buttons Logic
+        const magneticWraps = document.querySelectorAll('.magnetic-wrap');
+        magneticWraps.forEach(wrap => {
+            const content = wrap.querySelector('.magnetic-content');
+            
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(content, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+                
+                gsap.to(cursor, { scale: 3, opacity: 0.2 });
+            });
+            
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(content, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+                gsap.to(cursor, { scale: 1, opacity: 1 });
+            });
+        });
+
+        // Parallax effect for orbs
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            gsap.to('.orb', {
+                x: x * 50,
+                y: y * 50,
+                duration: 2,
+                ease: "power1.out"
+            });
+        });
+
+        // Smooth reveal for text
+        gsap.from(".reveal-text", {
+            scrollTrigger: {
+                trigger: ".reveal-text",
+                start: "top 80%",
+            },
+            y: 100,
+            opacity: 0,
+            duration: 1.5,
+            ease: "expo.out"
+        });
+    </script>
+</body>
+</html>

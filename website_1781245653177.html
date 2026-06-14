@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARCH SHOP | Premium Collection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #d4af37;
+            --bg-dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+        }
+
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+    </style>
+</head>
+<body class="custom-scroll">
+
+    <!-- Preloader/Overlay Orbs -->
+    <div class="orb w-[500px] h-[500px] bg-amber-500 top-[-200px] left-[-100px]"></div>
+    <div class="orb w-[400px] h-[400px] bg-yellow-900 bottom-[-100px] right-[-100px]"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center mix-blend-difference">
+        <div class="text-2xl font-extrabold tracking-tighter uppercase">March<span class="text-[#d4af37]">.</span></div>
+        <div class="hidden md:flex space-x-12 text-sm font-medium tracking-widest uppercase">
+            <a href="#about" class="hover:text-[#d4af37] transition-colors">Vision</a>
+            <a href="#products" class="hover:text-[#d4af37] transition-colors">Collection</a>
+            <a href="#payment" class="hover:text-[#d4af37] transition-colors">Checkout</a>
+            <a href="#" class="hover:text-[#d4af37] transition-colors">Journal</a>
+        </div>
+        <div class="magnetic-wrap">
+            <button class="magnetic-btn px-6 py-2 border border-white/20 rounded-full text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                Shop Now
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <img src="https://picsum.photos/1920/1080?random=1" class="w-full h-full object-cover opacity-40 scale-110" id="hero-img" alt="Hero bg">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-[#0a0a0a]"></div>
+        </div>
+
+        <div class="container mx-auto px-8 relative z-10 text-center">
+            <div class="mb-6 overflow-hidden">
+                <span class="inline-block translate-y-full text-[#d4af37] uppercase tracking-[0.3em] font-semibold text-sm stagger-hero">Established 2024</span>
+            </div>
+            <h1 class="text-7xl md:text-9xl font-bold mb-8 leading-[0.9] reveal-text">
+                <span class="block translate-y-full stagger-hero">REDEFINING</span>
+                <span class="block translate-y-full italic serif stagger-hero text-gradient">MODERN LUXE</span>
+            </h1>
+            
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 mt-12 opacity-0 stagger-hero">
+                <div class="magnetic-wrap">
+                    <button class="magnetic-btn bg-[#d4af37] text-black px-10 py-5 rounded-full font-bold uppercase tracking-widest text-sm transition-transform">
+                        Explore Collection
+                    </button>
+                </div>
+                <div class="flex items-center gap-4 text-left glass-card p-4 rounded-2xl border-white/10">
+                    <img src="https://i.pravatar.cc/150?img=12" class="w-12 h-12 rounded-full border-2 border-[#d4af37]" alt="Founder">
+                    <div>
+                        <p class="text-[10px] uppercase tracking-tighter opacity-50 text-white">Curated by</p>
+                        <p class="font-bold text-sm">MAHEDI HASSAN</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rotating Stamp Flair -->
+        <div class="absolute bottom-10 right-10 hidden lg:block">
+            <svg class="rotating-stamp w-32 h-32" viewBox="0 0 100 100">
+                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                <text class="fill-[#d4af37] text-[10px] uppercase font-bold tracking-[0.2em]">
+                    <textPath xlink:href="#circlePath">
+                        • MARCH SHOP • PREMIUM QUALITY • GLOBAL DELIVERY • 
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="about" class="py-32 container mx-auto px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="aspect-[4/5] rounded-3xl overflow-hidden glass-card p-4">
+                    <img src="https://picsum.photos/1920/1080?random=15" class="w-full h-full object-cover rounded-2xl opacity-80" alt="About">
+                </div>
+                <div class="absolute -bottom-10 -right-10 glass-card p-8 rounded-2xl max-w-xs hidden md:block">
+                    <p class="italic serif text-xl mb-2">"Luxury must be comfortable, otherwise it is not luxury."</p>
+                    <span class="text-[#d4af37] font-bold text-sm tracking-widest">— MAHEDI HASSAN</span>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h2 class="text-5xl font-bold leading-tight">Our Philosophy <br><span class="text-gradient">Beyond the Surface</span></h2>
+                <p class="text-white/60 text-lg leading-relaxed">
+                    March Shop is not just an e-commerce platform; it's a testament to refined aesthetics and uncompromising quality. Founded by Mahedi Hassan, we bridge the gap between global heritage and contemporary minimalism.
+                </p>
+                <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+                    <div>
+                        <h4 class="text-[#d4af37] font-bold text-2xl">99%</h4>
+                        <p class="text-xs uppercase tracking-widest opacity-50">Customer Satisfaction</p>
+                    </div>
+                    <div>
+                        <h4 class="text-[#d4af37] font-bold text-2xl">Global</h4>
+                        <p class="text-xs uppercase tracking-widest opacity-50">Logistics Network</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Products -->
+    <section id="products" class="py-32 bg-white/5">
+        <div class="container mx-auto px-8">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <span class="text-[#d4af37] uppercase tracking-[0.3em] font-semibold text-sm">New Arrivals</span>
+                    <h2 class="text-5xl font-bold mt-2">Selected Pieces</h2>
+                </div>
+                <p class="hidden md:block text-white/40 max-w-xs text-right italic">A collection that speaks volumes in silence.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[800px]">
+                <div class="md:col-span-2 md:row-span-2 relative overflow-hidden group rounded-3xl glass-card">
+                    <img src="https://picsum.photos/1920/1080?random=11" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70" alt="Product">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <h3 class="text-3xl font-bold">The Obsidian Coat</h3>
+                        <p class="text-[#d4af37] font-semibold">$1,250</p>
+                    </div>
+                </div>
+                <div class="md:col-span-2 relative overflow-hidden group rounded-3xl glass-card">
+                    <img src="https://picsum.photos/1920/1080?random=12" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70" alt="Product">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <h3 class="text-2xl font-bold">Gold Edition Watch</h3>
+                        <p class="text-[#d4af37] font-semibold">$3,400</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden group rounded-3xl glass-card">
+                    <img src="https://picsum.photos/1920/1080?random=13" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70" alt="Product">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <h3 class="text-lg font-bold">Minimal Wallet</h3>
+                        <p class="text-[#d4af37] font-semibold">$150</p>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden group rounded-3xl glass-card">
+                    <img src="https://picsum.photos/1920/1080?random=14" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70" alt="Product">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <h3 class="text-lg font-bold">Silk Scarf</h3>
+                        <p class="text-[#d4af37] font-semibold">$450</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section (Financial Details) -->
+    <section id="payment" class="py-32 container mx-auto px-8 relative">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-bold">Global Transactions</h2>
+            <p class="text-white/40 mt-4 uppercase tracking-widest text-sm">Secure Payment Solutions by Mahedi Hassan</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Saudi National Bank -->
+            <div class="glass-card p-10 rounded-[2rem] border-white/5 hover:border-[#d4af37]/30 transition-all group">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="bg-white/10 p-4 rounded-2xl group-hover:bg-[#d4af37] group-hover:text-black transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-bold tracking-widest border border-white/20 px-3 py-1 rounded-full">INTERNATIONAL</span>
+                </div>
+                <h3 class="text-xl font-bold mb-6">The Saudi National Bank</h3>
+                <div class="space-y-4 text-sm font-medium">
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="opacity-40">Account Name</span>
+                        <span>MAHEDI HASSAN</span>
+                    </div>
+                    <div class="flex flex-col border-b border-white/5 pb-2">
+                        <span class="opacity-40 mb-1">IBAN</span>
+                        <span class="tracking-tighter font-mono">SA00 0000 0000 0000 0000 0000</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="opacity-40">Swift Code</span>
+                        <span class="font-mono">SNBSARRIXXXX</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sonali Bank -->
+            <div class="glass-card p-10 rounded-[2rem] border-white/5 hover:border-[#d4af37]/30 transition-all group bg-gradient-to-br from-white/5 to-transparent">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="bg-white/10 p-4 rounded-2xl group-hover:bg-[#d4af37] group-hover:text-black transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-bold tracking-widest border border-white/20 px-3 py-1 rounded-full">LOCAL BANK</span>
+                </div>
+                <h3 class="text-xl font-bold mb-6">Sonali Bank Ltd.</h3>
+                <div class="space-y-4 text-sm font-medium">
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="opacity-40">Holder</span>
+                        <span>MAHEDI HASSAN</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="opacity-40">Account No.</span>
+                        <span class="font-mono">1234 5678 9012</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/5 pb-2">
+                        <span class="opacity-40">Branch</span>
+                        <span>Main Dhaka Branch</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Wallets -->
+            <div class="glass-card p-10 rounded-[2rem] border-white/5 hover:border-[#d4af37]/30 transition-all group">
+                <div class="flex justify-between items-start mb-12">
+                    <div class="bg-white/10 p-4 rounded-2xl group-hover:bg-[#d4af37] group-hover:text-black transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <span class="text-[10px] font-bold tracking-widest border border-white/20 px-3 py-1 rounded-full">DIGITAL WALLET</span>
+                </div>
+                <h3 class="text-xl font-bold mb-6">Bangladesh Mobile Wallets</h3>
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-[#e2136e] flex items-center justify-center font-black text-[10px]">bkash</div>
+                            <span class="text-sm font-semibold">Bkash</span>
+                        </div>
+                        <span class="font-mono text-sm">01712-XXXXXX</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-[#f7941d] flex items-center justify-center font-black text-[10px]">Nagad</div>
+                            <span class="text-sm font-semibold">Nagad</span>
+                        </div>
+                        <span class="font-mono text-sm">01712-XXXXXX</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-[#8c3494] flex items-center justify-center font-black text-[10px]">Rocket</div>
+                            <span class="text-sm font-semibold">Rocket</span>
+                        </div>
+                        <span class="font-mono text-sm">01712-XXXXXX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-32 pb-16 bg-black border-t border-white/5">
+        <div class="container mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-20">
+                <div class="max-w-md">
+                    <h2 class="text-5xl font-bold mb-6">Let's craft your <span class="italic serif text-[#d4af37]">style.</span></h2>
+                    <div class="magnetic-wrap">
+                        <a href="mailto:contact@marchshop.com" class="magnetic-btn inline-block text-2xl font-bold underline underline-offset-8 hover:text-[#d4af37] transition-colors">
+                            hello@marchshop.com
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-16">
+                    <div>
+                        <p class="text-xs uppercase tracking-widest opacity-40 mb-6">Socials</p>
+                        <ul class="space-y-4 font-bold">
+                            <li><a href="#" class="hover:text-[#d4af37]">Instagram</a></li>
+                            <li><a href="#" class="hover:text-[#d4af37]">LinkedIn</a></li>
+                            <li><a href="#" class="hover:text-[#d4af37]">Dribbble</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="text-xs uppercase tracking-widest opacity-40 mb-6">Headquarters</p>
+                        <address class="not-italic text-sm font-medium leading-relaxed opacity-60">
+                            Road 12, Gulshan 1<br>
+                            Dhaka, Bangladesh
+                        </address>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 text-[10px] uppercase tracking-widest opacity-40">
+                <p>&copy; 2024 MARCH SHOP. ALL RIGHTS RESERVED.</p>
+                <p>DESIGNED BY MAHEDI HASSAN</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Magnetic Button Effect
+        const magneticBtns = document.querySelectorAll('.magnetic-wrap');
+        magneticBtns.forEach(wrap => {
+            const btn = wrap.querySelector('.magnetic-btn');
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, {
+                    x: x * 0.5,
+                    y: y * 0.5,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.4,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Hero Animations
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+            tl.to('.stagger-hero', {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                stagger: 0.1,
+                ease: "expo.out"
+            })
+            .from('#hero-img', {
+                scale: 1.5,
+                duration: 2,
+                ease: "power4.out"
+            }, "-=1");
+        });
+
+        // Scroll Reveal Animations
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section.querySelectorAll('h2, p, .glass-card'), {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power3.out"
+            });
+        });
+
+        // Parallax Effects
+        gsap.to(".orb", {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 2
+            },
+            y: (i, target) => i % 2 === 0 ? 200 : -200,
+            x: (i, target) => i % 2 === 0 ? 100 : -100,
+        });
+
+        // Hover tilt effect for product cards
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                gsap.to(card, {
+                    rotateX: rotateX,
+                    rotateY: rotateY,
+                    duration: 0.5,
+                    ease: "power2.out"
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    duration: 0.5,
+                    ease: "power2.out"
+                });
+            });
+        });
+    </script>
+</body>
+</html>

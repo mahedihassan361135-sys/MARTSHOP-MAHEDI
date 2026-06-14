@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARCH SHOP | Premium E-Commerce Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --accent: #d4af37;
+            --bg: #080808;
+            --card: #121212;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .gradient-orb {
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(0,0,0,0) 70%);
+        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="custom-cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center glass border-b border-white/5">
+        <div class="text-2xl font-bold tracking-tighter uppercase">March<span class="text-[#d4af37]">.</span>Shop</div>
+        <div class="hidden md:flex gap-10 text-sm font-light tracking-widest uppercase">
+            <a href="#hero" class="hover:text-[#d4af37] transition-colors">Home</a>
+            <a href="#about" class="hover:text-[#d4af37] transition-colors">The Brand</a>
+            <a href="#collection" class="hover:text-[#d4af37] transition-colors">Collections</a>
+            <a href="#payment" class="hover:text-[#d4af37] transition-colors">Payment</a>
+        </div>
+        <div class="magnetic-wrap">
+            <button class="bg-white text-black px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-[#d4af37] transition-all">Shop Now</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Floating Flair -->
+        <div class="absolute top-1/4 left-10 w-[400px] h-[400px] gradient-orb blur-[100px] rounded-full"></div>
+        <div class="absolute bottom-1/4 right-10 w-[300px] h-[300px] bg-blue-500/10 blur-[100px] rounded-full"></div>
+        
+        <div class="absolute right-20 top-40 z-10 hidden lg:block">
+            <div class="rotating-stamp w-32 h-32 border border-white/20 rounded-full flex items-center justify-center text-[10px] tracking-widest uppercase text-center p-4">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                    <text font-size="11" fill="white" letter-spacing="2">
+                        <textPath href="#circlePath">
+                            PREMIUM QUALITY • MARCH SHOP • EST 2024 • 
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-8 grid lg:grid-cols-2 gap-12 items-center z-20">
+            <div class="hero-content">
+                <h2 class="text-[#d4af37] italic text-xl mb-4 opacity-0" id="hero-subtitle">The New Standard</h2>
+                <h1 class="text-6xl md:text-8xl font-bold leading-none mb-8 opacity-0" id="hero-title">CURATED <br/>EXCELLENCE.</h1>
+                <p class="text-gray-400 max-w-md text-lg mb-10 opacity-0" id="hero-description">Discover a symphony of aesthetics and functionality. March Shop brings global craftsmanship to your doorstep with unmatched elegance.</p>
+                <div class="flex gap-6 opacity-0" id="hero-btns">
+                    <div class="magnetic-wrap">
+                        <button class="bg-[#d4af37] text-black px-10 py-4 font-bold uppercase tracking-widest">Explore</button>
+                    </div>
+                    <div class="magnetic-wrap">
+                        <button class="border border-white/20 px-10 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-black">Lookbook</button>
+                    </div>
+                </div>
+            </div>
+            <div class="relative opacity-0" id="hero-image-container">
+                <div class="relative z-10 rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Fashion" class="w-full h-full object-cover">
+                </div>
+                <!-- Glass Card -->
+                <div class="absolute -bottom-10 -left-10 glass p-6 rounded-xl w-64 z-20 hidden md:block">
+                    <p class="text-[10px] uppercase tracking-widest text-[#d4af37] mb-2">Featured Item</p>
+                    <p class="text-sm font-semibold mb-4">Obsidian Leather Jacket</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl">$450.00</span>
+                        <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-8 bg-[#0a0a0a]">
+        <div class="container mx-auto">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="text-[#d4af37] tracking-[0.3em] uppercase text-sm mb-6 block reveal">Our Philosophy</span>
+                <h2 class="text-4xl md:text-6xl mb-12 leading-tight reveal">A bridge between <span class="italic font-serif">Dhaka</span> and the <span class="italic font-serif">Global Market</span>. We redefine luxury for the modern individual.</h2>
+                <p class="text-xl text-gray-500 leading-relaxed reveal">Founded in March, our shop stands as a testament to seasonal renewal. We source only the finest materials, ensuring every piece tells a story of heritage and futuristic design.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Services/Features -->
+    <section id="collection" class="py-24 px-8">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[800px]">
+                <div class="md:col-span-2 md:row-span-2 glass rounded-3xl overflow-hidden group relative">
+                    <img src="https://picsum.photos/1920/1080?random=2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60">
+                    <div class="absolute inset-0 p-12 flex flex-col justify-end bg-gradient-to-t from-black/80 to-transparent">
+                        <h3 class="text-4xl mb-4">Spring '24 Collection</h3>
+                        <p class="text-gray-300 max-w-xs">Our most ambitious launch yet, featuring eco-friendly fabrics and avant-garde silhouettes.</p>
+                        <a href="#" class="mt-6 inline-flex items-center gap-2 text-[#d4af37] font-bold">View More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                    </div>
+                </div>
+                <div class="md:col-span-2 glass rounded-3xl overflow-hidden group relative">
+                    <img src="https://picsum.photos/1920/1080?random=3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40">
+                    <div class="absolute inset-0 p-8 flex flex-col justify-center">
+                        <h3 class="text-2xl mb-2">Artisan Jewelry</h3>
+                        <p class="text-gray-400">Handcrafted in small batches.</p>
+                    </div>
+                </div>
+                <div class="glass rounded-3xl overflow-hidden group relative">
+                    <img src="https://picsum.photos/1920/1080?random=4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40">
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                        <h3 class="text-xl">Home Decor</h3>
+                    </div>
+                </div>
+                <div class="glass rounded-3xl overflow-hidden group relative">
+                    <img src="https://picsum.photos/1920/1080?random=5" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-40">
+                    <div class="absolute inset-0 p-6 flex flex-col justify-end">
+                        <h3 class="text-xl">Tech Wear</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="py-32 px-8 bg-black relative">
+        <div class="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none">
+            <svg width="100%" height="100%"><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"/></pattern><rect width="100%" height="100%" fill="url(#grid)" /></svg>
+        </div>
+        
+        <div class="container mx-auto relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl font-bold mb-4">Secure Checkout</h2>
+                <p class="text-gray-500">Global & Local Payment Solutions for your convenience.</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-10">
+                <!-- International / Saudi -->
+                <div class="glass p-8 rounded-2xl border-t-4 border-[#006a4e] reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-[#006a4e] rounded-lg flex items-center justify-center font-bold">SNB</div>
+                        <h3 class="text-xl font-bold">Saudi National Bank</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest">IBAN Number</p>
+                            <p class="text-lg font-mono tracking-tight text-white">SA45 1000 0000 1234 5678 9000</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-[10px] text-gray-500 uppercase tracking-widest">Swift Code</p>
+                                <p class="font-mono">NCBKSA22</p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-gray-500 uppercase tracking-widest">Account No</p>
+                                <p class="font-mono">1234567890123</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sonali Bank (Bangladesh) -->
+                <div class="glass p-8 rounded-2xl border-t-4 border-[#e11d48] reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-[#e11d48] rounded-lg flex items-center justify-center font-bold">SBL</div>
+                        <h3 class="text-xl font-bold">Sonali Bank PLC</h3>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Account Holder</p>
+                            <p class="text-lg text-white">MARCH SHOP LTD</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Account Number</p>
+                            <p class="text-lg font-mono tracking-wider text-white">4409 0011 22334</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Branch Name</p>
+                            <p class="text-white">Motijheel Corporate Branch, Dhaka</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Digital Wallets (Bangladesh) -->
+                <div class="glass p-8 rounded-2xl border-t-4 border-[#d4af37] reveal">
+                    <h3 class="text-xl font-bold mb-8">Mobile Wallets (BD)</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-[#e2136e] rounded-full flex items-center justify-center text-[10px] font-bold">bKash</div>
+                                <span class="font-medium">bKash (Merchant)</span>
+                            </div>
+                            <span class="font-mono text-sm">017XXXXXXXX</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-[#f7941d] rounded-full flex items-center justify-center text-[10px] font-bold">Nagad</div>
+                                <span class="font-medium">Nagad (Personal)</span>
+                            </div>
+                            <span class="font-mono text-sm">018XXXXXXXX</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-[#8c3494] rounded-full flex items-center justify-center text-[10px] font-bold">Rocket</div>
+                                <span class="font-medium">Rocket</span>
+                            </div>
+                            <span class="font-mono text-sm">019XXXXXXXX-X</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (Showcase) -->
+    <section class="py-24 px-8 overflow-hidden">
+        <div class="flex gap-10 marquee">
+            <div class="flex-none flex gap-10">
+                <div class="w-80 glass p-8 rounded-2xl shrink-0">
+                    <p class="italic text-gray-400 mb-6">"The quality is beyond anything I've seen in the local market. Truly world-class."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=1" class="w-10 h-10 rounded-full">
+                        <div><p class="font-bold">Ahmed Hassan</p><p class="text-xs text-gray-500">Riyadh, KSA</p></div>
+                    </div>
+                </div>
+                <div class="w-80 glass p-8 rounded-2xl shrink-0">
+                    <p class="italic text-gray-400 mb-6">"Seamless shipping to Dhaka and the packaging was absolutely luxury."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=2" class="w-10 h-10 rounded-full">
+                        <div><p class="font-bold">Nusrat Jahan</p><p class="text-xs text-gray-500">Dhaka, BD</p></div>
+                    </div>
+                </div>
+                <div class="w-80 glass p-8 rounded-2xl shrink-0">
+                    <p class="italic text-gray-400 mb-6">"Their attention to detail in tech-wear is unparalleled. Highly recommended."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=3" class="w-10 h-10 rounded-full">
+                        <div><p class="font-bold">John Doe</p><p class="text-xs text-gray-500">London, UK</p></div>
+                    </div>
+                </div>
+                <!-- Repeat for Marquee -->
+                <div class="w-80 glass p-8 rounded-2xl shrink-0">
+                    <p class="italic text-gray-400 mb-6">"The quality is beyond anything I've seen in the local market. Truly world-class."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=4" class="w-10 h-10 rounded-full">
+                        <div><p class="font-bold">Ahmed Hassan</p><p class="text-xs text-gray-500">Riyadh, KSA</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-40 px-8 relative overflow-hidden bg-[#d4af37]">
+        <div class="absolute inset-0 bg-[url('https://picsum.photos/1920/1080?random=10')] opacity-10 bg-cover bg-center"></div>
+        <div class="container mx-auto text-center relative z-10">
+            <h2 class="text-5xl md:text-8xl font-bold text-black mb-12">READY TO JOIN THE <br/>COLLECTIVE?</h2>
+            <div class="magnetic-wrap">
+                <button class="bg-black text-white px-16 py-6 text-xl font-bold uppercase tracking-[0.2em] hover:scale-105 transition-transform">Get Started Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 px-8 border-t border-white/5">
+        <div class="container mx-auto grid md:grid-cols-4 gap-12">
+            <div class="col-span-2">
+                <div class="text-3xl font-bold mb-6">MARCH SHOP</div>
+                <p class="text-gray-500 max-w-sm mb-8">Elevating global trade through curated aesthetics and seamless payment technologies. Based in the heart of innovation.</p>
+                <div class="flex gap-4">
+                    <div class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-pointer">IG</div>
+                    <div class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-pointer">TW</div>
+                    <div class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all cursor-pointer">FB</div>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase tracking-widest text-xs text-[#d4af37]">Support</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Shipping Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Refund Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 uppercase tracking-widest text-xs text-[#d4af37]">Contacts</h4>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li>info@marchshop.com</li>
+                    <li>+880 1234 567890</li>
+                    <li>+966 500 000 000</li>
+                    <li>Dhaka / Riyadh / Global</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto mt-20 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="text-xs text-gray-600">© 2024 MARCH SHOP. ALL RIGHTS RESERVED.</p>
+            <div class="flex gap-8">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" class="h-4 grayscale opacity-50">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Visa_2021.svg" class="h-4 grayscale opacity-50">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" class="h-4 grayscale opacity-50">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        document.querySelectorAll('a, button').forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 3, opacity: 0.3 });
+            });
+            link.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, opacity: 1 });
+            });
+        });
+
+        // Hero Animation
+        const tl = gsap.timeline();
+        tl.to("#hero-subtitle", { opacity: 1, y: -20, duration: 1, delay: 0.5 })
+          .to("#hero-title", { opacity: 1, y: -20, duration: 1 }, "-=0.7")
+          .to("#hero-description", { opacity: 1, y: -20, duration: 1 }, "-=0.7")
+          .to("#hero-btns", { opacity: 1, y: -20, duration: 1 }, "-=0.7")
+          .to("#hero-image-container", { opacity: 1, scale: 1.05, duration: 1.5, ease: "power4.out" }, "-=1");
+
+        // Reveal Animations
+        gsap.utils.toArray('.reveal').forEach(el => {
+            gsap.from(el, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        // Magnetic Buttons
+        const magnets = document.querySelectorAll('.magnetic-wrap');
+        magnets.forEach((m) => {
+            m.addEventListener('mousemove', function(e) {
+                const rect = m.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(this.querySelector('button') || this.querySelector('a'), {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+            m.addEventListener('mouseleave', function() {
+                gsap.to(this.querySelector('button') || this.querySelector('a'), {
+                    x: 0,
+                    y: 0,
+                    duration: 0.4,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Marquee Animation
+        gsap.to(".marquee .flex-none", {
+            xPercent: -50,
+            repeat: -1,
+            duration: 20,
+            ease: "linear"
+        });
+
+        // Sticky Nav Reveal
+        ScrollTrigger.create({
+            start: "top -80",
+            onUpdate: (self) => {
+                if (self.direction === 1) {
+                    gsap.to("nav", { y: -100, duration: 0.3 });
+                } else {
+                    gsap.to("nav", { y: 0, duration: 0.3 });
+                }
+            }
+        });
+    </script>
+</body>
+</html><script>
+/**
+ * Note: March Shop Premium E-Commerce Website.
+ * Built with Tailwind CSS, GSAP, and ScrollTrigger.
+ * All Payment details included as requested.
+ * Premium Typography: Playfair Display and Inter.
+ */
+</script>

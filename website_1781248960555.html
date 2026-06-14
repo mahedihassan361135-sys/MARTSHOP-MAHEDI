@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEVRO | Premium Mobile Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #888888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cyan-glow {
+            box-shadow: 0 0 50px rgba(0, 242, 255, 0.15);
+        }
+
+        .rotating-stamp {
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .noise {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #00f2ff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="noise"></div>
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-8 flex justify-between items-center mix-blend-difference">
+        <div class="text-2xl font-black tracking-tighter">NEVRO<span class="text-[#00f2ff]">.</span></div>
+        <div class="hidden md:flex space-x-12 text-sm font-medium tracking-widest uppercase">
+            <a href="#hero" class="hover:text-[#00f2ff] transition-colors">Audio</a>
+            <a href="#collection" class="hover:text-[#00f2ff] transition-colors">Protection</a>
+            <a href="#about" class="hover:text-[#00f2ff] transition-colors">Legacy</a>
+            <a href="#contact" class="hover:text-[#00f2ff] transition-colors">Support</a>
+        </div>
+        <button class="magnetic glass px-8 py-3 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-500">
+            Cart (0)
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Orbs -->
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#00f2ff] rounded-full blur-[150px] opacity-10 animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#7000ff] rounded-full blur-[150px] opacity-10 animate-pulse"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <h1 class="hero-title text-7xl md:text-[10rem] font-black leading-none tracking-tighter italic">
+                BEYOND<br>
+                <span class="text-gradient">HARDWARE.</span>
+            </h1>
+            <p class="hero-subtitle mt-8 text-lg text-gray-400 max-w-xl mx-auto font-light leading-relaxed">
+                Experience the next evolution of mobile synergy. Precision-engineered accessories designed for the uncompromising user.
+            </p>
+            <div class="mt-12 flex justify-center gap-6">
+                <button class="magnetic px-10 py-5 bg-[#00f2ff] text-black font-bold uppercase text-xs tracking-widest rounded-sm hover:scale-110 transition-transform">
+                    Explore Series 9
+                </button>
+                <button class="magnetic px-10 py-5 glass text-white font-bold uppercase text-xs tracking-widest rounded-sm hover:bg-white hover:text-black transition-all">
+                    View Catalog
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating UI Element -->
+        <div class="hero-card absolute bottom-20 right-20 glass p-6 rounded-2xl w-64 hidden lg:block">
+            <img src="https://picsum.photos/1920/1080?random=1" alt="Accessory" class="w-full h-40 object-cover rounded-lg mb-4">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400">Carbon Series</h4>
+                    <p class="text-lg font-black italic">MagSafe X</p>
+                </div>
+                <div class="text-[#00f2ff] font-bold">$79.00</div>
+            </div>
+        </div>
+
+        <!-- Rotating Stamp -->
+        <div class="absolute top-1/2 -left-20 transform -translate-y-1/2 pointer-events-none opacity-20">
+            <svg class="rotating-stamp w-64 h-64" viewBox="0 0 100 100">
+                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
+                <text class="text-[8px] fill-white font-bold uppercase tracking-[4px]">
+                    <textPath xlink:href="#circlePath">
+                        PREMIUM QUALITY • EST 2024 • ENGINEERED TO LAST • 
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="about" class="py-32 bg-[#0a0a0a]">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+                <div class="reveal-image overflow-hidden rounded-3xl">
+                    <img src="https://picsum.photos/1920/1080?random=2" alt="Process" class="w-full h-[600px] object-cover scale-110">
+                </div>
+                <div>
+                    <h3 class="text-[#00f2ff] font-bold tracking-widest uppercase text-sm mb-6">Our Philosophy</h3>
+                    <h2 class="reveal-text text-5xl md:text-7xl font-black leading-tight italic mb-8">
+                        THE ART OF<br>PROTECTION.
+                    </h2>
+                    <p class="text-xl text-gray-400 leading-relaxed font-light mb-10">
+                        We don't just build cases; we forge armor. We don't just sell earphones; we deliver acoustic purity. At NEVRO, every accessory is a testament to the seamless fusion of aesthetic elegance and industrial-grade durability.
+                    </p>
+                    <div class="flex gap-12 border-t border-white/10 pt-10">
+                        <div>
+                            <div class="text-3xl font-black italic">0.5mm</div>
+                            <div class="text-xs uppercase text-gray-500 tracking-tighter">Precision Tolerance</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black italic">100%</div>
+                            <div class="text-xs uppercase text-gray-500 tracking-tighter">Recycled Aerospace Alum</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Services -->
+    <section id="collection" class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="mb-20 text-center">
+                <h2 class="text-5xl md:text-7xl font-black tracking-tighter">THE ECOSYSTEM.</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[800px]">
+                <!-- Audio - Large Card -->
+                <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-3xl glass">
+                    <img src="https://picsum.photos/1920/1080?random=10" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-10 left-10 p-4">
+                        <span class="bg-[#00f2ff] text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-tighter">New Release</span>
+                        <h3 class="text-4xl font-black italic mt-4">SONIC CORE V3</h3>
+                        <p class="text-gray-300 mt-2 max-w-xs">48h Battery. Spatial Audio. Active Noise Cancellation.</p>
+                        <button class="mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-[#00f2ff] transition-colors">
+                            Discover More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cases - Wide Card -->
+                <div class="md:col-span-2 relative group overflow-hidden rounded-3xl glass min-h-[300px]">
+                    <img src="https://picsum.photos/1920/1080?random=11" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40"></div>
+                    <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-6">
+                        <h3 class="text-3xl font-black italic">ULTRA-SLIM PROTECTION</h3>
+                        <p class="text-gray-300 mt-2">D3O® Integrated Impact Technology.</p>
+                    </div>
+                </div>
+
+                <!-- Parts - Small Card -->
+                <div class="relative group overflow-hidden rounded-3xl glass min-h-[300px]">
+                    <img src="https://picsum.photos/1920/1080?random=12" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 flex flex-col justify-center items-center p-6 text-center">
+                        <div class="w-12 h-12 mb-4 text-[#00f2ff]">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold italic">PRO-PARTS</h3>
+                        <p class="text-xs text-gray-500 uppercase mt-2">Genuine Components</p>
+                    </div>
+                </div>
+
+                <!-- Bluetooth - Small Card -->
+                <div class="relative group overflow-hidden rounded-3xl glass min-h-[300px]">
+                    <img src="https://picsum.photos/1920/1080?random=13" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 flex flex-col justify-center items-center p-6 text-center">
+                        <div class="w-12 h-12 mb-4 text-[#00f2ff]">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071a9.05 9.05 0 0112.728 0m.353-3.535a13.126 13.126 0 00-18.365 0"></path></svg>
+                        </div>
+                        <h3 class="text-xl font-bold italic">CONNECT</h3>
+                        <p class="text-xs text-gray-500 uppercase mt-2">v5.4 Multi-Point</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Scrolling Showcase -->
+    <section class="py-32 overflow-hidden bg-white text-black">
+        <div class="container mx-auto px-6 mb-12 flex justify-between items-end">
+            <h2 class="text-5xl md:text-8xl font-black tracking-tighter italic">GALLERY</h2>
+            <p class="text-black/50 font-medium max-w-[200px] uppercase text-[10px] tracking-widest text-right">Captured by our community worldwide</p>
+        </div>
+        <div class="flex space-x-8 px-6" id="gallery-container">
+            <div class="gallery-item min-w-[300px] md:min-w-[500px] h-[600px] rounded-2xl overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=21" class="w-full h-full object-cover">
+            </div>
+            <div class="gallery-item min-w-[300px] md:min-w-[500px] h-[600px] rounded-2xl overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=22" class="w-full h-full object-cover">
+            </div>
+            <div class="gallery-item min-w-[300px] md:min-w-[500px] h-[600px] rounded-2xl overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=23" class="w-full h-full object-cover">
+            </div>
+            <div class="gallery-item min-w-[300px] md:min-w-[500px] h-[600px] rounded-2xl overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=24" class="w-full h-full object-cover">
+            </div>
+            <div class="gallery-item min-w-[300px] md:min-w-[500px] h-[600px] rounded-2xl overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=25" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 bg-[#050505]">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="testimonial-card glass p-8 rounded-3xl">
+                    <img src="https://i.pravatar.cc/150?img=1" class="w-12 h-12 rounded-full mb-6">
+                    <p class="text-xl italic font-light mb-6 text-gray-300">"The audio quality of the Sonic Core V3 rivals brands three times the price. Impeccable build."</p>
+                    <div class="font-bold uppercase tracking-widest text-xs">Marcus Thorne <span class="text-[#00f2ff]">/ Tech Analyst</span></div>
+                </div>
+                <div class="testimonial-card glass p-8 rounded-3xl mt-0 md:mt-12">
+                    <img src="https://i.pravatar.cc/150?img=12" class="w-12 h-12 rounded-full mb-6">
+                    <p class="text-xl italic font-light mb-6 text-gray-300">"NEVRO cases are the only ones I trust with my 15 Pro. The tactile response of the buttons is perfect."</p>
+                    <div class="font-bold uppercase tracking-widest text-xs">Elena Vance <span class="text-[#00f2ff]">/ Designer</span></div>
+                </div>
+                <div class="testimonial-card glass p-8 rounded-3xl">
+                    <img src="https://i.pravatar.cc/150?img=33" class="w-12 h-12 rounded-full mb-6">
+                    <p class="text-xl italic font-light mb-6 text-gray-300">"Customer support helped me find the exact replacement part for my vintage setup. 10/10 service."</p>
+                    <div class="font-bold uppercase tracking-widest text-xs">James K. <span class="text-[#00f2ff]">/ Audio Engineer</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA & Footer -->
+    <footer id="contact" class="relative pt-32 pb-12 overflow-hidden border-t border-white/10">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-[#7000ff] rounded-full blur-[200px] opacity-10"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-32">
+                <h2 class="text-6xl md:text-[12rem] font-black italic tracking-tighter mb-12">UPGRADE.</h2>
+                <button class="magnetic group relative px-16 py-8 bg-white text-black text-xl font-black italic uppercase rounded-full overflow-hidden">
+                    <span class="relative z-10">Shop All Products</span>
+                    <div class="absolute inset-0 bg-[#00f2ff] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></div>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-t border-white/10 pt-16">
+                <div class="md:col-span-1">
+                    <div class="text-2xl font-black tracking-tighter mb-6">NEVRO<span class="text-[#00f2ff]">.</span></div>
+                    <p class="text-gray-500 text-sm">Building the future of mobile peripherals since 2024. Engineering excellence at your fingertips.</p>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Products</h5>
+                    <ul class="text-sm space-y-4 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Audio Series</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Protection</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Power & Cables</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Genuine Parts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Company</h5>
+                    <ul class="text-sm space-y-4 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Returns Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Newsletter</h5>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Email" class="bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm w-full outline-none focus:border-[#00f2ff]">
+                        <button class="bg-white text-black px-4 py-2 rounded-lg font-bold">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[4px] text-gray-600">
+                <p>&copy; 2024 NEVRO INTERACTIVE. ALL RIGHTS RESERVED.</p>
+                <div class="flex space-x-8 mt-6 md:mt-0">
+                    <a href="#">Instagram</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">Behance</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.1
+            });
+        });
+
+        // Magnetic Buttons
+        const magneticBtns = document.querySelectorAll('.magnetic');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Hero Animations
+        const tl = gsap.timeline();
+        tl.from(".hero-title", {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power4.out",
+            stagger: 0.2
+        })
+        .from(".hero-subtitle", {
+            y: 30,
+            opacity: 0,
+            duration: 0.8
+        }, "-=0.8")
+        .from(".hero-card", {
+            x: 100,
+            opacity: 0,
+            duration: 1
+        }, "-=0.5");
+
+        // Floating animation for the hero card
+        gsap.to(".hero-card", {
+            y: -20,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        // Scroll Based Text Reveals
+        gsap.utils.toArray('.reveal-text').forEach(text => {
+            gsap.from(text, {
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Image Zoom Scroll
+        gsap.to(".reveal-image img", {
+            scrollTrigger: {
+                trigger: ".reveal-image",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            },
+            scale: 1,
+            ease: "none"
+        });
+
+        // Horizontal Gallery Scroll
+        gsap.to("#gallery-container", {
+            scrollTrigger: {
+                trigger: "#gallery-container",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
+            },
+            xPercent: -20,
+            ease: "none"
+        });
+
+        // Testimonial Fade In
+        gsap.utils.toArray('.testimonial-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%"
+                },
+                opacity: 0,
+                y: 50,
+                delay: i * 0.1,
+                duration: 0.8
+            });
+        });
+
+        // Hover Effect for Cursor
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 3, opacity: 0.3 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, opacity: 1 });
+            });
+        });
+
+    </script>
+</body>
+</html>

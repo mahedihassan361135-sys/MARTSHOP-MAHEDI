@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REEL-GEN | Viral Content Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .neon-pink { color: #ff007f; }
+        .neon-blue { color: #00f0ff; }
+        .bg-neon-pink { background-color: #ff007f; }
+        .bg-neon-blue { background-color: #00f0ff; }
+        .border-neon-pink { border-color: #ff007f; }
+        .border-neon-blue { border-color: #00f0ff; }
+        
+        .shadow-neon-pink { shadow: 0 0 20px rgba(255, 0, 127, 0.5); }
+        .shadow-neon-blue { shadow: 0 0 20px rgba(0, 240, 255, 0.5); }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .cursor-glow {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.15) 0%, rgba(0, 240, 255, 0.05) 50%, transparent 100%);
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        .text-reveal {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .char {
+            display: inline-block;
+            transform: translateY(100%);
+        }
+
+        @keyframes pulse-neon {
+            0%, 100% { box-shadow: 0 0 15px #ff007f, 0 0 30px #00f0ff; }
+            50% { box-shadow: 0 0 25px #00f0ff, 0 0 50px #ff007f; }
+        }
+
+        .btn-pulse {
+            animation: pulse-neon 2s infinite ease-in-out;
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-2xl px-8 py-4">
+            <div class="text-2xl font-black tracking-tighter flex items-center gap-2">
+                <span class="bg-neon-pink w-3 h-3 rounded-full animate-ping"></span>
+                REEL<span class="neon-blue">GEN</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-widest uppercase">
+                <a href="#about" class="hover:neon-pink transition-colors">Vision</a>
+                <a href="#showcase" class="hover:neon-blue transition-colors">Showcase</a>
+                <a href="#features" class="hover:neon-pink transition-colors">Engine</a>
+                <div class="magnetic-wrap">
+                    <a href="#cta" class="px-6 py-2 bg-white text-black rounded-full hover:bg-neon-blue transition-all magnetic-target">Get Viral</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Floating Orbs -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-[#ff007f] opacity-20 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#00f0ff] opacity-20 blur-[120px] rounded-full"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-block px-4 py-1 border border-neon-pink rounded-full text-xs font-bold tracking-[0.3em] uppercase mb-8 text-reveal">
+                <span class="neon-pink">New: Viral Algorithm 4.0</span>
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black leading-[0.9] mb-8" id="hero-title">
+                STOP THE<br/><span class="neon-blue">SCROLL.</span><br/>START THE<br/><span class="neon-pink italic underline decoration-4 underline-offset-8">TREND.</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-xl text-zinc-400 mb-12" id="hero-desc">
+                High-octane visual experiences designed to explode across feeds. We build the content that keeps them watching until the very last frame.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                <div class="magnetic-wrap">
+                    <button class="px-10 py-5 bg-neon-pink text-white font-black text-xl rounded-full btn-pulse magnetic-target">
+                        LAUNCH YOUR CAMPAIGN
+                    </button>
+                </div>
+                <button class="px-8 py-5 border border-white/20 hover:border-neon-blue transition-colors rounded-full font-bold flex items-center gap-3">
+                    <svg class="w-5 h-5 fill-neon-blue" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    Watch Showreel
+                </button>
+            </div>
+        </div>
+
+        <!-- Rotating Stamp -->
+        <div class="absolute bottom-10 right-10 w-32 h-32 hidden lg:flex items-center justify-center animate-[spin_10s_linear_infinite]">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+                <path id="circlePath" fill="none" d="M 10, 50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
+                <text class="fill-white text-[10px] font-bold uppercase tracking-[0.1em]">
+                    <textPath href="#circlePath">EST 2024 • PREMIUM QUALITY • VIRAL DESIGNS •</textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Catchy Hook / About -->
+    <section id="about" class="py-32 relative bg-[#080808]">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-neon-pink to-neon-blue opacity-20 blur-xl group-hover:opacity-40 transition-opacity"></div>
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Studio" class="relative rounded-3xl w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div>
+                    <h2 class="text-5xl md:text-7xl font-black mb-10 leading-tight">
+                        THE 3-SECOND<br/><span class="neon-pink">PSYCHOLOGY.</span>
+                    </h2>
+                    <p class="text-xl text-zinc-400 mb-8 leading-relaxed">
+                        If you don't grab them in three seconds, you've lost them forever. Our proprietary animation engine uses rapid-fire visual cues and rhythmic timing to hack the dopamine response.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-1">Instant Impact</h4>
+                                <p class="text-zinc-500">Every first frame is a visual hook designed to disrupt the pattern.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-neon-pink/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 neon-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-1">Visual Retention</h4>
+                                <p class="text-zinc-500">Dynamic transitions that keep the eyes moving and the finger off the swipe.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Showcase -->
+    <section id="showcase" class="py-32 overflow-hidden">
+        <div class="container mx-auto px-6 mb-16 flex justify-between items-end">
+            <div>
+                <h2 class="text-5xl md:text-7xl font-black">LATEST<br/><span class="neon-blue">DROPS.</span></h2>
+            </div>
+            <p class="text-zinc-500 font-bold max-w-xs text-right">SCROLL TO DISCOVER OUR VIRAL ARCHIVE →</p>
+        </div>
+        
+        <div class="flex gap-8 px-6 overflow-x-auto scroll-hide pb-20 showcase-container">
+            <!-- Mock Reels -->
+            <div class="min-w-[300px] md:min-w-[400px] aspect-[9/16] relative rounded-[2rem] overflow-hidden group">
+                <img src="https://picsum.photos/1920/1080?random=11" alt="Work" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <p class="neon-pink text-sm font-black mb-2 uppercase">Lifestyle</p>
+                    <h3 class="text-2xl font-bold">Neon Streets Vol. 4</h3>
+                </div>
+            </div>
+            <div class="min-w-[300px] md:min-w-[400px] aspect-[9/16] relative rounded-[2rem] overflow-hidden group">
+                <img src="https://picsum.photos/1920/1080?random=12" alt="Work" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <p class="neon-blue text-sm font-black mb-2 uppercase">Tech</p>
+                    <h3 class="text-2xl font-bold">Cyber Future 2077</h3>
+                </div>
+            </div>
+            <div class="min-w-[300px] md:min-w-[400px] aspect-[9/16] relative rounded-[2rem] overflow-hidden group">
+                <img src="https://picsum.photos/1920/1080?random=13" alt="Work" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <p class="neon-pink text-sm font-black mb-2 uppercase">Fashion</p>
+                    <h3 class="text-2xl font-bold">Glitch Vogue</h3>
+                </div>
+            </div>
+            <div class="min-w-[300px] md:min-w-[400px] aspect-[9/16] relative rounded-[2rem] overflow-hidden group">
+                <img src="https://picsum.photos/1920/1080?random=14" alt="Work" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <p class="neon-blue text-sm font-black mb-2 uppercase">Energy</p>
+                    <h3 class="text-2xl font-bold">Hyper Rush</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Bento Grid -->
+    <section id="features" class="py-32 bg-[#050505]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-4xl md:text-6xl font-black mb-20">POWERED BY <span class="neon-pink italic">ADRENALINE.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Large Feature -->
+                <div class="md:col-span-2 md:row-span-2 glass rounded-3xl p-10 flex flex-col justify-end relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-8">
+                        <svg class="w-20 h-20 text-white/5 group-hover:text-neon-pink/20 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+                    </div>
+                    <h3 class="text-3xl font-black mb-4">ALGORITHMIC<br/>PRECISION</h3>
+                    <p class="text-zinc-400">Our content is optimized for the latest Instagram, TikTok, and YouTube Shorts algorithms to maximize reach and engagement scores.</p>
+                </div>
+                
+                <!-- Small Features -->
+                <div class="glass rounded-3xl p-8 hover:border-neon-blue transition-all">
+                    <div class="w-12 h-12 bg-neon-blue/20 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-6 h-6 neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Fast Turnaround</h3>
+                    <p class="text-sm text-zinc-500">From concept to viral in under 48 hours. Speed is our second name.</p>
+                </div>
+
+                <div class="glass rounded-3xl p-8 hover:border-neon-pink transition-all">
+                    <div class="w-12 h-12 bg-neon-pink/20 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-6 h-6 neon-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Trend Reports</h3>
+                    <p class="text-sm text-zinc-500">Weekly data-driven insights on what's trending before it peaks.</p>
+                </div>
+
+                <div class="md:col-span-2 glass rounded-3xl p-10 flex items-center gap-10">
+                    <div class="hidden sm:block w-32 h-32 bg-gradient-to-br from-neon-pink to-neon-blue rounded-2xl rotate-12 shrink-0"></div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-2">CUSTOM SOUNDSCAPES</h3>
+                        <p class="text-zinc-400">Audio is 50% of the experience. We produce exclusive sonic identities for every reel.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col items-center mb-16">
+                <div class="flex -space-x-4 mb-6">
+                    <img class="w-12 h-12 rounded-full border-2 border-black" src="https://i.pravatar.cc/150?img=1" alt="User">
+                    <img class="w-12 h-12 rounded-full border-2 border-black" src="https://i.pravatar.cc/150?img=2" alt="User">
+                    <img class="w-12 h-12 rounded-full border-2 border-black" src="https://i.pravatar.cc/150?img=3" alt="User">
+                    <img class="w-12 h-12 rounded-full border-2 border-black" src="https://i.pravatar.cc/150?img=4" alt="User">
+                </div>
+                <h2 class="text-4xl font-black text-center">TRUSTED BY <span class="neon-blue">500+</span> CREATORS</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl">
+                    <div class="flex gap-1 mb-4">
+                        <span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"My engagement went up 400% in the first week. The pace and animations are just next level."</p>
+                    <p class="font-bold">Alex Rivera <span class="text-xs text-zinc-500 ml-2">@TECHTALK</span></p>
+                </div>
+                <div class="glass p-8 rounded-3xl border-t-2 border-neon-blue">
+                    <div class="flex gap-1 mb-4">
+                        <span class="neon-blue">★</span><span class="neon-blue">★</span><span class="neon-blue">★</span><span class="neon-blue">★</span><span class="neon-blue">★</span>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"Finally an agency that understands the aesthetic of Gen Z and Alpha. Absolute masterclass."</p>
+                    <p class="font-bold">Sarah Chen <span class="text-xs text-zinc-500 ml-2">@SARAHSTYLING</span></p>
+                </div>
+                <div class="glass p-8 rounded-3xl">
+                    <div class="flex gap-1 mb-4">
+                        <span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"The magnetic storytelling they do is impossible to swipe past. My go-to for all campaign drops."</p>
+                    <p class="font-bold">Marcus Thorne <span class="text-xs text-zinc-500 ml-2">@THORNEMEDIA</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="cta" class="py-32 relative">
+        <div class="absolute inset-0 bg-neon-pink/10 blur-[150px] rounded-full transform -translate-y-1/2 scale-150"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-6xl md:text-9xl font-black mb-12 tracking-tighter">READY TO GO<br/><span class="neon-blue">ULTRA VIRAL?</span></h2>
+            <div class="magnetic-wrap">
+                <button class="px-16 py-8 bg-white text-black font-black text-3xl rounded-full hover:bg-neon-blue transition-colors btn-pulse magnetic-target">
+                    START PROJECT NOW
+                </button>
+            </div>
+            <p class="mt-12 text-zinc-500 font-bold uppercase tracking-widest">Limited slots available for Q4</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 flex flex-col md:row justify-between items-center gap-8">
+            <div class="text-2xl font-black tracking-tighter">REEL<span class="neon-blue">GEN</span></div>
+            <div class="flex gap-8 text-zinc-500 text-sm font-bold uppercase">
+                <a href="#" class="hover:text-white">Instagram</a>
+                <a href="#" class="hover:text-white">TikTok</a>
+                <a href="#" class="hover:text-white">YouTube</a>
+                <a href="#" class="hover:text-white">LinkedIn</a>
+            </div>
+            <p class="text-zinc-600 text-xs">© 2024 REEL-GEN STUDIO. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Glow
+        const cursor = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        });
+
+        // Hero Text Animation
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+
+        gsap.from(heroTitle, {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "expo.out",
+            stagger: 0.2
+        });
+
+        gsap.from(heroDesc, {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            delay: 0.5,
+            ease: "expo.out"
+        });
+
+        // Scroll Reveal Animations
+        gsap.utils.toArray('section').forEach(section => {
+            gsap.from(section.querySelectorAll('h2, .glass'), {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power3.out"
+            });
+        });
+
+        // Magnetic Buttons
+        const magneticTargets = document.querySelectorAll('.magnetic-target');
+        
+        magneticTargets.forEach(target => {
+            const wrap = target.parentElement;
+            
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(target, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(target, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Horizontal Scroll Indicators
+        const scrollContainer = document.querySelector('.showcase-container');
+        gsap.to(scrollContainer, {
+            scrollTrigger: {
+                trigger: "#showcase",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
+            },
+            x: -100
+        });
+
+        // Background Orbs Floating
+        gsap.to('.absolute.blur-\\[120px\\]', {
+            y: 50,
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            stagger: 1
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REEL-GEN | Viral Content Mastery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .neon-pink { color: #ff007f; }
+        .neon-blue { color: #00f0ff; }
+        .bg-neon-pink { background-color: #ff007f; }
+        .bg-neon-blue { background-color: #00f0ff; }
+        .border-neon-pink { border-color: #ff007f; }
+        .border-neon-blue { border-color: #00f0ff; }
+        
+        .shadow-neon-pink { shadow: 0 0 20px rgba(255, 0, 127, 0.5); }
+        .shadow-neon-blue { shadow: 0 0 20px rgba(0, 240, 255, 0.5); }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .cursor-glow {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.15) 0%, rgba(0, 240, 255, 0.05) 50%, transparent 100%);
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        @keyframes pulse-neon {
+            0%, 100% { box-shadow: 0 0 15px #ff007f, 0 0 30px #00f0ff; }
+            50% { box-shadow: 0 0 25px #00f0ff, 0 0 50px #ff007f; }
+        }
+
+        .btn-pulse {
+            animation: pulse-neon 2s infinite ease-in-out;
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-2xl px-8 py-4">
+            <div class="text-2xl font-black tracking-tighter flex items-center gap-2">
+                <span class="bg-neon-pink w-3 h-3 rounded-full animate-ping"></span>
+                REEL<span class="neon-blue">GEN</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-bold tracking-widest uppercase">
+                <a href="#about" class="hover:neon-pink transition-colors">Vision</a>
+                <a href="#showcase" class="hover:neon-blue transition-colors">Showcase</a>
+                <a href="#features" class="hover:neon-pink transition-colors">Engine</a>
+                <div class="magnetic-wrap">
+                    <a href="#cta" class="px-6 py-2 bg-white text-black rounded-full hover:bg-neon-blue transition-all magnetic-target">Get Viral</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Floating Orbs -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-[#ff007f] opacity-20 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#00f0ff] opacity-20 blur-[120px] rounded-full"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="inline-block px-4 py-1 border border-neon-pink rounded-full text-xs font-bold tracking-[0.3em] uppercase mb-8">
+                <span class="neon-pink">New: Viral Algorithm 4.0</span>
+            </div>
+            <h1 class="text-6xl md:text-9xl font-black leading-[0.9] mb-8" id="hero-title">
+                STOP THE<br/><span class="neon-blue">SCROLL.</span><br/>START THE<br/><span class="neon-pink italic underline decoration-4 underline-offset-8">TREND.</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-xl text-zinc-400 mb-12" id="hero-desc">
+                High-octane visual experiences designed to explode across feeds. We build the content that keeps them watching until the very last frame.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                <div class="magnetic-wrap">
+                    <button class="px-10 py-5 bg-neon-pink text-white font-black text-xl rounded-full btn-pulse magnetic-target">
+                        LAUNCH YOUR CAMPAIGN
+                    </button>
+                </div>
+                <button class="px-8 py-5 border border-white/20 hover:border-neon-blue transition-colors rounded-full font-bold flex items-center gap-3">
+                    <svg class="w-5 h-5 fill-neon-blue" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    Watch Showreel
+                </button>
+            </div>
+        </div>
+
+        <!-- Rotating Stamp -->
+        <div class="absolute bottom-10 right-10 w-32 h-32 hidden lg:flex items-center justify-center animate-[spin_10s_linear_infinite]">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
+                <path id="circlePath" fill="none" d="M 10, 50 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" />
+                <text class="fill-white text-[10px] font-bold uppercase tracking-[0.1em]">
+                    <textPath href="#circlePath">EST 2024 • PREMIUM QUALITY • VIRAL DESIGNS •</textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Catchy Hook / About -->
+    <section id="about" class="py-32 relative bg-[#080808]">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-neon-pink to-neon-blue opacity-20 blur-xl group-hover:opacity-40 transition-opacity"></div>
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Studio" class="relative rounded-3xl w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
+                <div>
+                    <h2 class="text-5xl md:text-7xl font-black mb-10 leading-tight reveal-text">
+                        THE 3-SECOND<br/><span class="neon-pink">PSYCHOLOGY.</span>
+                    </h2>
+                    <p class="text-xl text-zinc-400 mb-8 leading-relaxed">
+                        If you don't grab them in three seconds, you've lost them forever. Our proprietary animation engine uses rapid-fire visual cues and rhythmic timing to hack the dopamine response.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-1">Instant Impact</h4>
+                                <p class="text-zinc-500">Every first frame is a visual hook designed to disrupt the pattern.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-neon-pink/10 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 neon-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl mb-1">Visual Retention</h4>
+                                <p class="text-zinc-500">Dynamic transitions that keep the eyes moving and the finger off the swipe.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content Showcase -->
+    <section id="showcase" class="py-32 overflow-hidden">
+        <div class="container mx-auto px-6 mb-16 flex justify-between items-end">
+            <div>
+                <h2 class="text-5xl md:text-7xl font-black">LATEST<br/><span class="neon-blue">DROPS.</span></h2>
+            </div>
+            <p class="text-zinc-500 font-bold max-w-xs text-right">SCROLL TO DISCOVER OUR VIRAL ARCHIVE →</p>
+        </div>
+        
+        <div class="flex gap-8 px-6 overflow-x-auto scroll-hide pb-20 showcase-container">
+            <!-- Mock Reels -->
+            <div class="min-w-[300px] md:min-w-[400px] aspect-[9/16] relative rounded-[2rem] overflow-hidden group">
+                <img src="https://picsum.photos/1920/1080?random=11" alt="Work" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <p class="neon-pink text-sm font-black mb-2 uppercase">Lifestyle</p>
+                    <h3 class="text-2xl font-bold">Neon Streets Vol. 4</h3>
+                </div>
+            </div>
+            <div class="min-w-[300px] md:min-w-[400px] aspect-[9/16] relative rounded-[2rem] overflow-hidden group">
+                <img src="https://picsum.photos/1920/1080?random=12" alt="Work" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <p class="neon-blue text-sm font-black mb-2 uppercase">Tech</p>
+                    <h3 class="text-2xl font-bold">Cyber Future 2077</h3>
+                </div>
+            </div>
+            <div class="min-w-[300px] md:min-w-[400px] aspect-[9/16] relative rounded-[2rem] overflow-hidden group">
+                <img src="https://picsum.photos/1920/1080?random=13" alt="Work" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <p class="neon-pink text-sm font-black mb-2 uppercase">Fashion</p>
+                    <h3 class="text-2xl font-bold">Glitch Vogue</h3>
+                </div>
+            </div>
+            <div class="min-w-[300px] md:min-w-[400px] aspect-[9/16] relative rounded-[2rem] overflow-hidden group">
+                <img src="https://picsum.photos/1920/1080?random=14" alt="Work" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                <div class="absolute bottom-8 left-8 right-8">
+                    <p class="neon-blue text-sm font-black mb-2 uppercase">Energy</p>
+                    <h3 class="text-2xl font-bold">Hyper Rush</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Bento Grid -->
+    <section id="features" class="py-32 bg-[#050505]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-center text-4xl md:text-6xl font-black mb-20">POWERED BY <span class="neon-pink italic">ADRENALINE.</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="md:col-span-2 md:row-span-2 glass rounded-3xl p-10 flex flex-col justify-end relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-8">
+                        <svg class="w-20 h-20 text-white/5 group-hover:text-neon-pink/20 transition-colors" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg>
+                    </div>
+                    <h3 class="text-3xl font-black mb-4">ALGORITHMIC<br/>PRECISION</h3>
+                    <p class="text-zinc-400">Our content is optimized for the latest Instagram, TikTok, and YouTube Shorts algorithms to maximize reach and engagement scores.</p>
+                </div>
+                
+                <div class="glass rounded-3xl p-8 hover:border-neon-blue transition-all">
+                    <div class="w-12 h-12 bg-neon-blue/20 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-6 h-6 neon-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Fast Turnaround</h3>
+                    <p class="text-sm text-zinc-500">From concept to viral in under 48 hours. Speed is our second name.</p>
+                </div>
+
+                <div class="glass rounded-3xl p-8 hover:border-neon-pink transition-all">
+                    <div class="w-12 h-12 bg-neon-pink/20 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-6 h-6 neon-pink" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Trend Reports</h3>
+                    <p class="text-sm text-zinc-500">Weekly data-driven insights on what's trending before it peaks.</p>
+                </div>
+
+                <div class="md:col-span-2 glass rounded-3xl p-10 flex items-center gap-10">
+                    <div class="hidden sm:block w-32 h-32 bg-gradient-to-br from-neon-pink to-neon-blue rounded-2xl rotate-12 shrink-0"></div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-2 uppercase">Sonic Identities</h3>
+                        <p class="text-zinc-400">Audio is 50% of the experience. We produce exclusive soundscapes for every campaign.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col items-center mb-16">
+                <div class="flex -space-x-4 mb-6">
+                    <img class="w-12 h-12 rounded-full border-2 border-black" src="https://i.pravatar.cc/150?img=11" alt="User">
+                    <img class="w-12 h-12 rounded-full border-2 border-black" src="https://i.pravatar.cc/150?img=12" alt="User">
+                    <img class="w-12 h-12 rounded-full border-2 border-black" src="https://i.pravatar.cc/150?img=13" alt="User">
+                    <img class="w-12 h-12 rounded-full border-2 border-black" src="https://i.pravatar.cc/150?img=14" alt="User">
+                </div>
+                <h2 class="text-4xl font-black text-center">TRUSTED BY <span class="neon-blue">500+</span> CREATORS</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl">
+                    <div class="flex gap-1 mb-4">
+                        <span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"My engagement went up 400% in the first week. The pace and animations are just next level."</p>
+                    <p class="font-bold">Alex Rivera <span class="text-xs text-zinc-500 ml-2">@TECHTALK</span></p>
+                </div>
+                <div class="glass p-8 rounded-3xl border-t-2 border-neon-blue">
+                    <div class="flex gap-1 mb-4">
+                        <span class="neon-blue">★</span><span class="neon-blue">★</span><span class="neon-blue">★</span><span class="neon-blue">★</span><span class="neon-blue">★</span>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"Finally an agency that understands the aesthetic of Gen Z and Alpha. Absolute masterclass."</p>
+                    <p class="font-bold">Sarah Chen <span class="text-xs text-zinc-500 ml-2">@SARAHSTYLING</span></p>
+                </div>
+                <div class="glass p-8 rounded-3xl">
+                    <div class="flex gap-1 mb-4">
+                        <span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span><span class="neon-pink">★</span>
+                    </div>
+                    <p class="text-zinc-300 italic mb-6">"The magnetic storytelling they do is impossible to swipe past. My go-to for all campaign drops."</p>
+                    <p class="font-bold">Marcus Thorne <span class="text-xs text-zinc-500 ml-2">@THORNEMEDIA</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section id="cta" class="py-32 relative">
+        <div class="absolute inset-0 bg-neon-pink/10 blur-[150px] rounded-full transform -translate-y-1/2 scale-150"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-6xl md:text-9xl font-black mb-12 tracking-tighter" id="cta-title">READY TO GO<br/><span class="neon-blue">ULTRA VIRAL?</span></h2>
+            <div class="magnetic-wrap">
+                <button class="px-16 py-8 bg-white text-black font-black text-3xl rounded-full hover:bg-neon-blue transition-colors btn-pulse magnetic-target">
+                    START PROJECT NOW
+                </button>
+            </div>
+            <p class="mt-12 text-zinc-500 font-bold uppercase tracking-widest">Limited slots available for Q4</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-2xl font-black tracking-tighter">REEL<span class="neon-blue">GEN</span></div>
+            <div class="flex gap-8 text-zinc-500 text-sm font-bold uppercase">
+                <a href="#" class="hover:text-white transition-colors">Instagram</a>
+                <a href="#" class="hover:text-white transition-colors">TikTok</a>
+                <a href="#" class="hover:text-white transition-colors">YouTube</a>
+                <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+            </div>
+            <p class="text-zinc-600 text-xs uppercase tracking-widest">© 2024 REEL-GEN STUDIO.</p>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Glow
+        const cursor = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        });
+
+        // Hero Text Animation
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+
+        gsap.from(heroTitle, {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "expo.out"
+        });
+
+        gsap.from(heroDesc, {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            delay: 0.3,
+            ease: "expo.out"
+        });
+
+        // Typewriter reveal for h2s
+        const reveals = document.querySelectorAll('.reveal-text');
+        reveals.forEach(text => {
+            gsap.from(text, {
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 85%",
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+        });
+
+        // Magnetic Buttons Logic
+        const magneticTargets = document.querySelectorAll('.magnetic-target');
+        magneticTargets.forEach(target => {
+            const wrap = target.parentElement;
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(target, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(target, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Showcase Horizontal Interaction
+        const scrollContainer = document.querySelector('.showcase-container');
+        gsap.to(scrollContainer, {
+            scrollTrigger: {
+                trigger: "#showcase",
+                start: "top 80%",
+                end: "bottom top",
+                scrub: 2
+            },
+            x: -200
+        });
+
+        // Feature Card Glow on Scroll
+        gsap.utils.toArray('.glass').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%",
+                },
+                scale: 0.95,
+                opacity: 0,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        });
+
+        // CTA pulse title
+        gsap.to("#cta-title", {
+            scale: 1.02,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    </script>
+</body>
+</html>

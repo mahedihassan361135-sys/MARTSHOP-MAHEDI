@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARCH SHOP | Premium Curated Essentials</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .playfair { font-family: 'Playfair Display', serif; }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F9E2AF 50%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-orb {
+            position: absolute;
+            width: 40vw;
+            height: 40vw;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #D4AF37;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .bento-card:hover .bento-img {
+            transform: scale(1.1);
+        }
+
+        .magnetic {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#D4AF37] selection:text-black">
+
+    <div class="custom-cursor hidden md:block" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center mix-blend-difference">
+        <a href="#" class="text-2xl font-black tracking-tighter uppercase">March<span class="text-[#D4AF37]">.</span></a>
+        <div class="hidden md:flex gap-12 text-sm font-medium tracking-widest uppercase opacity-70">
+            <a href="#about" class="hover:opacity-100 transition-opacity">Philosophy</a>
+            <a href="#shop" class="hover:opacity-100 transition-opacity">Collection</a>
+            <a href="#payment" class="hover:opacity-100 transition-opacity">Direct Pay</a>
+            <a href="#contact" class="hover:opacity-100 transition-opacity">Inquiry</a>
+        </div>
+        <div class="flex items-center gap-6">
+            <button class="magnetic glass px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest">Cart (0)</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden px-6">
+        <div class="hero-orb top-[-10%] left-[-10%]"></div>
+        <div class="hero-orb bottom-[-10%] right-[-10%] animate-pulse"></div>
+
+        <div class="absolute right-12 top-1/2 -translate-y-1/2 hidden lg:block">
+            <div class="rotating-stamp relative w-32 h-32 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" class="w-full h-full fill-[#D4AF37] opacity-40 font-bold">
+                    <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
+                    <text font-size="11">
+                        <textPath xlink:href="#circlePath">
+                            • MARCH SHOP EXCLUSIVE • CURATED LUXURY • EST 2024 •
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="text-center z-10">
+            <div class="overflow-hidden mb-4">
+                <span class="block text-sm uppercase tracking-[0.5em] opacity-60 translate-y-full hero-reveal">Refined Modernity</span>
+            </div>
+            <h1 class="text-[clamp(4rem,15vw,12rem)] leading-[0.85] font-black uppercase tracking-tighter mb-8 italic overflow-hidden">
+                <span class="block translate-y-full hero-reveal gold-gradient">March</span>
+                <span class="block translate-y-full hero-reveal italic font-light opacity-80">Studio</span>
+            </h1>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 translate-y-10 opacity-0 hero-fade">
+                <p class="max-w-xs text-sm text-left opacity-50 font-light leading-relaxed">
+                    Defining the new standard of urban elegance. Hand-crafted pieces for the modern visionary.
+                </p>
+                <a href="#shop" class="magnetic bg-white text-black px-10 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#D4AF37] transition-colors duration-500">
+                    Explore Shop
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce opacity-30">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="relative group">
+                <div class="absolute -inset-4 bg-[#D4AF37] opacity-10 blur-2xl group-hover:opacity-20 transition-opacity"></div>
+                <img src="https://picsum.photos/1920/1080?random=1" alt="Craftsmanship" class="relative rounded-2xl w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-1000">
+                <div class="absolute top-8 right-8 glass p-6 rounded-xl max-w-[200px] translate-y-12 opacity-0 about-reveal">
+                    <p class="text-xs font-bold uppercase tracking-widest mb-2 text-[#D4AF37]">The Goal</p>
+                    <p class="text-sm opacity-70 italic">"Simplicity is the ultimate sophistication."</p>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h2 class="text-5xl font-black uppercase tracking-tighter about-reveal opacity-0">Our <span class="gold-gradient">Ethos</span></h2>
+                <p class="text-xl leading-relaxed text-gray-400 about-reveal opacity-0" style="transition-delay: 100ms">
+                    At March Shop, we believe that luxury is not about excess, but about the perfection of the essential. Every item in our collection is meticulously vetted for quality, durability, and timeless aesthetic.
+                </p>
+                <div class="grid grid-cols-2 gap-8 pt-8 about-reveal opacity-0" style="transition-delay: 200ms">
+                    <div>
+                        <span class="block text-3xl font-black text-[#D4AF37]">99+</span>
+                        <span class="text-xs uppercase tracking-widest opacity-40">Artisans</span>
+                    </div>
+                    <div>
+                        <span class="block text-3xl font-black text-[#D4AF37]">Global</span>
+                        <span class="text-xs uppercase tracking-widest opacity-40">Curation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Bento Grid -->
+    <section id="shop" class="py-32 px-6 bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-16 flex justify-between items-end">
+                <div>
+                    <h2 class="text-5xl font-black uppercase tracking-tighter mb-4">Curated <br>Collections</h2>
+                    <p class="opacity-40 uppercase tracking-widest text-xs">Featured Drop &copy; 2024</p>
+                </div>
+                <a href="#" class="hidden md:block pb-2 border-b border-[#D4AF37] text-xs font-bold uppercase tracking-widest">View All Products</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-[800px]">
+                <div class="md:col-span-2 md:row-span-2 bento-card relative overflow-hidden rounded-3xl group">
+                    <img src="https://picsum.photos/1920/1080?random=10" class="bento-img w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent p-10 flex flex-col justify-end">
+                        <span class="text-xs font-bold uppercase text-[#D4AF37] mb-2 tracking-widest">New Arrival</span>
+                        <h3 class="text-3xl font-black uppercase mb-4 italic">Obsidian Tech Kit</h3>
+                        <button class="magnetic glass w-max px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest">Shop Now</button>
+                    </div>
+                </div>
+                <div class="md:col-span-2 bento-card relative overflow-hidden rounded-3xl group">
+                    <img src="https://picsum.photos/1920/1080?random=11" class="bento-img w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+                    <div class="absolute top-8 left-8">
+                        <h3 class="text-xl font-black uppercase tracking-tighter">Essential Carry</h3>
+                    </div>
+                </div>
+                <div class="bento-card relative overflow-hidden rounded-3xl group">
+                    <img src="https://picsum.photos/1920/1080?random=12" class="bento-img w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+                </div>
+                <div class="bento-card relative overflow-hidden rounded-3xl group">
+                    <img src="https://picsum.photos/1920/1080?random=13" class="bento-img w-full h-full object-cover transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Details Section -->
+    <section id="payment" class="py-32 px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-center text-4xl md:text-6xl font-black uppercase tracking-tighter mb-20 gold-gradient">Premium Settlement Hub</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- International/Institutional Banks -->
+                <div class="space-y-6">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.3em] opacity-40 mb-8 border-l-2 border-[#D4AF37] pl-4">Banking Partners</h3>
+                    
+                    <!-- Saudi National Bank -->
+                    <div class="glass p-8 rounded-3xl group hover:border-[#D4AF37]/50 transition-colors">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-green-900/30 flex items-center justify-center border border-green-600/30">
+                                <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-lg">The Saudi National Bank (SNB)</h4>
+                                <p class="text-[10px] uppercase tracking-widest opacity-50">Global Institutional Channel</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 font-mono text-sm opacity-80">
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="opacity-50">IBAN</span>
+                                <span class="text-[#D4AF37]">SA 82 1000 0000 1234 5678 9012</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="opacity-50">SWIFT</span>
+                                <span>NCBKSA RIXXX</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sonali Bank -->
+                    <div class="glass p-8 rounded-3xl group hover:border-[#D4AF37]/50 transition-colors">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-900/30 flex items-center justify-center border border-blue-600/30">
+                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m4 0h1m-5 10h5m-5 4h5m-5-4h5m-5 4h5"></path></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-black text-lg">Sonali Bank PLC</h4>
+                                <p class="text-[10px] uppercase tracking-widest opacity-50">State Integrated Banking</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3 font-mono text-sm opacity-80">
+                            <div class="flex justify-between border-b border-white/5 pb-2">
+                                <span class="opacity-50">Account</span>
+                                <span class="text-[#D4AF37]">0102-345678901</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="opacity-50">Branch</span>
+                                <span>Main Corporate Branch</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Wallets -->
+                <div class="space-y-6">
+                    <h3 class="text-xs font-bold uppercase tracking-[0.3em] opacity-40 mb-8 border-l-2 border-[#D4AF37] pl-4">Digital Wallets</h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Bkash -->
+                        <div class="glass p-6 rounded-2xl flex flex-col gap-4 border-l-4 border-pink-600">
+                            <div class="flex justify-between items-center">
+                                <span class="font-black text-xl italic uppercase">Bkash</span>
+                                <div class="w-2 h-2 rounded-full bg-pink-600 animate-pulse"></div>
+                            </div>
+                            <p class="font-mono text-lg">+880 1XXX-XXXXXX</p>
+                            <span class="text-[10px] uppercase tracking-tighter opacity-40">Merchant Verified</span>
+                        </div>
+                        <!-- Nagad -->
+                        <div class="glass p-6 rounded-2xl flex flex-col gap-4 border-l-4 border-orange-600">
+                            <div class="flex justify-between items-center">
+                                <span class="font-black text-xl italic uppercase">Nagad</span>
+                                <div class="w-2 h-2 rounded-full bg-orange-600 animate-pulse"></div>
+                            </div>
+                            <p class="font-mono text-lg">+880 1XXX-XXXXXX</p>
+                            <span class="text-[10px] uppercase tracking-tighter opacity-40">Quick Pay</span>
+                        </div>
+                        <!-- Rocket -->
+                        <div class="glass p-6 rounded-2xl flex flex-col gap-4 border-l-4 border-purple-600 sm:col-span-2">
+                            <div class="flex justify-between items-center">
+                                <span class="font-black text-xl italic uppercase">Rocket</span>
+                                <div class="w-2 h-2 rounded-full bg-purple-600 animate-pulse"></div>
+                            </div>
+                            <p class="font-mono text-lg">+880 1XXX-XXXXXX-X</p>
+                            <span class="text-[10px] uppercase tracking-tighter opacity-40">Secure Mobile Banking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials/Showcase -->
+    <section class="py-32 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="space-y-4">
+                <img src="https://i.pravatar.cc/150?img=11" class="w-16 h-16 rounded-full border-2 border-[#D4AF37] p-1">
+                <p class="italic text-lg opacity-80">"The quality of the curation is unmatched. March Shop is my go-to for aesthetic tech."</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">Alexander V. — Designer</p>
+            </div>
+            <div class="space-y-4">
+                <img src="https://i.pravatar.cc/150?img=24" class="w-16 h-16 rounded-full border-2 border-[#D4AF37] p-1">
+                <p class="italic text-lg opacity-80">"Fast, secure transactions. The direct bank transfer options made it so easy to buy high-ticket items."</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">Sarah M. — Collector</p>
+            </div>
+            <div class="space-y-4">
+                <img src="https://i.pravatar.cc/150?img=33" class="w-16 h-16 rounded-full border-2 border-[#D4AF37] p-1">
+                <p class="italic text-lg opacity-80">"Unparalleled customer service. They treat every order like a luxury experience."</p>
+                <p class="text-xs font-bold uppercase tracking-widest text-[#D4AF37]">James L. — Entrepreneur</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-[#0a0a0a] pt-32 pb-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-24 mb-32">
+                <div>
+                    <h2 class="text-6xl md:text-8xl font-black uppercase tracking-tighter mb-12">Ready to <br><span class="gold-gradient">Elevate?</span></h2>
+                    <div class="flex gap-4">
+                        <button class="magnetic bg-[#D4AF37] text-black px-12 py-6 rounded-full font-bold uppercase tracking-widest text-sm">Join the Club</button>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-end space-y-6">
+                    <div class="space-y-2">
+                        <p class="text-xs uppercase tracking-widest opacity-40">Location</p>
+                        <p class="text-lg">District 7, Cyber Plaza, Global</p>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-xs uppercase tracking-widest opacity-40">Contact</p>
+                        <p class="text-lg">hello@marchshop.premium</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-12 border-t border-white/5 flex flex-col md:row items-center justify-between gap-8">
+                <p class="text-[10px] uppercase tracking-widest opacity-30">© 2024 March Shop. All Rights Reserved. Designed for Excellence.</p>
+                <div class="flex gap-8 text-[10px] uppercase tracking-widest opacity-60">
+                    <a href="#" class="hover:text-[#D4AF37] transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-[#D4AF37] transition-colors">Terms</a>
+                    <a href="#" class="hover:text-[#D4AF37] transition-colors">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        // Hero Reveal Animation
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+            tl.to('.hero-reveal', {
+                y: 0,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "expo.out"
+            })
+            .to('.hero-fade', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out"
+            }, "-=0.5");
+        });
+
+        // About Scroll Animation
+        gsap.to('.about-reveal', {
+            scrollTrigger: {
+                trigger: '#about',
+                start: 'top 70%',
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+
+        // Payment Cards Animation
+        gsap.from('#payment .glass', {
+            scrollTrigger: {
+                trigger: '#payment',
+                start: 'top 80%',
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power3.out"
+        });
+
+        // Magnetic Button Utility
+        const magneticElements = document.querySelectorAll('.magnetic');
+        magneticElements.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Parallax Effect for Bento Images
+        gsap.utils.toArray('.bento-img').forEach(img => {
+            gsap.to(img, {
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                },
+                y: -50,
+                ease: "none"
+            });
+        });
+
+        // Smooth Scroll (Optional for better feel)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

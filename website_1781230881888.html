@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan Global | International Luxury Commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .serif { font-family: 'Playfair Display', serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #a1a1a1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #d4af37 0%, #f9e29c 50%, #b8860b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.3s ease-out;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-8 py-3">
+            <div class="text-2xl font-extrabold tracking-tighter uppercase">
+                Hassan<span class="text-[#d4af37]">.</span>Global
+            </div>
+            <div class="hidden md:flex space-x-10 text-sm font-medium tracking-widest uppercase opacity-80">
+                <a href="#about" class="hover:text-[#d4af37] transition-colors">Curations</a>
+                <a href="#collections" class="hover:text-[#d4af37] transition-colors">Collections</a>
+                <a href="#services" class="hover:text-[#d4af37] transition-colors">Logistics</a>
+                <a href="#contact" class="hover:text-[#d4af37] transition-colors">Concierge</a>
+            </div>
+            <div class="flex items-center space-x-6">
+                <svg class="w-5 h-5 cursor-pointer hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                <div class="magnetic-wrap">
+                    <button class="bg-white text-black px-6 py-2 rounded-full text-xs font-bold tracking-widest uppercase hover:bg-[#d4af37] transition-all">Join Club</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Orbs -->
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#d4af37] rounded-full blur-[150px] opacity-10 animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-[#ffffff] rounded-full blur-[180px] opacity-5"></div>
+
+        <div class="container mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7">
+                <h1 class="hero-title text-7xl md:text-9xl font-extrabold leading-none tracking-tighter mb-8">
+                    THE NEW <br/> 
+                    <span class="serif italic gold-gradient">Standard</span> <br/>
+                    OF LUXE.
+                </h1>
+                <p class="hero-sub text-lg md:text-xl text-white/60 max-w-lg mb-10 leading-relaxed">
+                    Connecting global artisans with discerning collectors. Hassan Global facilitates high-end commerce across 140+ countries with unparalleled precision.
+                </p>
+                <div class="flex flex-wrap gap-6">
+                    <div class="magnetic-wrap">
+                        <a href="#collections" class="bg-white text-black px-10 py-5 rounded-full font-bold flex items-center space-x-3 group">
+                            <span>EXPLORE REPOSITORY</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 relative">
+                <div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden glass p-2 group">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Luxury Object" class="w-full h-full object-cover rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    
+                    <!-- Floating Glass Card -->
+                    <div class="absolute bottom-8 left-8 right-8 glass p-6 rounded-2xl translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-[10px] tracking-[0.2em] opacity-60 uppercase mb-1">Featured Asset</p>
+                                <h3 class="text-xl font-bold">The Obsidian Chrono</h3>
+                            </div>
+                            <div class="text-[#d4af37] font-bold">$12,450</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rotating Stamp -->
+                <div class="absolute -top-12 -right-12 w-40 h-40 pointer-events-none z-20">
+                    <svg viewBox="0 0 100 100" class="rotating-stamp">
+                        <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                        <text class="text-[8px] uppercase tracking-[0.3em] font-bold fill-white/40">
+                            <textPath xlink:href="#circlePath">ESTABLISHED 2024 • GLOBAL TRADING CO • PREMIUM QUALITY • </textPath>
+                        </text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats/Mission Section -->
+    <section id="about" class="py-32 bg-[#0a0a0a]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-y border-white/10 py-20">
+                <div class="reveal-up text-center">
+                    <h2 class="text-5xl font-bold mb-2">140+</h2>
+                    <p class="text-white/40 uppercase tracking-widest text-xs">Countries Reached</p>
+                </div>
+                <div class="reveal-up text-center" style="transition-delay: 200ms;">
+                    <h2 class="text-5xl font-bold mb-2">12K</h2>
+                    <p class="text-white/40 uppercase tracking-widest text-xs">Vetted Artisans</p>
+                </div>
+                <div class="reveal-up text-center" style="transition-delay: 400ms;">
+                    <h2 class="text-5xl font-bold mb-2">0.1s</h2>
+                    <p class="text-white/40 uppercase tracking-widest text-xs">Trade Execution</p>
+                </div>
+            </div>
+            
+            <div class="mt-32 max-w-4xl">
+                <h3 class="text-4xl md:text-6xl font-light leading-tight reveal-up">
+                    We bridge the gap between <span class="serif italic text-[#d4af37]">extraordinary vision</span> and global accessibility. Every transaction is a testament to quality.
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Services -->
+    <section id="services" class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-xs uppercase tracking-[0.5em] text-[#d4af37] mb-4">Our Ecosystem</h2>
+                <h3 class="text-5xl font-bold">Unrivaled Infrastructure</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[800px]">
+                <div class="md:col-span-2 md:row-span-2 glass rounded-3xl p-10 flex flex-col justify-end group overflow-hidden relative">
+                    <img src="https://picsum.photos/1920/1080?random=2" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:scale-110 transition-transform duration-700" alt="Logistics">
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-[#d4af37]/20 rounded-2xl flex items-center justify-center mb-6">
+                            <svg class="w-8 h-8 text-[#d4af37]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+                        </div>
+                        <h4 class="text-3xl font-bold mb-4">Hyper-Local Distribution</h4>
+                        <p class="text-white/60">Our smart-contract driven logistics ensure that products are stored closer to you, reducing delivery time to under 48 hours globally.</p>
+                    </div>
+                </div>
+
+                <div class="glass rounded-3xl p-8 group hover:bg-[#d4af37] transition-all duration-500 overflow-hidden relative">
+                    <div class="relative z-10 group-hover:text-black">
+                        <h4 class="text-xl font-bold mb-2">Private Curations</h4>
+                        <p class="text-sm opacity-60">Access to invite-only auctions and limited digital drops.</p>
+                    </div>
+                    <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-white/5 rounded-full group-hover:scale-150 transition-transform"></div>
+                </div>
+
+                <div class="glass rounded-3xl p-8 group hover:bg-white transition-all duration-500 overflow-hidden relative">
+                    <div class="relative z-10 group-hover:text-black">
+                        <h4 class="text-xl font-bold mb-2">Vault Security</h4>
+                        <p class="text-sm opacity-60">Military-grade encryption for every single asset transaction.</p>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 glass rounded-3xl p-10 flex items-center space-x-10 group overflow-hidden">
+                    <div class="w-1/3">
+                        <img src="https://picsum.photos/1920/1080?random=3" class="rounded-xl grayscale group-hover:grayscale-0 transition-all duration-500" alt="Tech">
+                    </div>
+                    <div class="w-2/3">
+                        <h4 class="text-2xl font-bold mb-3">AI Discovery Engine</h4>
+                        <p class="text-white/60 text-sm">Personalized product matching based on global trend synthesis and your historical aesthetic preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="collections" class="py-32 bg-[#050505]">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-xs uppercase tracking-[0.5em] text-[#d4af37] mb-4">The Repository</h2>
+                    <h3 class="text-5xl font-bold italic serif">Latest Drops</h3>
+                </div>
+                <div class="magnetic-wrap">
+                    <button class="border border-white/20 px-8 py-3 rounded-full hover:bg-white hover:text-black transition-all">View All Artifacts</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Product 1 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="aspect-[3/4] overflow-hidden rounded-2xl relative mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=10" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Product">
+                        <div class="absolute top-4 right-4 glass px-3 py-1 rounded-full text-[10px] font-bold">NEW</div>
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="bg-white text-black px-8 py-3 rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform">Quick View</button>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold">Monolith Watch Stand</h4>
+                    <p class="text-white/40 text-sm">Italian Marble • Polished Chrome</p>
+                    <p class="mt-2 font-bold text-[#d4af37]">$2,400</p>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="aspect-[3/4] overflow-hidden rounded-2xl relative mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=11" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Product">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="bg-white text-black px-8 py-3 rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform">Quick View</button>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold">Zenith Travel Suitcase</h4>
+                    <p class="text-white/40 text-sm">Carbon Fiber • Calf Leather</p>
+                    <p class="mt-2 font-bold text-[#d4af37]">$5,200</p>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="aspect-[3/4] overflow-hidden rounded-2xl relative mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=12" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Product">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <button class="bg-white text-black px-8 py-3 rounded-full font-bold transform translate-y-4 group-hover:translate-y-0 transition-transform">Quick View</button>
+                        </div>
+                    </div>
+                    <h4 class="text-lg font-bold">Ethereal Fragrance Set</h4>
+                    <p class="text-white/40 text-sm">Oud Wood • Hand-Blown Glass</p>
+                    <p class="mt-2 font-bold text-[#d4af37]">$850</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-32 glass border-y border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="reveal-up">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-8 italic serif">"The benchmark for global commerce. Simply unmatched."</h2>
+                    <div class="flex items-center space-x-4">
+                        <img src="https://i.pravatar.cc/150?img=12" class="w-16 h-16 rounded-full border-2 border-[#d4af37]" alt="Avatar">
+                        <div>
+                            <p class="font-bold">Julian Vercetti</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest">Collector, Monaco</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="glass p-8 rounded-3xl hover:border-[#d4af37] transition-colors">
+                        <p class="text-sm opacity-60 mb-4">"Shipping to remote locations has never been this seamless. Hassan Global is my go-to for everything."</p>
+                        <div class="flex items-center space-x-2">
+                            <img src="https://i.pravatar.cc/150?img=33" class="w-8 h-8 rounded-full" alt="Avatar">
+                            <span class="text-xs font-bold uppercase">Elena R.</span>
+                        </div>
+                    </div>
+                    <div class="glass p-8 rounded-3xl mt-12 hover:border-[#d4af37] transition-colors">
+                        <p class="text-sm opacity-60 mb-4">"The curation is impeccable. I found pieces here that are unavailable anywhere else on the planet."</p>
+                        <div class="flex items-center space-x-2">
+                            <img src="https://i.pravatar.cc/150?img=44" class="w-8 h-8 rounded-full" alt="Avatar">
+                            <span class="text-xs font-bold uppercase">Marcus T.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-40 relative overflow-hidden">
+        <div class="absolute inset-0 flex items-center justify-center opacity-10">
+            <h2 class="text-[30vw] font-black tracking-tighter uppercase whitespace-nowrap">HASSAN</h2>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-5xl md:text-8xl font-bold mb-10 reveal-up">Ready for the <br/> <span class="gold-gradient">Next Evolution?</span></h2>
+            <div class="flex justify-center gap-6">
+                <div class="magnetic-wrap">
+                    <button class="bg-white text-black px-12 py-6 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-[0_0_50px_rgba(255,255,255,0.2)]">
+                        CREATE ACCOUNT
+                    </button>
+                </div>
+            </div>
+            <p class="mt-8 text-white/40 uppercase tracking-[0.4em] text-xs">Join 50k+ Global Elite Members</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#050505] pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="text-2xl font-extrabold tracking-tighter uppercase mb-6">
+                        Hassan<span class="text-[#d4af37]">.</span>Global
+                    </div>
+                    <p class="text-white/40 text-sm leading-relaxed">
+                        Redefining the luxury landscape through technology, trust, and global connectivity. 
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-xs">Navigation</h4>
+                    <ul class="space-y-4 text-white/40 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">The Collection</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Artist Directory</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Global Logistics</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-xs">Legal</h4>
+                    <ul class="space-y-4 text-white/40 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Trade</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Customs & Duties</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">AML Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 uppercase tracking-widest text-xs">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-all">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center text-white/20 text-xs border-t border-white/5 pt-10">
+                &copy; 2024 HASSAN GLOBAL INTERNATIONAL LTD. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        // Hero Reveal
+        const tl = gsap.timeline();
+        tl.from(".hero-title", {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power4.out"
+        })
+        .from(".hero-sub", {
+            y: 40,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        }, "-=0.8")
+        .from(".magnetic-wrap", {
+            scale: 0,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        }, "-=0.6");
+
+        // Scroll Reveal Up
+        const revealUp = document.querySelectorAll(".reveal-up");
+        revealUp.forEach((el) => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                y: 60,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Magnetic Buttons
+        const magnets = document.querySelectorAll('.magnetic-wrap');
+        magnets.forEach((m) => {
+            m.addEventListener('mousemove', (e) => {
+                const rect = m.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(m, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            m.addEventListener('mouseleave', () => {
+                gsap.to(m, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Product Hover Zoom Effects handled by CSS, but GSAP for initial entry
+        gsap.from(".product-card", {
+            scrollTrigger: {
+                trigger: "#collections",
+                start: "top 70%",
+            },
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.2,
+            ease: "power4.out"
+        });
+
+        // Background parallax
+        gsap.to(".hero-title", {
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            },
+            y: 200
+        });
+
+    </script>
+</body>
+</html>

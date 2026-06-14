@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan Global | Premium International Commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .bento-item {
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .bento-item:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .stamp-container {
+            animation: rotateStamp 20s linear infinite;
+        }
+
+        @keyframes rotateStamp {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .line-mask {
+            overflow: hidden;
+        }
+
+        .reveal-text {
+            transform: translateY(100%);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 10px;
+        }
+
+        .checkout-card {
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="custom-scrollbar">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav h-20 flex items-center px-8 md:px-16 justify-between">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-[#10b981] rounded-full flex items-center justify-center font-bold text-black text-xl">H</div>
+            <span class="text-xl font-extrabold tracking-tighter uppercase">Hassan Global</span>
+        </div>
+        
+        <div class="hidden md:flex items-center gap-10 text-sm font-medium tracking-widest uppercase opacity-70">
+            <a href="#about" class="hover:text-[#10b981] transition-colors">Logistics</a>
+            <a href="#products" class="hover:text-[#10b981] transition-colors">Collections</a>
+            <a href="#global" class="hover:text-[#10b981] transition-colors">Global Network</a>
+            <a href="#checkout" class="hover:text-[#10b981] transition-colors">Orders</a>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <div class="relative cursor-pointer group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:text-[#10b981] transition-colors"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span class="absolute -top-2 -right-2 bg-[#3b82f6] text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+            </div>
+            <div class="magnetic-wrap">
+                <button class="magnetic-btn px-6 py-2 border border-white/20 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all duration-300">
+                    SIGN IN
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-8 overflow-hidden">
+        <div class="glow-orb top-[-10%] left-[-10%] animate-pulse"></div>
+        <div class="glow-orb bottom-[-10%] right-[-10%] opacity-10"></div>
+        
+        <!-- Rotating Stamp -->
+        <div class="absolute right-20 top-40 hidden lg:block">
+            <div class="stamp-container relative w-32 h-32">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                    <text class="text-[8px] uppercase fill-white/30 font-bold tracking-[0.2em]">
+                        <textPath xlink:href="#circlePath">Hassan Global • International Standards • Quality Excellence • </textPath>
+                    </text>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="z-10">
+                <div class="line-mask mb-4">
+                    <p class="reveal-text text-[#10b981] font-bold tracking-[0.3em] text-sm uppercase">Global Logistics & E-Commerce</p>
+                </div>
+                <div class="line-mask mb-2">
+                    <h1 class="reveal-text text-6xl md:text-8xl font-extrabold leading-[0.9]">BEYOND</h1>
+                </div>
+                <div class="line-mask mb-8">
+                    <h1 class="reveal-text text-6xl md:text-8xl font-extrabold leading-[0.9] text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/20">BORDERS.</h1>
+                </div>
+                <p class="text-white/50 text-lg max-w-md mb-10 leading-relaxed hero-desc opacity-0 translate-y-10">
+                    Premium procurement and lightning-fast international delivery for the modern elite. Experience commerce without boundaries.
+                </p>
+                <div class="flex flex-wrap gap-6 hero-btns opacity-0 translate-y-10">
+                    <div class="magnetic-wrap">
+                        <button class="magnetic-btn px-10 py-5 bg-[#10b981] text-black font-extrabold text-sm rounded-full flex items-center gap-3 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] transition-all">
+                            EXPLORE PRODUCTS
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                    <div class="magnetic-wrap">
+                        <button class="magnetic-btn px-10 py-5 border border-white/10 text-white font-extrabold text-sm rounded-full hover:bg-white/5 transition-all">
+                            TRACK SHIPMENT
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative hero-image-container opacity-0 scale-95">
+                <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 group">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Hero" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent opacity-60"></div>
+                </div>
+                
+                <!-- Floating Glass Card -->
+                <div class="absolute -bottom-10 -left-10 p-6 glass-nav rounded-2xl border border-white/10 shadow-2xl animate-bounce" style="animation-duration: 5s;">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-[#3b82f6] rounded-full flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-white/50 uppercase font-bold">Current Delivery</p>
+                            <p class="text-sm font-bold text-white">Singapore → New York</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Glass Card 2 -->
+                <div class="absolute -top-6 -right-6 p-4 glass-nav rounded-2xl border border-white/10 shadow-2xl">
+                    <div class="flex -space-x-3">
+                        <img class="w-8 h-8 rounded-full border-2 border-[#050505]" src="https://i.pravatar.cc/150?img=1" alt="">
+                        <img class="w-8 h-8 rounded-full border-2 border-[#050505]" src="https://i.pravatar.cc/150?img=2" alt="">
+                        <img class="w-8 h-8 rounded-full border-2 border-[#050505]" src="https://i.pravatar.cc/150?img=3" alt="">
+                        <div class="w-8 h-8 rounded-full border-2 border-[#050505] bg-neutral-800 flex items-center justify-center text-[10px] font-bold">+2k</div>
+                    </div>
+                    <p class="text-[10px] text-white/50 mt-2 font-medium">Trusted by Global Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="about" class="py-32 px-8 md:px-16 bg-[#080808]">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-20">
+                <div class="lg:w-1/3">
+                    <h2 class="text-4xl font-bold tracking-tighter mb-6 reveal-on-scroll">WE ARE THE<br><span class="text-[#10b981]">BRIDGE</span> TO THE WORLD.</h2>
+                    <div class="h-1 w-20 bg-[#10b981] reveal-on-scroll"></div>
+                </div>
+                <div class="lg:w-2/3">
+                    <p class="text-2xl md:text-3xl text-white/80 leading-snug reveal-on-scroll">
+                        Hassan Global is not just an e-commerce platform. We are a logistics powerhouse facilitating seamless trade across 150+ countries. From luxury tech to industrial machinery, we handle the complexity so you can enjoy the quality.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 reveal-on-scroll">
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#3b82f6]">150+</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest mt-2 font-bold">Countries</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#3b82f6]">1.2M</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest mt-2 font-bold">Deliveries</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#3b82f6]">24h</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest mt-2 font-bold">Avg Response</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#3b82f6]">99%</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest mt-2 font-bold">Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Bento Grid -->
+    <section id="products" class="py-32 px-8 md:px-16">
+        <div class="max-w-7xl mx-auto mb-20 flex justify-between items-end">
+            <div>
+                <p class="text-[#10b981] font-bold tracking-[0.2em] text-xs uppercase mb-2">Curated Selections</p>
+                <h2 class="text-5xl font-extrabold tracking-tighter">PREMIUM GOODS</h2>
+            </div>
+            <a href="#" class="text-sm font-bold border-b-2 border-[#10b981] pb-1 hover:text-[#10b981] transition-all uppercase tracking-widest">View All</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-6 h-auto md:h-[800px]">
+            <!-- Large Item -->
+            <div class="md:col-span-7 md:row-span-2 bento-item group rounded-3xl p-8 relative flex flex-col justify-end overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=10" alt="Product" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <div class="relative z-10">
+                    <span class="bg-[#10b981] text-black text-[10px] px-3 py-1 rounded-full font-bold uppercase mb-4 inline-block">New Arrival</span>
+                    <h3 class="text-4xl font-bold mb-4">AeroX Pro Logistics Drone</h3>
+                    <p class="text-white/60 max-w-md mb-6">The future of last-mile delivery. High-capacity autonomous flight systems for urban environments.</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-2xl font-bold text-white">$14,299.00</span>
+                        <button class="bg-white text-black p-3 rounded-full hover:bg-[#10b981] transition-colors">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Right -->
+            <div class="md:col-span-5 md:row-span-1 bento-item group rounded-3xl p-8 relative flex flex-col justify-end overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=11" alt="Product" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold mb-2">Titanium Logistics Hub</h3>
+                    <p class="text-white/60 text-sm mb-4">Enterprise-grade secure node.</p>
+                    <span class="text-lg font-bold text-[#3b82f6]">$2,499.00</span>
+                </div>
+            </div>
+
+            <!-- Bottom Mid -->
+            <div class="md:col-span-2 md:row-span-1 bento-item group rounded-3xl p-6 relative flex flex-col justify-end overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=12" alt="Product" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                <div class="relative z-10">
+                    <h3 class="text-lg font-bold">Node V2</h3>
+                    <p class="text-[#10b981] font-bold">$499</p>
+                </div>
+            </div>
+
+            <!-- Bottom Right -->
+            <div class="md:col-span-3 md:row-span-1 bento-item group rounded-3xl p-6 relative flex flex-col justify-center items-center overflow-hidden bg-gradient-to-br from-[#10b981] to-[#3b82f6]">
+                <div class="text-center">
+                    <p class="text-black font-extrabold text-3xl mb-2">30% OFF</p>
+                    <p class="text-black/70 text-xs font-bold tracking-widest uppercase">Global Freight</p>
+                    <button class="mt-4 px-6 py-2 bg-black text-white rounded-full text-[10px] font-bold hover:scale-110 transition-transform">REDEEM NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Network Section (Horizontal Scroll Feel) -->
+    <section id="global" class="py-32 bg-[#050505] overflow-hidden">
+        <div class="px-8 md:px-16 mb-20">
+            <h2 class="text-6xl md:text-8xl font-black opacity-10 leading-none">GLOBAL FOOTPRINT</h2>
+        </div>
+        
+        <div class="flex gap-10 px-8 md:px-16 overflow-x-auto pb-10 no-scrollbar" id="global-scroll">
+            <div class="flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden relative group">
+                <img src="https://picsum.photos/800/1200?random=20" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Dubai">
+                <div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+                    <h4 class="text-2xl font-bold">Dubai Hub</h4>
+                    <p class="text-sm text-white/70">Strategic Middle-East Logistics Center</p>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden relative group">
+                <img src="https://picsum.photos/800/1200?random=21" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Singapore">
+                <div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+                    <h4 class="text-2xl font-bold">Singapore</h4>
+                    <p class="text-sm text-white/70">Southeast Asia Distribution Point</p>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden relative group">
+                <img src="https://picsum.photos/800/1200?random=22" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="London">
+                <div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+                    <h4 class="text-2xl font-bold">London</h4>
+                    <p class="text-sm text-white/70">European Operations Center</p>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden relative group">
+                <img src="https://picsum.photos/800/1200?random=23" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="New York">
+                <div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+                    <h4 class="text-2xl font-bold">New York</h4>
+                    <p class="text-sm text-white/70">North American Gateway</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Flow Mockup -->
+    <section id="checkout" class="py-32 px-8 md:px-16 relative">
+        <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10"></div>
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">SECURE TRANSACTION</h2>
+                <p class="text-white/50">Encrypted global checkout processing in 40+ currencies.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Summary -->
+                <div class="lg:col-span-2 checkout-card rounded-3xl p-8">
+                    <h3 class="text-xl font-bold mb-8 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-[#10b981] rounded-full flex items-center justify-center text-xs text-black">1</span>
+                        Shipping Information
+                    </h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-span-2">
+                            <label class="block text-[10px] uppercase font-bold text-white/40 mb-2">Full Name</label>
+                            <input type="text" placeholder="John Hassan" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-[#10b981] outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-white/40 mb-2">Country</label>
+                            <select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-[#10b981] outline-none transition-all">
+                                <option class="bg-black">United Arab Emirates</option>
+                                <option class="bg-black">United States</option>
+                                <option class="bg-black">United Kingdom</option>
+                                <option class="bg-black">Singapore</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-white/40 mb-2">City</label>
+                            <input type="text" placeholder="Dubai" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-[#10b981] outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold my-8 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-[#10b981] rounded-full flex items-center justify-center text-xs text-black">2</span>
+                        Payment Method
+                    </h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="border-2 border-[#10b981] bg-[#10b981]/10 rounded-2xl p-4 flex flex-col items-center gap-2 cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                            <span class="text-[10px] font-bold">Credit Card</span>
+                        </div>
+                        <div class="border-2 border-white/5 bg-white/5 rounded-2xl p-4 flex flex-col items-center gap-2 cursor-pointer hover:border-white/20 transition-all">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+                            <span class="text-[10px] font-bold">Crypto</span>
+                        </div>
+                        <div class="border-2 border-white/5 bg-white/5 rounded-2xl p-4 flex flex-col items-center gap-2 cursor-pointer hover:border-white/20 transition-all">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                            <span class="text-[10px] font-bold">Bank Transfer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Side -->
+                <div class="checkout-card rounded-3xl p-8 h-fit">
+                    <h3 class="text-xl font-bold mb-6">Order Summary</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/50 text-sm">AeroX Pro x 1</span>
+                            <span class="font-bold">$14,299.00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/50 text-sm">International Shipping</span>
+                            <span class="font-bold text-[#10b981]">FREE</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/50 text-sm">Import Tax</span>
+                            <span class="font-bold">$240.00</span>
+                        </div>
+                        <div class="h-px bg-white/10 w-full my-4"></div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">Total</span>
+                            <span class="text-2xl font-bold text-[#10b981]">$14,539.00</span>
+                        </div>
+                    </div>
+                    <div class="magnetic-wrap w-full">
+                        <button class="w-full bg-[#10b981] text-black font-black py-4 rounded-xl hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all uppercase tracking-widest text-xs">
+                            COMPLETE PURCHASE
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-center text-white/30 mt-4 uppercase tracking-widest font-bold">Certified Secure by GlobalTrust</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#080808] border-t border-white/5 pt-20 pb-10 px-8 md:px-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="w-10 h-10 bg-[#10b981] rounded-full flex items-center justify-center font-bold text-black text-xl">H</div>
+                        <span class="text-2xl font-extrabold tracking-tighter uppercase">Hassan Global</span>
+                    </div>
+                    <p class="text-white/40 max-w-sm text-lg leading-relaxed mb-8">
+                        The definitive standard for international commerce and logistics. Connecting markets, empowering businesses.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#3b82f6] hover:border-[#3b82f6] transition-all cursor-pointer">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#10b981] hover:border-[#10b981] transition-all cursor-pointer">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#3b82f6] hover:border-[#3b82f6] transition-all cursor-pointer">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-8 uppercase tracking-widest text-xs">Navigation</h4>
+                    <ul class="space-y-4 text-white/50 text-sm font-medium">
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Global Trade</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Warehouse Network</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Tech Solutions</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Carrier Partners</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-8 uppercase tracking-widest text-xs">Support</h4>
+                    <ul class="space-y-4 text-white/50 text-sm font-medium">
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Help Center</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Shipping Policy</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Legal Documentation</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Corporate API</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5">
+                <p class="text-xs text-white/30 uppercase tracking-widest font-bold">© 2024 Hassan Global. All rights reserved.</p>
+                <div class="flex gap-10 mt-6 md:mt-0">
+                    <span class="text-[10px] text-white/30 font-bold uppercase tracking-widest">Privacy</span>
+                    <span class="text-[10px] text-white/30 font-bold uppercase tracking-widest">Terms</span>
+                    <span class="text-[10px] text-white/30 font-bold uppercase tracking-widest">Global Ops</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initial Load Animations
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+
+            tl.to('.reveal-text', {
+                y: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power4.out"
+            })
+            .to('.hero-desc', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.5")
+            .to('.hero-btns', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.6")
+            .to('.hero-image-container', {
+                opacity: 1,
+                scale: 1,
+                duration: 1.2,
+                ease: "expo.out"
+            }, "-=1");
+        });
+
+        // Scroll Reveal Animations
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Magnetic Button Effect
+        document.querySelectorAll('.magnetic-wrap').forEach((wrap) => {
+            const btn = wrap.querySelector('.magnetic-btn');
+            
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Horizontal Scroll Link (Mock effect)
+        const globalScroll = document.getElementById('global-scroll');
+        globalScroll.addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            globalScroll.scrollLeft += evt.deltaY;
+        }, { passive: false });
+
+        // Nav Blur on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.paddingTop = '1rem';
+                nav.style.paddingBottom = '1rem';
+                nav.style.backgroundColor = 'rgba(5, 5, 5, 0.9)';
+            } else {
+                nav.style.paddingTop = '1.25rem';
+                nav.style.paddingBottom = '1.25rem';
+                nav.style.backgroundColor = 'rgba(5, 5, 5, 0.7)';
+            }
+        });
+
+        // Parallax Effect for Bento Images
+        gsap.utils.toArray('.bento-item img').forEach(img => {
+            gsap.to(img, {
+                yPercent: 15,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: img.parentElement,
+                    scrub: true
+                }
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hassan Global | Premium International Commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .bento-item {
+            background: #111111;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .bento-item:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+            filter: blur(100px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .stamp-container {
+            animation: rotateStamp 20s linear infinite;
+        }
+
+        @keyframes rotateStamp {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .line-mask {
+            overflow: hidden;
+        }
+
+        .reveal-text {
+            transform: translateY(100%);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #10b981;
+            border-radius: 10px;
+        }
+
+        .checkout-card {
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="custom-scrollbar">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav h-20 flex items-center px-8 md:px-16 justify-between">
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-[#10b981] rounded-full flex items-center justify-center font-bold text-black text-xl">H</div>
+            <span class="text-xl font-extrabold tracking-tighter uppercase">Hassan Global</span>
+        </div>
+        
+        <div class="hidden md:flex items-center gap-10 text-sm font-medium tracking-widest uppercase opacity-70">
+            <a href="#about" class="hover:text-[#10b981] transition-colors">Logistics</a>
+            <a href="#products" class="hover:text-[#10b981] transition-colors">Collections</a>
+            <a href="#global" class="hover:text-[#10b981] transition-colors">Global Network</a>
+            <a href="#checkout" class="hover:text-[#10b981] transition-colors">Orders</a>
+        </div>
+
+        <div class="flex items-center gap-6">
+            <div class="relative cursor-pointer group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:text-[#10b981] transition-colors"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                <span class="absolute -top-2 -right-2 bg-[#3b82f6] text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+            </div>
+            <div class="magnetic-wrap">
+                <button class="magnetic-btn px-6 py-2 border border-white/20 rounded-full text-xs font-bold hover:bg-white hover:text-black transition-all duration-300">
+                    SIGN IN
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-8 overflow-hidden">
+        <div class="glow-orb top-[-10%] left-[-10%] animate-pulse"></div>
+        <div class="glow-orb bottom-[-10%] right-[-10%] opacity-10"></div>
+        
+        <!-- Rotating Stamp -->
+        <div class="absolute right-20 top-40 hidden lg:block">
+            <div class="stamp-container relative w-32 h-32">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                    <text class="text-[8px] uppercase fill-white/30 font-bold tracking-[0.2em]">
+                        <textPath xlink:href="#circlePath">Hassan Global • International Standards • Quality Excellence • </textPath>
+                    </text>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="z-10">
+                <div class="line-mask mb-4">
+                    <p class="reveal-text text-[#10b981] font-bold tracking-[0.3em] text-sm uppercase">Global Logistics & E-Commerce</p>
+                </div>
+                <div class="line-mask mb-2">
+                    <h1 class="reveal-text text-6xl md:text-8xl font-extrabold leading-[0.9]">BEYOND</h1>
+                </div>
+                <div class="line-mask mb-8">
+                    <h1 class="reveal-text text-6xl md:text-8xl font-extrabold leading-[0.9] text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/20">BORDERS.</h1>
+                </div>
+                <p class="text-white/50 text-lg max-w-md mb-10 leading-relaxed hero-desc opacity-0 translate-y-10">
+                    Premium procurement and lightning-fast international delivery for the modern elite. Experience commerce without boundaries.
+                </p>
+                <div class="flex flex-wrap gap-6 hero-btns opacity-0 translate-y-10">
+                    <div class="magnetic-wrap">
+                        <button class="magnetic-btn px-10 py-5 bg-[#10b981] text-black font-extrabold text-sm rounded-full flex items-center gap-3 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] transition-all">
+                            EXPLORE PRODUCTS
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                    <div class="magnetic-wrap">
+                        <button class="magnetic-btn px-10 py-5 border border-white/10 text-white font-extrabold text-sm rounded-full hover:bg-white/5 transition-all">
+                            TRACK SHIPMENT
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative hero-image-container opacity-0 scale-95">
+                <div class="aspect-square rounded-3xl overflow-hidden relative border border-white/10 group">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Hero" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent opacity-60"></div>
+                </div>
+                
+                <!-- Floating Glass Card -->
+                <div class="absolute -bottom-10 -left-10 p-6 glass-nav rounded-2xl border border-white/10 shadow-2xl animate-bounce" style="animation-duration: 5s;">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-[#3b82f6] rounded-full flex items-center justify-center">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-white/50 uppercase font-bold">Current Delivery</p>
+                            <p class="text-sm font-bold text-white">Singapore → New York</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Glass Card 2 -->
+                <div class="absolute -top-6 -right-6 p-4 glass-nav rounded-2xl border border-white/10 shadow-2xl">
+                    <div class="flex -space-x-3">
+                        <img class="w-8 h-8 rounded-full border-2 border-[#050505]" src="https://i.pravatar.cc/150?img=1" alt="">
+                        <img class="w-8 h-8 rounded-full border-2 border-[#050505]" src="https://i.pravatar.cc/150?img=2" alt="">
+                        <img class="w-8 h-8 rounded-full border-2 border-[#050505]" src="https://i.pravatar.cc/150?img=3" alt="">
+                        <div class="w-8 h-8 rounded-full border-2 border-[#050505] bg-neutral-800 flex items-center justify-center text-[10px] font-bold">+2k</div>
+                    </div>
+                    <p class="text-[10px] text-white/50 mt-2 font-medium">Trusted by Global Clients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="about" class="py-32 px-8 md:px-16 bg-[#080808]">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-20">
+                <div class="lg:w-1/3">
+                    <h2 class="text-4xl font-bold tracking-tighter mb-6 reveal-on-scroll">WE ARE THE<br><span class="text-[#10b981]">BRIDGE</span> TO THE WORLD.</h2>
+                    <div class="h-1 w-20 bg-[#10b981] reveal-on-scroll"></div>
+                </div>
+                <div class="lg:w-2/3">
+                    <p class="text-2xl md:text-3xl text-white/80 leading-snug reveal-on-scroll">
+                        Hassan Global is not just an e-commerce platform. We are a logistics powerhouse facilitating seamless trade across 150+ countries. From luxury tech to industrial machinery, we handle the complexity so you can enjoy the quality.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 reveal-on-scroll">
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#3b82f6]">150+</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest mt-2 font-bold">Countries</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#3b82f6]">1.2M</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest mt-2 font-bold">Deliveries</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#3b82f6]">24h</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest mt-2 font-bold">Avg Response</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-extrabold text-[#3b82f6]">99%</p>
+                            <p class="text-xs text-white/40 uppercase tracking-widest mt-2 font-bold">Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Bento Grid -->
+    <section id="products" class="py-32 px-8 md:px-16">
+        <div class="max-w-7xl mx-auto mb-20 flex justify-between items-end">
+            <div>
+                <p class="text-[#10b981] font-bold tracking-[0.2em] text-xs uppercase mb-2">Curated Selections</p>
+                <h2 class="text-5xl font-extrabold tracking-tighter">PREMIUM GOODS</h2>
+            </div>
+            <a href="#" class="text-sm font-bold border-b-2 border-[#10b981] pb-1 hover:text-[#10b981] transition-all uppercase tracking-widest">View All</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-6 h-auto md:h-[800px]">
+            <!-- Large Item -->
+            <div class="md:col-span-7 md:row-span-2 bento-item group rounded-3xl p-8 relative flex flex-col justify-end overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=10" alt="Product" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <div class="relative z-10">
+                    <span class="bg-[#10b981] text-black text-[10px] px-3 py-1 rounded-full font-bold uppercase mb-4 inline-block">New Arrival</span>
+                    <h3 class="text-4xl font-bold mb-4">AeroX Pro Logistics Drone</h3>
+                    <p class="text-white/60 max-w-md mb-6">The future of last-mile delivery. High-capacity autonomous flight systems for urban environments.</p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-2xl font-bold text-white">$14,299.00</span>
+                        <button class="bg-white text-black p-3 rounded-full hover:bg-[#10b981] transition-colors">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Right -->
+            <div class="md:col-span-5 md:row-span-1 bento-item group rounded-3xl p-8 relative flex flex-col justify-end overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=11" alt="Product" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                <div class="relative z-10">
+                    <h3 class="text-2xl font-bold mb-2">Titanium Logistics Hub</h3>
+                    <p class="text-white/60 text-sm mb-4">Enterprise-grade secure node.</p>
+                    <span class="text-lg font-bold text-[#3b82f6]">$2,499.00</span>
+                </div>
+            </div>
+
+            <!-- Bottom Mid -->
+            <div class="md:col-span-2 md:row-span-1 bento-item group rounded-3xl p-6 relative flex flex-col justify-end overflow-hidden">
+                <img src="https://picsum.photos/1920/1080?random=12" alt="Product" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700">
+                <div class="relative z-10">
+                    <h3 class="text-lg font-bold">Node V2</h3>
+                    <p class="text-[#10b981] font-bold">$499</p>
+                </div>
+            </div>
+
+            <!-- Bottom Right -->
+            <div class="md:col-span-3 md:row-span-1 bento-item group rounded-3xl p-6 relative flex flex-col justify-center items-center overflow-hidden bg-gradient-to-br from-[#10b981] to-[#3b82f6]">
+                <div class="text-center">
+                    <p class="text-black font-extrabold text-3xl mb-2">30% OFF</p>
+                    <p class="text-black/70 text-xs font-bold tracking-widest uppercase">Global Freight</p>
+                    <button class="mt-4 px-6 py-2 bg-black text-white rounded-full text-[10px] font-bold hover:scale-110 transition-transform">REDEEM NOW</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Network Section (Horizontal Scroll Feel) -->
+    <section id="global" class="py-32 bg-[#050505] overflow-hidden">
+        <div class="px-8 md:px-16 mb-20">
+            <h2 class="text-6xl md:text-8xl font-black opacity-10 leading-none">GLOBAL FOOTPRINT</h2>
+        </div>
+        
+        <div class="flex gap-10 px-8 md:px-16 overflow-x-auto pb-10 no-scrollbar" id="global-scroll">
+            <div class="flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden relative group">
+                <img src="https://picsum.photos/800/1200?random=20" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Dubai">
+                <div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+                    <h4 class="text-2xl font-bold">Dubai Hub</h4>
+                    <p class="text-sm text-white/70">Strategic Middle-East Logistics Center</p>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden relative group">
+                <img src="https://picsum.photos/800/1200?random=21" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="Singapore">
+                <div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+                    <h4 class="text-2xl font-bold">Singapore</h4>
+                    <p class="text-sm text-white/70">Southeast Asia Distribution Point</p>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden relative group">
+                <img src="https://picsum.photos/800/1200?random=22" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="London">
+                <div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+                    <h4 class="text-2xl font-bold">London</h4>
+                    <p class="text-sm text-white/70">European Operations Center</p>
+                </div>
+            </div>
+            <div class="flex-shrink-0 w-80 h-96 rounded-2xl overflow-hidden relative group">
+                <img src="https://picsum.photos/800/1200?random=23" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" alt="New York">
+                <div class="absolute inset-0 bg-black/40 p-6 flex flex-col justify-end">
+                    <h4 class="text-2xl font-bold">New York</h4>
+                    <p class="text-sm text-white/70">North American Gateway</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Flow Mockup -->
+    <section id="checkout" class="py-32 px-8 md:px-16 relative">
+        <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-10"></div>
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">SECURE TRANSACTION</h2>
+                <p class="text-white/50">Encrypted global checkout processing in 40+ currencies.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Summary -->
+                <div class="lg:col-span-2 checkout-card rounded-3xl p-8">
+                    <h3 class="text-xl font-bold mb-8 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-[#10b981] rounded-full flex items-center justify-center text-xs text-black">1</span>
+                        Shipping Information
+                    </h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-span-2">
+                            <label class="block text-[10px] uppercase font-bold text-white/40 mb-2">Full Name</label>
+                            <input type="text" placeholder="John Hassan" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-[#10b981] outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-white/40 mb-2">Country</label>
+                            <select class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-[#10b981] outline-none transition-all">
+                                <option class="bg-black">United Arab Emirates</option>
+                                <option class="bg-black">United States</option>
+                                <option class="bg-black">United Kingdom</option>
+                                <option class="bg-black">Singapore</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-white/40 mb-2">City</label>
+                            <input type="text" placeholder="Dubai" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-[#10b981] outline-none transition-all">
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold my-8 flex items-center gap-2">
+                        <span class="w-8 h-8 bg-[#10b981] rounded-full flex items-center justify-center text-xs text-black">2</span>
+                        Payment Method
+                    </h3>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="border-2 border-[#10b981] bg-[#10b981]/10 rounded-2xl p-4 flex flex-col items-center gap-2 cursor-pointer">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                            <span class="text-[10px] font-bold">Credit Card</span>
+                        </div>
+                        <div class="border-2 border-white/5 bg-white/5 rounded-2xl p-4 flex flex-col items-center gap-2 cursor-pointer hover:border-white/20 transition-all">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path></svg>
+                            <span class="text-[10px] font-bold">Crypto</span>
+                        </div>
+                        <div class="border-2 border-white/5 bg-white/5 rounded-2xl p-4 flex flex-col items-center gap-2 cursor-pointer hover:border-white/20 transition-all">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+                            <span class="text-[10px] font-bold">Bank Transfer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cart Side -->
+                <div class="checkout-card rounded-3xl p-8 h-fit">
+                    <h3 class="text-xl font-bold mb-6">Order Summary</h3>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/50 text-sm">AeroX Pro x 1</span>
+                            <span class="font-bold">$14,299.00</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/50 text-sm">International Shipping</span>
+                            <span class="font-bold text-[#10b981]">FREE</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-white/50 text-sm">Import Tax</span>
+                            <span class="font-bold">$240.00</span>
+                        </div>
+                        <div class="h-px bg-white/10 w-full my-4"></div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold">Total</span>
+                            <span class="text-2xl font-bold text-[#10b981]">$14,539.00</span>
+                        </div>
+                    </div>
+                    <div class="magnetic-wrap w-full">
+                        <button class="w-full bg-[#10b981] text-black font-black py-4 rounded-xl hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all uppercase tracking-widest text-xs">
+                            COMPLETE PURCHASE
+                        </button>
+                    </div>
+                    <p class="text-[10px] text-center text-white/30 mt-4 uppercase tracking-widest font-bold">Certified Secure by GlobalTrust</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#080808] border-t border-white/5 pt-20 pb-10 px-8 md:px-16">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-8">
+                        <div class="w-10 h-10 bg-[#10b981] rounded-full flex items-center justify-center font-bold text-black text-xl">H</div>
+                        <span class="text-2xl font-extrabold tracking-tighter uppercase">Hassan Global</span>
+                    </div>
+                    <p class="text-white/40 max-w-sm text-lg leading-relaxed mb-8">
+                        The definitive standard for international commerce and logistics. Connecting markets, empowering businesses.
+                    </p>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#3b82f6] hover:border-[#3b82f6] transition-all cursor-pointer">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#10b981] hover:border-[#10b981] transition-all cursor-pointer">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </div>
+                        <div class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#3b82f6] hover:border-[#3b82f6] transition-all cursor-pointer">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-8 uppercase tracking-widest text-xs">Navigation</h4>
+                    <ul class="space-y-4 text-white/50 text-sm font-medium">
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Global Trade</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Warehouse Network</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Tech Solutions</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Carrier Partners</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-8 uppercase tracking-widest text-xs">Support</h4>
+                    <ul class="space-y-4 text-white/50 text-sm font-medium">
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Help Center</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Shipping Policy</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Legal Documentation</li>
+                        <li class="hover:text-[#10b981] transition-colors cursor-pointer">Corporate API</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5">
+                <p class="text-xs text-white/30 uppercase tracking-widest font-bold">© 2024 Hassan Global. All rights reserved.</p>
+                <div class="flex gap-10 mt-6 md:mt-0">
+                    <span class="text-[10px] text-white/30 font-bold uppercase tracking-widest">Privacy</span>
+                    <span class="text-[10px] text-white/30 font-bold uppercase tracking-widest">Terms</span>
+                    <span class="text-[10px] text-white/30 font-bold uppercase tracking-widest">Global Ops</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initial Load Animations
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+
+            tl.to('.reveal-text', {
+                y: 0,
+                duration: 1,
+                stagger: 0.2,
+                ease: "power4.out"
+            })
+            .to('.hero-desc', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.5")
+            .to('.hero-btns', {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            }, "-=0.6")
+            .to('.hero-image-container', {
+                opacity: 1,
+                scale: 1,
+                duration: 1.2,
+                ease: "expo.out"
+            }, "-=1");
+        });
+
+        // Scroll Reveal Animations
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Magnetic Button Effect
+        document.querySelectorAll('.magnetic-wrap').forEach((wrap) => {
+            const btn = wrap.querySelector('.magnetic-btn');
+            
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Horizontal Scroll Link (Mock effect)
+        const globalScroll = document.getElementById('global-scroll');
+        globalScroll.addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            globalScroll.scrollLeft += evt.deltaY;
+        }, { passive: false });
+
+        // Nav Blur on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.paddingTop = '1rem';
+                nav.style.paddingBottom = '1rem';
+                nav.style.backgroundColor = 'rgba(5, 5, 5, 0.9)';
+            } else {
+                nav.style.paddingTop = '1.25rem';
+                nav.style.paddingBottom = '1.25rem';
+                nav.style.backgroundColor = 'rgba(5, 5, 5, 0.7)';
+            }
+        });
+
+        // Parallax Effect for Bento Images
+        gsap.utils.toArray('.bento-item img').forEach(img => {
+            gsap.to(img, {
+                yPercent: 15,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: img.parentElement,
+                    scrub: true
+                }
+            });
+        });
+    </script>
+</body>
+</html>

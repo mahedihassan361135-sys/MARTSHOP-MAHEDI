@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehdi's Awesome Purple World</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            deep: '#0a0514',
+                            purple: '#6d28d9',
+                            glow: '#a855f7',
+                            accent: '#22d3ee'
+                        }
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0514;
+            color: #f3f4f6;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-title {
+            font-family: 'Syne', sans-serif;
+            line-height: 0.9;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .purple-gradient {
+            background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #a855f7;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+        .stamp-container {
+            animation: rotateStamp 20s linear infinite;
+        }
+        @keyframes rotateStamp {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0514;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4d1d95;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor hidden md:block"></div>
+
+    <!-- Header -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-8 py-3 translate-y-[-100%]" id="navbar">
+            <div class="text-xl font-extrabold font-syne tracking-tighter">MEHDI.</div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <a href="#about" class="hover:text-brand-glow transition-colors">About</a>
+                <a href="#services" class="hover:text-brand-glow transition-colors">Vision</a>
+                <a href="#showcase" class="hover:text-brand-glow transition-colors">Gallery</a>
+                <a href="#contact" class="hover:text-brand-glow transition-colors">Connect</a>
+            </div>
+            <a href="#contact" class="magnetic-btn px-6 py-2 bg-brand-purple rounded-full text-sm font-bold hover:bg-brand-glow transition-all">HIRE ME</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Animated Background Orbs -->
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-purple opacity-20 blur-[120px] rounded-full animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-accent opacity-10 blur-[150px] rounded-full"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="mb-6 inline-block glass px-4 py-1 rounded-full text-xs font-bold tracking-[0.3em] uppercase text-brand-glow opacity-0" id="hero-tag">
+                Welcome to the digital frontier
+            </div>
+            <h1 class="hero-title text-6xl md:text-9xl font-extrabold mb-8 overflow-hidden">
+                <span class="block translate-y-full opacity-0" id="hero-title-1">Mehdi's Awesome</span>
+                <span class="block translate-y-full opacity-0 text-transparent bg-clip-text purple-gradient" id="hero-title-2">Purple World</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-400 mb-12 opacity-0" id="hero-desc">
+                Crafting immersive digital experiences where high-end design meets cutting-edge technology.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 opacity-0" id="hero-btns">
+                <button class="magnetic-btn group relative px-10 py-5 bg-white text-black font-bold rounded-full overflow-hidden transition-all">
+                    <span class="relative z-10">Start Exploration</span>
+                    <div class="absolute inset-0 bg-brand-purple translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                </button>
+                <div class="flex items-center gap-4 cursor-pointer group">
+                    <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="font-bold tracking-wider">Watch Showreel</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rotating Stamp -->
+        <div class="absolute bottom-10 right-10 hidden xl:block stamp-container opacity-0" id="hero-stamp">
+            <svg class="w-40 h-40 fill-white" viewBox="0 0 200 200">
+                <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0" fill="none" />
+                <text class="text-[14px] font-bold uppercase tracking-[0.2em]">
+                    <textPath href="#circlePath">EST 2024 • PREMIUM QUALITY • MEHDI'S UNIVERSE •</textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 relative bg-brand-deep overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative about-img opacity-0">
+                    <div class="absolute -top-10 -left-10 w-full h-full border-2 border-brand-purple/30 rounded-2xl"></div>
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="About Mehdi" class="rounded-2xl shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute -bottom-6 -right-6 glass p-6 rounded-xl z-20 max-w-[200px]">
+                        <p class="text-xs font-bold text-brand-glow mb-1 uppercase">Direct Impact</p>
+                        <p class="text-sm">Merging aesthetics with functional perfection.</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-syne font-extrabold mb-8 about-text opacity-0">A Visionary Mindset</h2>
+                    <p class="text-xl text-gray-400 mb-8 leading-relaxed about-text opacity-0">
+                        Hello, I'm Mehdi. I believe that every digital product should be an experience. My world is bathed in deep purples and high-contrast designs that command attention. 
+                    </p>
+                    <div class="space-y-4 about-text opacity-0">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-[1px] bg-brand-purple"></div>
+                            <span class="font-bold tracking-widest text-sm">UI/UX STRATEGY</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-[1px] bg-brand-purple"></div>
+                            <span class="font-bold tracking-widest text-sm">FRONTEND ARCHITECTURE</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-[1px] bg-brand-purple"></div>
+                            <span class="font-bold tracking-widest text-sm">MOTION DESIGN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Bento Grid -->
+    <section id="services" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-syne font-extrabold mb-4">Core Expertise</h2>
+                <div class="w-24 h-1 bg-brand-purple mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[600px]">
+                <div class="md:col-span-2 md:row-span-2 glass rounded-3xl p-10 flex flex-col justify-end hover:bg-white/5 transition-all group bento-card opacity-0">
+                    <div class="mb-6 text-brand-glow">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-3xl font-syne font-bold mb-4">Creative Engineering</h3>
+                    <p class="text-gray-400">Developing high-performance web applications with buttery smooth animations and robust backends.</p>
+                </div>
+                <div class="md:col-span-2 glass rounded-3xl p-10 flex flex-col justify-center hover:bg-white/5 transition-all bento-card opacity-0">
+                    <h3 class="text-2xl font-syne font-bold mb-2">Visual Identity</h3>
+                    <p class="text-gray-400">Crafting brand identities that resonate with modern audiences through color and type.</p>
+                </div>
+                <div class="glass rounded-3xl p-10 flex flex-col justify-center hover:bg-white/5 transition-all bento-card opacity-0">
+                    <div class="text-3xl font-bold text-brand-glow">99%</div>
+                    <p class="text-sm font-bold uppercase tracking-wider text-gray-500">Client Joy</p>
+                </div>
+                <div class="glass rounded-3xl p-10 flex flex-col justify-center hover:bg-white/5 transition-all bento-card opacity-0">
+                    <div class="text-3xl font-bold text-brand-accent">24/7</div>
+                    <p class="text-sm font-bold uppercase tracking-wider text-gray-500">Fast Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Showcase -->
+    <section id="showcase" class="py-32 bg-[#0d071c]">
+        <div class="container mx-auto px-6 mb-16 flex justify-between items-end">
+            <div>
+                <span class="text-brand-glow font-bold tracking-[0.3em] uppercase text-xs">Curated Selection</span>
+                <h2 class="text-4xl md:text-6xl font-syne font-extrabold mt-2">The Gallery</h2>
+            </div>
+            <div class="hidden md:block">
+                <button class="px-8 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all font-bold">View Archive</button>
+            </div>
+        </div>
+        <div class="flex flex-nowrap gap-8 overflow-x-hidden" id="gallery-container">
+            <!-- Gallery Item 1 -->
+            <div class="min-w-[300px] md:min-w-[500px] h-[600px] relative rounded-3xl overflow-hidden group gallery-item">
+                <img src="https://picsum.photos/1920/1080?random=10" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10 transform translate-y-10 group-hover:translate-y-0 transition-transform">
+                    <h4 class="text-2xl font-bold font-syne">Nebula Interface</h4>
+                    <p class="text-gray-400">Design Concept / 2024</p>
+                </div>
+            </div>
+            <!-- Gallery Item 2 -->
+            <div class="min-w-[300px] md:min-w-[500px] h-[600px] relative rounded-3xl overflow-hidden group gallery-item">
+                <img src="https://picsum.photos/1920/1080?random=15" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10 transform translate-y-10 group-hover:translate-y-0 transition-transform">
+                    <h4 class="text-2xl font-bold font-syne">Deep Space App</h4>
+                    <p class="text-gray-400">Mobile Design / 2024</p>
+                </div>
+            </div>
+            <!-- Gallery Item 3 -->
+            <div class="min-w-[300px] md:min-w-[500px] h-[600px] relative rounded-3xl overflow-hidden group gallery-item">
+                <img src="https://picsum.photos/1920/1080?random=20" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10 transform translate-y-10 group-hover:translate-y-0 transition-transform">
+                    <h4 class="text-2xl font-bold font-syne">Violet Ventures</h4>
+                    <p class="text-gray-400">Branding / 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto glass rounded-[3rem] overflow-hidden p-8 md:p-16 relative">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-purple opacity-20 blur-[100px] -mr-32 -mt-32"></div>
+                
+                <div class="grid lg:grid-cols-2 gap-16 relative z-10">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-syne font-extrabold mb-6">Let's Create <br>Something Purple.</h2>
+                        <p class="text-gray-400 mb-12">I'm currently available for freelance work and collaboration projects. Reach out and let's make magic happen.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-glow">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500 font-bold">Email Me</p>
+                                    <p class="text-lg">hello@mehdiworld.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-glow">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500 font-bold">Address</p>
+                                    <p class="text-lg">Mehdi's Creative Lab, Neon District</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-6" onsubmit="event.preventDefault()">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Full Name</label>
+                                <input type="text" placeholder="Mehdi Designer" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-brand-purple outline-none transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Mobile Number</label>
+                                <input type="tel" placeholder="+1 (555) 000-MEHDI" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-brand-purple outline-none transition-all">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Your Address</label>
+                            <input type="text" placeholder="123 Purple Lane, Infinity City" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-brand-purple outline-none transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Message</label>
+                            <textarea rows="4" placeholder="Let's build the future..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-brand-purple outline-none transition-all"></textarea>
+                        </div>
+                        <button class="magnetic-btn w-full py-4 purple-gradient rounded-xl font-bold text-lg shadow-lg shadow-brand-purple/20 hover:scale-[1.02] transition-transform">
+                            Send Transmission
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-syne font-extrabold mb-2 tracking-tighter">MEHDI.</h3>
+                    <p class="text-gray-500 text-sm">© 2024 All Rights Reserved. Crafted with passion.</p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="text-gray-400 hover:text-brand-glow transition-colors font-bold uppercase text-xs tracking-widest">LinkedIn</a>
+                    <a href="#" class="text-gray-400 hover:text-brand-glow transition-colors font-bold uppercase text-xs tracking-widest">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-brand-glow transition-colors font-bold uppercase text-xs tracking-widest">Dribbble</a>
+                    <a href="#" class="text-gray-400 hover:text-brand-glow transition-colors font-bold uppercase text-xs tracking-widest">Github</a>
+                </div>
+            </div>
+        </div>
+        <!-- Large Background Text -->
+        <div class="absolute bottom-[-10%] left-1/2 -translate-x-1/2 text-[20vw] font-syne font-extrabold opacity-[0.02] whitespace-nowrap pointer-events-none select-none">
+            PURPLE WORLD
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.1
+            });
+        });
+
+        // Magnetic Buttons Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Initial Page Animations
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+
+            tl.to("#navbar", { y: 0, duration: 1, ease: "power4.out" })
+              .to("#hero-tag", { opacity: 1, y: -10, duration: 0.6 }, "-=0.5")
+              .to("#hero-title-1", { y: 0, opacity: 1, duration: 1, ease: "power4.out" }, "-=0.4")
+              .to("#hero-title-2", { y: 0, opacity: 1, duration: 1, ease: "power4.out" }, "-=0.8")
+              .to("#hero-desc", { opacity: 1, y: -10, duration: 0.8 }, "-=0.6")
+              .to("#hero-btns", { opacity: 1, y: -10, duration: 0.8 }, "-=0.6")
+              .to("#hero-stamp", { opacity: 1, duration: 1 }, "-=1");
+        });
+
+        // ScrollTrigger Animations
+        // About Section
+        gsap.to(".about-img", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 80%",
+            },
+            opacity: 1,
+            x: 20,
+            duration: 1.2,
+            ease: "power3.out"
+        });
+
+        gsap.to(".about-text", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 70%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Bento Grid Cards
+        gsap.to(".bento-card", {
+            scrollTrigger: {
+                trigger: "#services",
+                start: "top 70%",
+            },
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "back.out(1.7)"
+        });
+
+        // Horizontal Gallery Animation
+        gsap.to(".gallery-item", {
+            scrollTrigger: {
+                trigger: "#showcase",
+                start: "top 20%",
+                end: "+=1000",
+                scrub: 1,
+                pin: false,
+            },
+            x: -500,
+            stagger: 0.1
+        });
+
+        // Hover Effect on Images
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 4, background: 'rgba(168, 85, 247, 0.3)', backdropFilter: 'blur(4px)' });
+            });
+            item.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, background: '#a855f7', backdropFilter: 'none' });
+            });
+        });
+
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mehdi's Awesome Purple World</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            deep: '#0a0514',
+                            purple: '#6d28d9',
+                            glow: '#a855f7',
+                            accent: '#22d3ee'
+                        }
+                    },
+                    fontFamily: {
+                        syne: ['Syne', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0514;
+            color: #f3f4f6;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-title {
+            font-family: 'Syne', sans-serif;
+            line-height: 0.9;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .purple-gradient {
+            background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #a855f7;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+        .stamp-container {
+            animation: rotateStamp 20s linear infinite;
+        }
+        @keyframes rotateStamp {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0514;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4d1d95;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Custom Cursor -->
+    <div id="cursor" class="custom-cursor hidden md:block"></div>
+
+    <!-- Header -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-8 py-3 translate-y-[-100%]" id="navbar">
+            <div class="text-xl font-extrabold font-syne tracking-tighter">MEHDI.</div>
+            <div class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-widest">
+                <a href="#about" class="hover:text-brand-glow transition-colors">About</a>
+                <a href="#services" class="hover:text-brand-glow transition-colors">Vision</a>
+                <a href="#showcase" class="hover:text-brand-glow transition-colors">Gallery</a>
+                <a href="#contact" class="hover:text-brand-glow transition-colors">Connect</a>
+            </div>
+            <a href="#contact" class="magnetic-btn px-6 py-2 bg-brand-purple rounded-full text-sm font-bold hover:bg-brand-glow transition-all">HIRE ME</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Animated Background Orbs -->
+        <div class="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-brand-purple opacity-20 blur-[120px] rounded-full animate-pulse"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-brand-accent opacity-10 blur-[150px] rounded-full"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="mb-6 inline-block glass px-4 py-1 rounded-full text-xs font-bold tracking-[0.3em] uppercase text-brand-glow opacity-0" id="hero-tag">
+                Welcome to the digital frontier
+            </div>
+            <h1 class="hero-title text-6xl md:text-9xl font-extrabold mb-8 overflow-hidden">
+                <span class="block translate-y-full opacity-0" id="hero-title-1">Mehdi's Awesome</span>
+                <span class="block translate-y-full opacity-0 text-transparent bg-clip-text purple-gradient" id="hero-title-2">Purple World</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg md:text-xl text-gray-400 mb-12 opacity-0" id="hero-desc">
+                Crafting immersive digital experiences where high-end design meets cutting-edge technology.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 opacity-0" id="hero-btns">
+                <button class="magnetic-btn group relative px-10 py-5 bg-white text-black font-bold rounded-full overflow-hidden transition-all">
+                    <span class="relative z-10">Start Exploration</span>
+                    <div class="absolute inset-0 bg-brand-purple translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                </button>
+                <div class="flex items-center gap-4 cursor-pointer group">
+                    <div class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span class="font-bold tracking-wider">Watch Showreel</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rotating Stamp -->
+        <div class="absolute bottom-10 right-10 hidden xl:block stamp-container opacity-0" id="hero-stamp">
+            <svg class="w-40 h-40 fill-white" viewBox="0 0 200 200">
+                <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,0 150,0 a 75,75 0 1,0 -150,0" fill="none" />
+                <text class="text-[14px] font-bold uppercase tracking-[0.2em]">
+                    <textPath href="#circlePath">EST 2024 • PREMIUM QUALITY • MEHDI'S UNIVERSE •</textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 relative bg-brand-deep overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative about-img opacity-0">
+                    <div class="absolute -top-10 -left-10 w-full h-full border-2 border-brand-purple/30 rounded-2xl"></div>
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="About Mehdi" class="rounded-2xl shadow-2xl relative z-10 grayscale hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute -bottom-6 -right-6 glass p-6 rounded-xl z-20 max-w-[200px]">
+                        <p class="text-xs font-bold text-brand-glow mb-1 uppercase">Direct Impact</p>
+                        <p class="text-sm">Merging aesthetics with functional perfection.</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-4xl md:text-6xl font-syne font-extrabold mb-8 about-text opacity-0">A Visionary Mindset</h2>
+                    <p class="text-xl text-gray-400 mb-8 leading-relaxed about-text opacity-0">
+                        Hello, I'm Mehdi. I believe that every digital product should be an experience. My world is bathed in deep purples and high-contrast designs that command attention. 
+                    </p>
+                    <div class="space-y-4 about-text opacity-0">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-[1px] bg-brand-purple"></div>
+                            <span class="font-bold tracking-widest text-sm">UI/UX STRATEGY</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-[1px] bg-brand-purple"></div>
+                            <span class="font-bold tracking-widest text-sm">FRONTEND ARCHITECTURE</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-[1px] bg-brand-purple"></div>
+                            <span class="font-bold tracking-widest text-sm">MOTION DESIGN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Bento Grid -->
+    <section id="services" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-6xl font-syne font-extrabold mb-4">Core Expertise</h2>
+                <div class="w-24 h-1 bg-brand-purple mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[600px]">
+                <div class="md:col-span-2 md:row-span-2 glass rounded-3xl p-10 flex flex-col justify-end hover:bg-white/5 transition-all group bento-card opacity-0">
+                    <div class="mb-6 text-brand-glow">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    </div>
+                    <h3 class="text-3xl font-syne font-bold mb-4">Creative Engineering</h3>
+                    <p class="text-gray-400">Developing high-performance web applications with buttery smooth animations and robust backends.</p>
+                </div>
+                <div class="md:col-span-2 glass rounded-3xl p-10 flex flex-col justify-center hover:bg-white/5 transition-all bento-card opacity-0">
+                    <h3 class="text-2xl font-syne font-bold mb-2">Visual Identity</h3>
+                    <p class="text-gray-400">Crafting brand identities that resonate with modern audiences through color and type.</p>
+                </div>
+                <div class="glass rounded-3xl p-10 flex flex-col justify-center hover:bg-white/5 transition-all bento-card opacity-0">
+                    <div class="text-3xl font-bold text-brand-glow">99%</div>
+                    <p class="text-sm font-bold uppercase tracking-wider text-gray-500">Client Joy</p>
+                </div>
+                <div class="glass rounded-3xl p-10 flex flex-col justify-center hover:bg-white/5 transition-all bento-card opacity-0">
+                    <div class="text-3xl font-bold text-brand-accent">24/7</div>
+                    <p class="text-sm font-bold uppercase tracking-wider text-gray-500">Fast Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Showcase -->
+    <section id="showcase" class="py-32 bg-[#0d071c]">
+        <div class="container mx-auto px-6 mb-16 flex justify-between items-end">
+            <div>
+                <span class="text-brand-glow font-bold tracking-[0.3em] uppercase text-xs">Curated Selection</span>
+                <h2 class="text-4xl md:text-6xl font-syne font-extrabold mt-2">The Gallery</h2>
+            </div>
+            <div class="hidden md:block">
+                <button class="px-8 py-3 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all font-bold">View Archive</button>
+            </div>
+        </div>
+        <div class="flex flex-nowrap gap-8 overflow-x-hidden" id="gallery-container">
+            <!-- Gallery Item 1 -->
+            <div class="min-w-[300px] md:min-w-[500px] h-[600px] relative rounded-3xl overflow-hidden group gallery-item">
+                <img src="https://picsum.photos/1920/1080?random=10" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10 transform translate-y-10 group-hover:translate-y-0 transition-transform">
+                    <h4 class="text-2xl font-bold font-syne">Nebula Interface</h4>
+                    <p class="text-gray-400">Design Concept / 2024</p>
+                </div>
+            </div>
+            <!-- Gallery Item 2 -->
+            <div class="min-w-[300px] md:min-w-[500px] h-[600px] relative rounded-3xl overflow-hidden group gallery-item">
+                <img src="https://picsum.photos/1920/1080?random=15" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10 transform translate-y-10 group-hover:translate-y-0 transition-transform">
+                    <h4 class="text-2xl font-bold font-syne">Deep Space App</h4>
+                    <p class="text-gray-400">Mobile Design / 2024</p>
+                </div>
+            </div>
+            <!-- Gallery Item 3 -->
+            <div class="min-w-[300px] md:min-w-[500px] h-[600px] relative rounded-3xl overflow-hidden group gallery-item">
+                <img src="https://picsum.photos/1920/1080?random=20" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-110 group-hover:scale-100">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-10 transform translate-y-10 group-hover:translate-y-0 transition-transform">
+                    <h4 class="text-2xl font-bold font-syne">Violet Ventures</h4>
+                    <p class="text-gray-400">Branding / 2024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="max-w-5xl mx-auto glass rounded-[3rem] overflow-hidden p-8 md:p-16 relative">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-brand-purple opacity-20 blur-[100px] -mr-32 -mt-32"></div>
+                
+                <div class="grid lg:grid-cols-2 gap-16 relative z-10">
+                    <div>
+                        <h2 class="text-4xl md:text-5xl font-syne font-extrabold mb-6">Let's Create <br>Something Purple.</h2>
+                        <p class="text-gray-400 mb-12">I'm currently available for freelance work and collaboration projects. Reach out and let's make magic happen.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-glow">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500 font-bold">Email Me</p>
+                                    <p class="text-lg">hello@mehdiworld.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-brand-glow">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs uppercase tracking-widest text-gray-500 font-bold">Address</p>
+                                    <p class="text-lg">Mehdi's Creative Lab, Neon District</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-6" onsubmit="event.preventDefault()">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Full Name</label>
+                                <input type="text" placeholder="Mehdi Designer" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-brand-purple outline-none transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Mobile Number</label>
+                                <input type="tel" placeholder="+1 (555) 000-MEHDI" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-brand-purple outline-none transition-all">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Your Address</label>
+                            <input type="text" placeholder="123 Purple Lane, Infinity City" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-brand-purple outline-none transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Message</label>
+                            <textarea rows="4" placeholder="Let's build the future..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:border-brand-purple outline-none transition-all"></textarea>
+                        </div>
+                        <button class="magnetic-btn w-full py-4 purple-gradient rounded-xl font-bold text-lg shadow-lg shadow-brand-purple/20 hover:scale-[1.02] transition-transform">
+                            Send Transmission
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div class="text-center md:text-left">
+                    <h3 class="text-2xl font-syne font-extrabold mb-2 tracking-tighter">MEHDI.</h3>
+                    <p class="text-gray-500 text-sm">© 2024 All Rights Reserved. Crafted with passion.</p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="text-gray-400 hover:text-brand-glow transition-colors font-bold uppercase text-xs tracking-widest">LinkedIn</a>
+                    <a href="#" class="text-gray-400 hover:text-brand-glow transition-colors font-bold uppercase text-xs tracking-widest">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-brand-glow transition-colors font-bold uppercase text-xs tracking-widest">Dribbble</a>
+                    <a href="#" class="text-gray-400 hover:text-brand-glow transition-colors font-bold uppercase text-xs tracking-widest">Github</a>
+                </div>
+            </div>
+        </div>
+        <!-- Large Background Text -->
+        <div class="absolute bottom-[-10%] left-1/2 -translate-x-1/2 text-[20vw] font-syne font-extrabold opacity-[0.02] whitespace-nowrap pointer-events-none select-none">
+            PURPLE WORLD
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.1
+            });
+        });
+
+        // Magnetic Buttons Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Initial Page Animations
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+
+            tl.to("#navbar", { y: 0, duration: 1, ease: "power4.out" })
+              .to("#hero-tag", { opacity: 1, y: -10, duration: 0.6 }, "-=0.5")
+              .to("#hero-title-1", { y: 0, opacity: 1, duration: 1, ease: "power4.out" }, "-=0.4")
+              .to("#hero-title-2", { y: 0, opacity: 1, duration: 1, ease: "power4.out" }, "-=0.8")
+              .to("#hero-desc", { opacity: 1, y: -10, duration: 0.8 }, "-=0.6")
+              .to("#hero-btns", { opacity: 1, y: -10, duration: 0.8 }, "-=0.6")
+              .to("#hero-stamp", { opacity: 1, duration: 1 }, "-=1");
+        });
+
+        // ScrollTrigger Animations
+        // About Section
+        gsap.to(".about-img", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 80%",
+            },
+            opacity: 1,
+            x: 20,
+            duration: 1.2,
+            ease: "power3.out"
+        });
+
+        gsap.to(".about-text", {
+            scrollTrigger: {
+                trigger: "#about",
+                start: "top 70%",
+            },
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Bento Grid Cards
+        gsap.to(".bento-card", {
+            scrollTrigger: {
+                trigger: "#services",
+                start: "top 70%",
+            },
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "back.out(1.7)"
+        });
+
+        // Horizontal Gallery Animation
+        gsap.to(".gallery-item", {
+            scrollTrigger: {
+                trigger: "#showcase",
+                start: "top 20%",
+                end: "+=1000",
+                scrub: 1,
+                pin: false,
+            },
+            x: -500,
+            stagger: 0.1
+        });
+
+        // Hover Effect on Images
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 4, background: 'rgba(168, 85, 247, 0.3)', backdropFilter: 'blur(4px)' });
+            });
+            item.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, background: '#a855f7', backdropFilter: 'none' });
+            });
+        });
+
+    </script>
+</body>
+</html>

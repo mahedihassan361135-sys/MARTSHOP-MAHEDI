@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh's Awesome Purple World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-purple: #9d4edd;
+            --deep-purple: #0a0212;
+            --accent-purple: #c77dff;
+            --glow: rgba(157, 78, 221, 0.4);
+        }
+        body {
+            background-color: var(--deep-purple);
+            color: #f5f3ff;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 { font-family: 'Syne', sans-serif; }
+        
+        .purple-gradient-text {
+            background: linear-gradient(to right, #e0aaff, #9d4edd, #5a189a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .rotating-stamp {
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--primary-purple);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--deep-purple); }
+        ::-webkit-scrollbar-thumb { background: var(--primary-purple); border-radius: 10px; }
+    </style>
+</head>
+<body class="selection:bg-purple-500 selection:text-white">
+    <div class="custom-cursor hidden md:block" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center mix-blend-difference">
+        <a href="#" class="text-2xl font-bold tracking-tighter text-white">HARSH.</a>
+        <div class="flex gap-8 items-center">
+            <a href="#about" class="text-sm font-medium hover:text-purple-400 transition-colors uppercase tracking-widest">About</a>
+            <a href="#services" class="text-sm font-medium hover:text-purple-400 transition-colors uppercase tracking-widest">Services</a>
+            <a href="#work" class="text-sm font-medium hover:text-purple-400 transition-colors uppercase tracking-widest">Work</a>
+            <a href="#contact" class="px-6 py-2 bg-white text-black rounded-full font-bold text-sm hover:bg-purple-400 transition-all magnetic">LET'S TALK</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="orb w-[500px] h-[500px] bg-purple-600 top-[-10%] left-[-10%]"></div>
+        <div class="orb w-[400px] h-[400px] bg-fuchsia-600 bottom-[-5%] right-[-5%]"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center">
+                <div class="inline-block glass-card px-4 py-1 rounded-full text-purple-300 text-xs tracking-[0.3em] uppercase mb-8 opacity-0 hero-fade">
+                    Digital Architect & Creative Developer
+                </div>
+                <h1 class="text-7xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-none hero-title">
+                    <span class="block overflow-hidden">
+                        <span class="inline-block">Harsh's</span>
+                    </span>
+                    <span class="block overflow-hidden">
+                        <span class="inline-block purple-gradient-text">Awesome</span>
+                    </span>
+                    <span class="block overflow-hidden">
+                        <span class="inline-block">Purple World</span>
+                    </span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-lg md:text-xl text-purple-200/70 mb-12 hero-fade opacity-0">
+                    Blending aesthetics with technology to create high-end digital experiences that live at the intersection of purple dreams and pixel reality.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6 hero-fade opacity-0">
+                    <button class="magnetic group relative px-10 py-5 bg-purple-600 rounded-full font-bold overflow-hidden">
+                        <span class="relative z-10">EXPLORE PORTFOLIO</span>
+                        <div class="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                        <span class="absolute inset-0 z-20 flex items-center justify-center text-black translate-y-full group-hover:translate-y-0 transition-transform duration-500">EXPLORE PORTFOLIO</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Decorative Flair -->
+        <div class="absolute bottom-20 right-20 rotating-stamp hidden lg:block">
+            <svg viewBox="0 0 100 100" class="w-40 h-40 fill-purple-400 opacity-30">
+                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
+                <text font-size="11" font-weight="bold" letter-spacing="2">
+                    <textPath xlink:href="#circlePath">
+                        EST 2024 • PREMIUM QUALITY • CREATIVE MIND •
+                    </textPath>
+                </text>
+            </svg>
+        </div>
+
+        <div class="absolute left-10 bottom-1/4 glass-card p-6 rounded-2xl hidden lg:block hero-fade opacity-0 -rotate-6">
+            <div class="flex items-center gap-4 mb-4">
+                <img src="https://i.pravatar.cc/150?img=11" class="w-12 h-12 rounded-full border-2 border-purple-500" alt="Client">
+                <div>
+                    <div class="text-xs font-bold">LATEST REVIEW</div>
+                    <div class="flex text-yellow-400 text-[10px]">★★★★★</div>
+                </div>
+            </div>
+            <p class="text-xs italic text-purple-200">"Harsh turns purple into magic."</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-purple-600 rounded-2xl blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                    <img src="https://picsum.photos/1920/1080?random=12" class="relative rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 aspect-[4/5] object-cover" alt="Harsh Workspace">
+                </div>
+                <div>
+                    <h2 class="text-5xl md:text-7xl font-bold mb-10 leading-tight reveal-trigger">Crafting Digital <br><span class="text-purple-500 italic">Elegance</span></h2>
+                    <p class="text-xl text-purple-200/80 mb-8 leading-relaxed reveal-trigger">
+                        I am Harsh, a visual storyteller and technical wizard dedicated to the art of the web. I don't just build websites; I build ecosystems that breathe, move, and captivate.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4 reveal-trigger">
+                            <div class="w-12 h-12 rounded-xl bg-purple-900/50 flex items-center justify-center shrink-0 border border-purple-500/30">
+                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Fast Performance</h4>
+                                <p class="text-purple-300/60 text-sm">Optimized code that flies at the speed of light.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 reveal-trigger">
+                            <div class="w-12 h-12 rounded-xl bg-purple-900/50 flex items-center justify-center shrink-0 border border-purple-500/30">
+                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Modern UI/UX</h4>
+                                <p class="text-purple-300/60 text-sm">Interfaces that feel natural and look breathtaking.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Bento Grid -->
+    <section id="services" class="py-32 bg-[#0d0418]">
+        <div class="container mx-auto px-6">
+            <div class="mb-20 text-center">
+                <h2 class="text-5xl md:text-6xl font-bold mb-4">Core Expertise</h2>
+                <p class="text-purple-400 tracking-widest uppercase text-sm">How I bring value to your vision</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-6 h-full md:h-[600px]">
+                <!-- Bento Item 1 -->
+                <div class="md:col-span-3 glass-card rounded-3xl p-10 flex flex-col justify-between hover:border-purple-500/50 transition-all group reveal-trigger">
+                    <div>
+                        <div class="w-12 h-12 bg-purple-600 rounded-full mb-6 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4">Development</h3>
+                        <p class="text-purple-200/60">React, GSAP, Tailwind, and Next.js are my weapons of choice for building scalable, high-performance web applications.</p>
+                    </div>
+                    <div class="mt-8 flex gap-2">
+                        <span class="px-3 py-1 bg-purple-900/30 rounded text-xs border border-purple-500/20">Clean Code</span>
+                        <span class="px-3 py-1 bg-purple-900/30 rounded text-xs border border-purple-500/20">Scalable</span>
+                    </div>
+                </div>
+
+                <!-- Bento Item 2 -->
+                <div class="md:col-span-3 glass-card rounded-3xl p-10 flex flex-col justify-between hover:border-purple-500/50 transition-all group reveal-trigger">
+                    <img src="https://picsum.photos/1920/1080?random=22" class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity rounded-3xl" alt="Design BG">
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-purple-600 rounded-full mb-6 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.172-1.172a4 4 0 115.656 5.656L10 17.657"/></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4">Visual Design</h3>
+                        <p class="text-purple-200/60">UI/UX design that doesn't just look pretty but converts. Focusing on typography and spatial harmony.</p>
+                    </div>
+                </div>
+
+                <!-- Bento Item 3 -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-10 hover:border-purple-500/50 transition-all reveal-trigger">
+                    <h3 class="text-xl font-bold mb-2">Strategy</h3>
+                    <p class="text-sm text-purple-200/60">Planning every interaction before the first line of code.</p>
+                </div>
+                
+                <!-- Bento Item 4 -->
+                <div class="md:col-span-4 glass-card rounded-3xl p-10 flex items-center justify-between hover:border-purple-500/50 transition-all group reveal-trigger overflow-hidden">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-2">Interactive Animations</h3>
+                        <p class="text-sm text-purple-200/60">GSAP and Three.js expert for that "wow" factor.</p>
+                    </div>
+                    <div class="flex -space-x-4">
+                        <img src="https://i.pravatar.cc/150?img=1" class="w-12 h-12 rounded-full border-2 border-purple-600" alt="User">
+                        <img src="https://i.pravatar.cc/150?img=2" class="w-12 h-12 rounded-full border-2 border-purple-600" alt="User">
+                        <img src="https://i.pravatar.cc/150?img=3" class="w-12 h-12 rounded-full border-2 border-purple-600" alt="User">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Gallery -->
+    <section id="work" class="py-32 overflow-hidden">
+        <div class="container mx-auto px-6 mb-16 flex justify-between items-end">
+            <div>
+                <h2 class="text-5xl md:text-6xl font-bold mb-4">Selected Works</h2>
+                <p class="text-purple-400">01 / 04</p>
+            </div>
+            <a href="#" class="pb-2 border-b border-purple-500 text-purple-400 hover:text-white transition-colors">VIEW ALL PROJECTS</a>
+        </div>
+        
+        <div class="flex gap-8 px-6 horizontal-scroll">
+            <div class="min-w-[300px] md:min-w-[600px] group">
+                <div class="overflow-hidden rounded-3xl mb-6">
+                    <img src="https://picsum.photos/1920/1080?random=31" class="w-full aspect-video object-cover group-hover:scale-110 transition-transform duration-700" alt="Work 1">
+                </div>
+                <h4 class="text-2xl font-bold">Vaporwave Dreams</h4>
+                <p class="text-purple-400">Creative Direction / WebGL</p>
+            </div>
+            <div class="min-w-[300px] md:min-w-[600px] group">
+                <div class="overflow-hidden rounded-3xl mb-6">
+                    <img src="https://picsum.photos/1920/1080?random=32" class="w-full aspect-video object-cover group-hover:scale-110 transition-transform duration-700" alt="Work 2">
+                </div>
+                <h4 class="text-2xl font-bold">Neon Protocol</h4>
+                <p class="text-purple-400">Branding / UI Design</p>
+            </div>
+            <div class="min-w-[300px] md:min-w-[600px] group">
+                <div class="overflow-hidden rounded-3xl mb-6">
+                    <img src="https://picsum.photos/1920/1080?random=33" class="w-full aspect-video object-cover group-hover:scale-110 transition-transform duration-700" alt="Work 3">
+                </div>
+                <h4 class="text-2xl font-bold">Purple Pulse</h4>
+                <p class="text-purple-400">Mobile App / Prototype</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="glass-card rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+                <div class="orb w-[300px] h-[300px] bg-purple-500 -top-20 -right-20"></div>
+                
+                <div class="grid lg:grid-cols-2 gap-20">
+                    <div>
+                        <h2 class="text-5xl md:text-7xl font-bold mb-8 leading-none">Let's build <br><span class="purple-gradient-text">the future</span></h2>
+                        <p class="text-xl text-purple-200/60 mb-12">I'm currently available for freelance projects and full-time opportunities. Reach out and let's start something big.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-6">
+                                <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10">
+                                    <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                                </div>
+                                <span class="text-xl">hello@harshpurpleworld.com</span>
+                            </div>
+                            <div class="flex items-center gap-6">
+                                <div class="w-14 h-14 bg-white/5 rounded-full flex items-center justify-center border border-white/10">
+                                    <svg class="w-6 h-6 text-purple-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                                </div>
+                                <span class="text-xl italic">Creative Studio, Virtual Space</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest font-bold text-purple-400 mb-2">Name</label>
+                            <input type="text" placeholder="Your Name" class="w-full bg-white/5 border-b border-purple-500/30 py-4 px-0 focus:outline-none focus:border-purple-400 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest font-bold text-purple-400 mb-2">Address</label>
+                            <input type="text" placeholder="Your City/Country" class="w-full bg-white/5 border-b border-purple-500/30 py-4 px-0 focus:outline-none focus:border-purple-400 transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest font-bold text-purple-400 mb-2">Mobile Number</label>
+                            <input type="tel" placeholder="+1 (555) 000-0000" class="w-full bg-white/5 border-b border-purple-500/30 py-4 px-0 focus:outline-none focus:border-purple-400 transition-colors">
+                        </div>
+                        <div class="pt-6">
+                            <button type="submit" class="w-full py-6 bg-purple-600 text-white font-bold rounded-2xl hover:bg-purple-500 transition-all magnetic">SEND MESSAGE</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-10">
+                <div>
+                    <h2 class="text-4xl font-bold tracking-tighter">HARSH.</h2>
+                    <p class="text-purple-400/50 mt-2">© 2024 HARSH'S AWESOME PURPLE WORLD. ALL RIGHTS RESERVED.</p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-purple-400 transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-purple-400 transition-colors">Twitter</a>
+                    <a href="#" class="hover:text-purple-400 transition-colors">Dribbble</a>
+                    <a href="#" class="hover:text-purple-400 transition-colors">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // GSAP Initialization
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        // Magnetic Buttons
+        const magneticElements = document.querySelectorAll('.magnetic');
+        magneticElements.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Hero Animations
+        const tl = gsap.timeline();
+        tl.from(".hero-title span span", {
+            y: 100,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power4.out"
+        })
+        .to(".hero-fade", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power3.out"
+        }, "-=0.5");
+
+        // Scroll Reveal Animations
+        document.querySelectorAll('.reveal-trigger').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Horizontal Scroll for Gallery
+        gsap.to(".horizontal-scroll", {
+            xPercent: -30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#work",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
+
+        // Floating Orbs Animation
+        gsap.to(".orb", {
+            y: "random(-100, 100)",
+            x: "random(-100, 100)",
+            duration: "random(10, 20)",
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+
+        // Text Scramble Effect placeholder for "Harsh"
+        const title = document.querySelector('.hero-title');
+        title.addEventListener('mouseenter', () => {
+            cursor.classList.add('scale-[3]');
+            cursor.style.backgroundColor = 'white';
+        });
+        title.addEventListener('mouseleave', () => {
+            cursor.classList.remove('scale-[3]');
+            cursor.style.backgroundColor = 'var(--primary-purple)';
+        });
+    </script>
+</body>
+</html>

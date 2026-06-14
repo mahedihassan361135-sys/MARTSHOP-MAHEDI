@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harsh's Portfolio | Elite Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #05010d;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .syne {
+            font-family: 'Syne', sans-serif;
+        }
+        .purple-glow {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(5, 1, 13, 0) 70%);
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: #8b5cf6;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+        .rotating-stamp {
+            animation: rotate 12s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #05010d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2e1065;
+            border-radius: 10px;
+        }
+        .bento-item:hover .bento-bg {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference">
+        <div class="text-2xl font-bold tracking-tighter">HARSH<span class="text-[#8b5cf6]">.</span></div>
+        <div class="hidden md:flex gap-10 text-sm font-medium uppercase tracking-widest">
+            <a href="#home" class="hover:text-[#8b5cf6] transition-colors">Home</a>
+            <a href="#about" class="hover:text-[#8b5cf6] transition-colors">About</a>
+            <a href="#work" class="hover:text-[#8b5cf6] transition-colors">Work</a>
+            <a href="#contact" class="hover:text-[#8b5cf6] transition-colors">Contact</a>
+        </div>
+        <button class="magnetic-btn px-6 py-2 border border-white/20 rounded-full text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">
+            Let's Talk
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Background Orbs -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-[#6d28d9] rounded-full blur-[120px] opacity-20"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#db2777] rounded-full blur-[120px] opacity-10"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col items-center text-center">
+                <div class="reveal glass px-4 py-1 rounded-full text-xs font-semibold tracking-[0.2em] mb-8 border border-purple-500/30 text-purple-300">
+                    DIGITAL ARTISAN & DEVELOPER
+                </div>
+                <h1 class="reveal text-7xl md:text-9xl font-extrabold leading-none mb-6 tracking-tight">
+                    Harsh's <br> <span class="text-outline">Portfolio</span>
+                </h1>
+                <p class="reveal text-lg md:text-xl text-gray-400 max-w-2xl mb-12 font-light leading-relaxed">
+                    Crafting immersive digital experiences where high-end aesthetics meet cutting-edge performance. Specializing in animations that feel like magic.
+                </p>
+                <div class="reveal flex gap-6">
+                    <button class="magnetic-btn px-10 py-5 bg-[#8b5cf6] text-white rounded-full font-bold text-sm uppercase tracking-widest hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-shadow">
+                        View Projects
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Glass Cards -->
+        <div class="absolute top-1/3 right-10 md:right-20 glass p-4 rounded-2xl w-48 hidden lg:block animate-bounce shadow-2xl" style="animation-duration: 4s;">
+            <div class="flex items-center gap-3 mb-2">
+                <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+                    <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <span class="text-[10px] font-bold">OPTIMIZED</span>
+            </div>
+            <div class="h-2 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-purple-500 w-4/5"></div>
+            </div>
+        </div>
+
+        <!-- Rotating Stamp -->
+        <div class="absolute bottom-10 left-10 hidden md:block">
+            <div class="relative w-32 h-32 flex items-center justify-center">
+                <svg class="rotating-stamp absolute w-full h-full" viewBox="0 0 100 100">
+                    <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                    <text class="text-[9px] uppercase tracking-[2px] fill-white/40">
+                        <textPath xlink:href="#circlePath">
+                            PREMIUM QUALITY • EST 2024 • HARSH PORTFOLIO •
+                        </textPath>
+                    </text>
+                </svg>
+                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                    <img src="https://picsum.photos/1920/1080?random=12" alt="Office" class="relative rounded-2xl grayscale hover:grayscale-0 transition-all duration-700 w-full h-[600px] object-cover">
+                </div>
+                <div>
+                    <h2 class="text-5xl font-bold mb-8 leading-tight">I bridge the gap between <span class="text-[#8b5cf6]">design</span> and functionality.</h2>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-10">
+                        Based in the intersection of creativity and logic, I build websites that don't just look pretty—they work flawlessly. My philosophy is simple: every pixel should serve a purpose, and every interaction should feel natural.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <div class="text-4xl font-bold text-white mb-2">05+</div>
+                            <div class="text-sm text-gray-500 uppercase tracking-widest">Years Experience</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold text-white mb-2">120+</div>
+                            <div class="text-sm text-gray-500 uppercase tracking-widest">Projects Done</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Skills Bento Box -->
+    <section id="work" class="py-32 bg-[#080212]">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-5xl font-bold mb-4">Core Expertise</h2>
+                    <p class="text-gray-400">Specialized in high-end digital solutions.</p>
+                </div>
+                <div class="hidden md:block">
+                    <p class="text-right text-xs uppercase tracking-[0.3em] text-gray-500">Curated Skills</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <!-- Bento Item 1 -->
+                <div class="md:col-span-2 md:row-span-2 bento-item group relative overflow-hidden rounded-3xl h-[500px]">
+                    <img src="https://picsum.photos/1920/1080?random=2" class="bento-bg absolute inset-0 w-full h-full object-cover transition-transform duration-700 opacity-40">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 p-10">
+                        <div class="bg-purple-500 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <h3 class="text-3xl font-bold mb-4">Frontend Engineering</h3>
+                        <p class="text-gray-400 max-w-sm">React, Next.js, and heavy GSAP animations for buttery smooth interfaces.</p>
+                    </div>
+                </div>
+
+                <!-- Bento Item 2 -->
+                <div class="md:col-span-2 bento-item group relative overflow-hidden rounded-3xl h-[240px] glass">
+                    <div class="p-10 flex justify-between items-center h-full">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">UI/UX Design</h3>
+                            <p class="text-gray-400">Minimalist aesthetics & user journeys.</p>
+                        </div>
+                        <div class="w-16 h-16 rounded-full border border-purple-500/30 flex items-center justify-center group-hover:scale-110 transition-transform">
+                            <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Item 3 -->
+                <div class="bento-item group relative overflow-hidden rounded-3xl h-[240px] bg-[#110524] border border-white/5">
+                    <div class="p-10">
+                        <div class="text-purple-400 font-bold text-4xl mb-2">99%</div>
+                        <p class="text-gray-400 text-sm">Performance Score across all deployment metrics.</p>
+                    </div>
+                </div>
+
+                <!-- Bento Item 4 -->
+                <div class="bento-item group relative overflow-hidden rounded-3xl h-[240px] bg-gradient-to-br from-[#1a0b2e] to-[#05010d] border border-white/5">
+                    <div class="p-10">
+                        <div class="text-white font-bold text-xl mb-4">Branding</div>
+                        <div class="flex -space-x-4">
+                            <img class="w-10 h-10 rounded-full border-2 border-[#05010d]" src="https://i.pravatar.cc/150?img=1" alt="">
+                            <img class="w-10 h-10 rounded-full border-2 border-[#05010d]" src="https://i.pravatar.cc/150?img=5" alt="">
+                            <img class="w-10 h-10 rounded-full border-2 border-[#05010d]" src="https://i.pravatar.cc/150?img=9" alt="">
+                        </div>
+                        <p class="text-gray-500 text-xs mt-4">Trusted by 50+ clients</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16">
+                    <div>
+                        <h2 class="text-6xl font-extrabold mb-8">Let's start <br><span class="text-[#8b5cf6]">something.</span></h2>
+                        <p class="text-gray-400 text-lg mb-12">Have a vision? Let’s bring it to life. Fill in the details and I'll get back to you within 24 hours.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-purple-500">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <span>hello@harsh.dev</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full glass flex items-center justify-center text-purple-500">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                </div>
+                                <span>Mumbai, India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="glass p-10 rounded-3xl space-y-6 shadow-2xl relative">
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-purple-600/20 blur-[80px]"></div>
+                        
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Name</label>
+                            <input type="text" placeholder="John Doe" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-colors">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Mobile Number</label>
+                            <input type="tel" placeholder="+91 00000 00000" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Address</label>
+                            <textarea rows="3" placeholder="Enter your city/address" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-purple-500 transition-colors"></textarea>
+                        </div>
+
+                        <button class="magnetic-btn w-full py-4 bg-gradient-to-r from-[#7c3aed] to-[#db2777] rounded-xl font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-xl font-bold tracking-tighter">HARSH<span class="text-[#8b5cf6]">.</span></div>
+            <div class="text-gray-500 text-sm">
+                © 2024 Harsh's Portfolio. All Rights Reserved.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-white">Instagram</a>
+                <a href="#" class="text-gray-400 hover:text-white">Twitter</a>
+                <a href="#" class="text-gray-400 hover:text-white">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // GSAP & ScrollTrigger Initialization
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Movement
+        const cursor = document.getElementById('cursor');
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.1
+            });
+        });
+
+        // Magnetic Button Effect
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Hero Reveal Animations
+        const tl = gsap.timeline();
+        tl.from(".reveal", {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out",
+            delay: 0.2
+        });
+
+        // Section Scroll Reveals
+        gsap.utils.toArray('section').forEach((section, i) => {
+            if(i === 0) return; // Skip hero
+            gsap.from(section, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                }
+            });
+        });
+
+        // Bento Grid Hover Effects
+        const bentoItems = document.querySelectorAll('.bento-item');
+        bentoItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 4, opacity: 0.3, duration: 0.3 });
+            });
+            item.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
+            });
+        });
+
+        // Smooth Appearance for form inputs
+        gsap.from("input, textarea", {
+            opacity: 0,
+            x: -20,
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: "form",
+                start: "top 90%"
+            }
+        });
+
+    </script>
+</body>
+</html>

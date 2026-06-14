@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEVRO | Precision Mobile Gear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #00F0FF, #7000FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .hero-orb {
+            filter: blur(100px);
+            opacity: 0.4;
+        }
+
+        .bento-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-10px);
+            border-color: #00F0FF;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="custom-cursor" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-10 py-6 flex justify-between items-center glass">
+        <div class="text-2xl font-black tracking-tighter italic">NEVRO<span class="text-[#00F0FF]">.</span></div>
+        <div class="hidden md:flex space-x-12 text-sm font-medium tracking-widest uppercase">
+            <a href="#" class="hover:text-[#00F0FF] transition-colors">Gear</a>
+            <a href="#" class="hover:text-[#00F0FF] transition-colors">Parts</a>
+            <a href="#" class="hover:text-[#00F0FF] transition-colors">Audio</a>
+            <a href="#" class="hover:text-[#00F0FF] transition-colors">About</a>
+        </div>
+        <div class="flex items-center space-x-6">
+            <button class="magnetic-btn p-2">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            <button class="magnetic-btn bg-white text-black px-6 py-2 rounded-full font-bold text-sm">CART (0)</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+        <!-- Floating Elements -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-[#7000FF] hero-orb rounded-full"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#00F0FF] hero-orb rounded-full"></div>
+        
+        <!-- Rotating Stamp -->
+        <div class="absolute right-20 top-40 z-10 hidden lg:block">
+            <div class="rotating-stamp w-32 h-32 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path id="circlePath" d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0" fill="none" />
+                    <text class="text-[10px] uppercase font-bold fill-white tracking-[2px]">
+                        <textPath href="#circlePath">Premium Quality • Established 2024 • Nevro Gear •</textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="container mx-auto px-10 relative z-20 flex flex-col items-center text-center">
+            <h1 id="hero-title" class="text-7xl md:text-[12rem] font-black tracking-tighter leading-none mb-8 opacity-0">
+                EVOLVE<br><span class="text-gradient">TECH</span>
+            </h1>
+            <p id="hero-sub" class="text-xl md:text-2xl text-gray-400 max-w-2xl mb-12 opacity-0">
+                Aerospace-grade materials. Precision engineering. The ultimate ecosystem for your mobile lifestyle.
+            </p>
+            <div id="hero-cta" class="flex space-x-6 opacity-0">
+                <button class="magnetic-btn bg-[#7000FF] text-white px-10 py-5 rounded-xl font-bold text-lg hover:shadow-[0_0_30px_#7000FF] transition-all">
+                    EXPLORE GEAR
+                </button>
+                <button class="magnetic-btn glass px-10 py-5 rounded-xl font-bold text-lg hover:bg-white hover:text-black transition-all">
+                    VIEW PARTS
+                </button>
+            </div>
+        </div>
+
+        <!-- Floating Glass Card -->
+        <div class="absolute bottom-10 left-10 glass p-6 rounded-2xl max-w-xs hidden xl:block opacity-0" id="hero-card">
+            <div class="flex items-center space-x-4 mb-4">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-[#00F0FF] to-[#7000FF]"></div>
+                <div>
+                    <div class="font-bold">Aura-X Earbuds</div>
+                    <div class="text-xs text-gray-400 font-medium">99.9% Noise Cancelling</div>
+                </div>
+            </div>
+            <p class="text-sm text-gray-300">"The audio fidelity is unlike anything I've experienced. Truly elite."</p>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="py-32 px-10">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+                <div class="relative group">
+                    <img src="https://picsum.photos/1920/1080?random=12" class="rounded-3xl shadow-2xl grayscale group-hover:grayscale-0 transition-all duration-700" alt="Product">
+                    <div class="absolute -bottom-10 -right-10 glass p-10 rounded-3xl">
+                        <div class="text-5xl font-black text-gradient">24/7</div>
+                        <div class="text-gray-400 text-sm uppercase tracking-widest">Precision Support</div>
+                    </div>
+                </div>
+                <div class="scroll-reveal">
+                    <h2 class="text-5xl font-black mb-8 leading-tight">WE DON'T JUST PROTECT.<br>WE ENHANCE.</h2>
+                    <p class="text-xl text-gray-400 mb-10 leading-relaxed">
+                        Every component is stress-tested in extreme environments to ensure your technology remains safe, functional, and stylish. From titanium-infused phone cases to ultra-low latency bluetooth drivers, we set the standard.
+                    </p>
+                    <div class="flex items-center space-x-8">
+                        <div class="flex -space-x-4">
+                            <img src="https://i.pravatar.cc/150?img=1" class="w-12 h-12 rounded-full border-2 border-black" alt="">
+                            <img src="https://i.pravatar.cc/150?img=2" class="w-12 h-12 rounded-full border-2 border-black" alt="">
+                            <img src="https://i.pravatar.cc/150?img=3" class="w-12 h-12 rounded-full border-2 border-black" alt="">
+                        </div>
+                        <div class="text-sm">
+                            <span class="font-bold block">15,000+ TECH ENTHUSIASTS</span>
+                            <span class="text-gray-500">Already switched to Nevro Gear</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Bento Grid -->
+    <section class="py-32 px-10 bg-[#050505]">
+        <div class="container mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="text-6xl font-black mb-4">THE ECOSYSTEM</h2>
+                <p class="text-gray-500 tracking-[0.2em] uppercase">Engineered for the Elite</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-auto md:h-[800px]">
+                <!-- Audio -->
+                <div class="md:col-span-2 md:row-span-1 bento-card glass rounded-3xl p-10 relative overflow-hidden flex flex-col justify-between">
+                    <div class="z-10">
+                        <span class="bg-[#7000FF] px-4 py-1 rounded-full text-xs font-bold uppercase mb-4 inline-block">New Release</span>
+                        <h3 class="text-4xl font-black">Aura Pro<br>Audio</h3>
+                    </div>
+                    <img src="https://picsum.photos/1920/1080?random=2" class="absolute top-0 right-0 w-full h-full object-cover opacity-20 hover:opacity-40 transition-opacity" alt="">
+                    <button class="z-10 w-fit magnetic-btn text-sm font-bold border-b-2 border-[#00F0FF] pb-1">LEARN MORE</button>
+                </div>
+
+                <!-- Covers -->
+                <div class="md:col-span-1 md:row-span-2 bento-card bg-zinc-900 rounded-3xl p-8 relative overflow-hidden flex flex-col justify-end">
+                    <img src="https://picsum.photos/1920/1080?random=3" class="absolute top-0 left-0 w-full h-full object-cover opacity-30" alt="">
+                    <div class="z-10">
+                        <h3 class="text-3xl font-black mb-2">TITAN SHIELD</h3>
+                        <p class="text-sm text-gray-400 mb-6">Unbreakable protection for every model.</p>
+                        <button class="bg-white text-black w-full py-4 rounded-xl font-bold">SHOP CASES</button>
+                    </div>
+                </div>
+
+                <!-- Connect -->
+                <div class="md:col-span-1 md:row-span-1 bento-card glass rounded-3xl p-8 flex flex-col justify-center items-center text-center">
+                    <div class="w-16 h-16 bg-[#00F0FF] rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                    </div>
+                    <h3 class="text-xl font-bold">Cables & Power</h3>
+                    <p class="text-gray-500 text-sm mt-2">100W Fast Charge Ready</p>
+                </div>
+
+                <!-- Parts -->
+                <div class="md:col-span-2 md:row-span-1 bento-card glass rounded-3xl p-10 flex flex-col justify-between group">
+                    <div class="flex justify-between">
+                        <h3 class="text-4xl font-black">PRECISION<br>COMPONENTS</h3>
+                        <div class="w-20 h-20 border border-zinc-800 rounded-full flex items-center justify-center group-hover:border-[#00F0FF] transition-colors">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 max-w-xs">Genuine replacement screens, batteries, and internal modules for all major devices.</p>
+                </div>
+
+                <!-- Mobile -->
+                <div class="md:col-span-1 md:row-span-1 bento-card bg-zinc-900 rounded-3xl p-8 flex flex-col justify-between">
+                    <h3 class="text-xl font-bold italic tracking-tighter">REFURBISHED<br>SERIES_01</h3>
+                    <div class="text-3xl font-black text-[#00F0FF]">$899.00</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Gallery (GSAP Triggered) -->
+    <section class="py-32 overflow-hidden bg-black" id="gallery">
+        <div class="flex flex-nowrap gallery-track gap-10 px-10">
+            <div class="min-w-[400px] h-[500px] rounded-3xl overflow-hidden relative group">
+                <img src="https://picsum.photos/1920/1080?random=11" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="">
+                <div class="absolute inset-0 bg-black/40 p-8 flex flex-col justify-end translate-y-full group-hover:translate-y-0 transition-all">
+                    <h4 class="text-2xl font-bold">Carbon Finish</h4>
+                </div>
+            </div>
+            <div class="min-w-[400px] h-[500px] rounded-3xl overflow-hidden relative group">
+                <img src="https://picsum.photos/1920/1080?random=22" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="">
+                <div class="absolute inset-0 bg-black/40 p-8 flex flex-col justify-end translate-y-full group-hover:translate-y-0 transition-all">
+                    <h4 class="text-2xl font-bold">Liquid Silicone</h4>
+                </div>
+            </div>
+            <div class="min-w-[400px] h-[500px] rounded-3xl overflow-hidden relative group">
+                <img src="https://picsum.photos/1920/1080?random=33" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="">
+                <div class="absolute inset-0 bg-black/40 p-8 flex flex-col justify-end translate-y-full group-hover:translate-y-0 transition-all">
+                    <h4 class="text-2xl font-bold">Glass Optics</h4>
+                </div>
+            </div>
+            <div class="min-w-[400px] h-[500px] rounded-3xl overflow-hidden relative group">
+                <img src="https://picsum.photos/1920/1080?random=44" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="">
+                <div class="absolute inset-0 bg-black/40 p-8 flex flex-col justify-end translate-y-full group-hover:translate-y-0 transition-all">
+                    <h4 class="text-2xl font-bold">Studio Driver</h4>
+                </div>
+            </div>
+            <div class="min-w-[400px] h-[500px] rounded-3xl overflow-hidden relative group">
+                <img src="https://picsum.photos/1920/1080?random=5" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="">
+                <div class="absolute inset-0 bg-black/40 p-8 flex flex-col justify-end translate-y-full group-hover:translate-y-0 transition-all">
+                    <h4 class="text-2xl font-bold">Neural Mesh</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA & Footer -->
+    <footer class="bg-white text-black py-24 px-10 rounded-t-[50px]">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-20 mb-20">
+                <div>
+                    <h2 class="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-10">JOIN THE<br>INNER CIRCLE.</h2>
+                    <p class="text-xl mb-12 max-w-md">Get exclusive access to beta testing, limited drops, and member-only pricing.</p>
+                    <div class="relative max-w-md">
+                        <input type="email" placeholder="Enter Email" class="w-full bg-zinc-100 border-b-2 border-black py-4 px-2 focus:outline-none text-xl">
+                        <button class="absolute right-0 bottom-4 font-black text-sm tracking-widest uppercase hover:text-[#7000FF] transition-colors">Submit</button>
+                    </div>
+                </div>
+                <div class="flex flex-col justify-between">
+                    <div class="flex justify-end space-x-20">
+                        <div class="space-y-4">
+                            <h4 class="font-black uppercase text-xs tracking-[0.2em] text-gray-400">Social</h4>
+                            <ul class="space-y-2 font-bold text-lg">
+                                <li><a href="#" class="hover:underline">Instagram</a></li>
+                                <li><a href="#" class="hover:underline">Twitter</a></li>
+                                <li><a href="#" class="hover:underline">Discord</a></li>
+                            </ul>
+                        </div>
+                        <div class="space-y-4">
+                            <h4 class="font-black uppercase text-xs tracking-[0.2em] text-gray-400">Company</h4>
+                            <ul class="space-y-2 font-bold text-lg">
+                                <li><a href="#" class="hover:underline">Privacy</a></li>
+                                <li><a href="#" class="hover:underline">Terms</a></li>
+                                <li><a href="#" class="hover:underline">Support</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-[12rem] font-black tracking-tighter text-zinc-100 leading-none select-none">NEVRO</div>
+                </div>
+            </div>
+            <div class="border-t border-zinc-200 pt-10 flex justify-between items-center text-sm font-medium">
+                <div>© 2024 NEVRO GEAR CORP.</div>
+                <div>DESIGNED FOR PERFORMANCE</div>
+                <div class="flex space-x-4">
+                    <button class="magnetic-btn w-10 h-10 rounded-full border border-zinc-300 flex items-center justify-center">↑</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX - 10,
+                y: e.clientY - 10,
+                duration: 0.1
+            });
+        });
+
+        // GSAP Initialization
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animations
+        window.onload = () => {
+            const tl = gsap.timeline();
+            tl.to("#hero-title", { opacity: 1, y: 0, duration: 1, ease: "power4.out", startAt: {y: 100} })
+              .to("#hero-sub", { opacity: 1, y: 0, duration: 0.8, ease: "power4.out", startAt: {y: 50} }, "-=0.6")
+              .to("#hero-cta", { opacity: 1, y: 0, duration: 0.8, ease: "power4.out", startAt: {y: 30} }, "-=0.6")
+              .to("#hero-card", { opacity: 1, x: 0, duration: 1, ease: "power4.out", startAt: {x: -100} }, "-=1");
+        };
+
+        // Scroll Reveal
+        gsap.utils.toArray('.scroll-reveal').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Bento Grid Reveal
+        gsap.from(".bento-card", {
+            scrollTrigger: {
+                trigger: ".bento-card",
+                start: "top 80%"
+            },
+            y: 100,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 1,
+            ease: "power4.out"
+        });
+
+        // Horizontal Gallery Scroll
+        gsap.to(".gallery-track", {
+            xPercent: -30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#gallery",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1
+            }
+        });
+
+        // Magnetic Buttons Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', function(e) {
+                const position = btn.getBoundingClientRect();
+                const x = e.pageX - position.left - position.width / 2;
+                const y = e.pageY - position.top - position.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            btn.addEventListener('mouseleave', function() {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Cursor scaling on interaction
+        document.querySelectorAll('button, a, .bento-card').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 3, backgroundColor: "rgba(0, 240, 255, 0.5)" });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, backgroundColor: "white" });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MartShop | Future of Commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050505;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #818cf8, #c084fc, #fb7185);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .rotating-stamp {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+        }
+
+        .cursor-glow {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            position: fixed;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="cursor-glow" id="cursor-glow"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-[100] px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-2xl px-6 py-3">
+            <div class="text-2xl font-extrabold tracking-tighter flex items-center gap-2">
+                <span class="bg-[#818cf8] w-8 h-8 rounded-lg flex items-center justify-center text-black">M</span>
+                MartShop
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium opacity-70">
+                <a href="#home" class="hover:opacity-100 transition-opacity">Home</a>
+                <a href="#shop" class="hover:opacity-100 transition-opacity">Collections</a>
+                <a href="#services" class="hover:opacity-100 transition-opacity">Services</a>
+                <a href="#contact" class="hover:opacity-100 transition-opacity">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                    <span class="absolute top-0 right-0 w-4 h-4 bg-[#818cf8] text-[10px] flex items-center justify-center rounded-full text-black font-bold">2</span>
+                </button>
+                <div class="magnetic-wrap">
+                    <button class="magnetic-btn bg-white text-black px-5 py-2 rounded-full text-sm font-bold hover:bg-gray-200 transition-colors">
+                        Join Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Background Flair -->
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#818cf8] opacity-10 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#c084fc] opacity-10 blur-[120px] rounded-full"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="hero-title text-6xl md:text-8xl font-black leading-tight mb-8">
+                    Elevate Your <br> <span class="text-gradient">Daily Gear.</span>
+                </h1>
+                <p class="hero-sub text-lg opacity-60 max-w-lg mb-10 leading-relaxed">
+                    Curated essentials for the modern lifestyle. We blend cutting-edge technology with timeless aesthetics to deliver unparalleled quality products directly to your doorstep.
+                </p>
+                <div class="flex flex-wrap gap-6 items-center">
+                    <div class="magnetic-wrap">
+                        <a href="#shop" class="magnetic-btn bg-[#818cf8] text-black px-10 py-5 rounded-full font-bold flex items-center gap-3 group">
+                            Explore Shop
+                            <svg class="group-hover:translate-x-1 transition-transform" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                    <a href="#" class="font-bold border-b-2 border-white/10 hover:border-white transition-all pb-1">View Lookbook</a>
+                </div>
+            </div>
+            
+            <div class="relative">
+                <!-- Rotating Stamp -->
+                <div class="absolute -top-10 -right-10 z-20 hidden md:block">
+                    <div class="rotating-stamp relative w-32 h-32 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                            <defs>
+                                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0 " />
+                            </defs>
+                            <text class="fill-white text-[10px] uppercase font-bold tracking-widest">
+                                <textPath xlink:href="#circlePath">
+                                    Premium Quality • Best Price • Global Shipping • 
+                                </textPath>
+                            </text>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-img-container relative rounded-3xl overflow-hidden glass p-4">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Featured Product" class="rounded-2xl w-full h-[600px] object-cover">
+                    <!-- Glass Card -->
+                    <div class="absolute bottom-10 -left-6 glass p-6 rounded-2xl max-w-xs animate-bounce-slow">
+                        <div class="flex items-center gap-4 mb-3">
+                            <img src="https://i.pravatar.cc/150?img=12" class="w-10 h-10 rounded-full border-2 border-[#818cf8]" alt="">
+                            <div>
+                                <p class="text-xs font-bold">Alex Rivera</p>
+                                <p class="text-[10px] opacity-50">Verified Buyer</p>
+                            </div>
+                        </div>
+                        <p class="text-xs italic opacity-80 leading-relaxed">"The build quality is insane. It's the only shop I trust for my professional setup."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Bento Grid -->
+    <section id="services" class="py-24 max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-bold mb-16 text-center">Why <span class="text-gradient">MartShop?</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass p-10 rounded-[2.5rem] col-span-1 md:col-span-2 group hover:bg-white/5 transition-all">
+                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-[#818cf8]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polyline points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Express Global Shipping</h3>
+                <p class="opacity-60 leading-relaxed max-w-md">No matter where you are, our logistics network ensures your gear arrives in record time. Fully tracked and insured from our warehouse to your door.</p>
+            </div>
+            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-between group hover:bg-white/5 transition-all">
+                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-[#c084fc]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Secure Payments</h3>
+                    <p class="opacity-60 text-sm leading-relaxed">Military-grade encryption for every transaction. Shop with peace of mind.</p>
+                </div>
+            </div>
+            <div class="glass p-10 rounded-[2.5rem] flex flex-col justify-between group hover:bg-white/5 transition-all">
+                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-[#fb7185]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.5 8.5 0 0 1 7.6 10.6Z"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">24/7 Support</h3>
+                    <p class="opacity-60 text-sm leading-relaxed">Our concierge team is always available to help you with your order.</p>
+                </div>
+            </div>
+            <div class="glass p-10 rounded-[2.5rem] col-span-1 md:col-span-2 group hover:bg-white/5 transition-all bg-[url('https://picsum.photos/1920/1080?random=12')] bg-cover bg-center">
+                <div class="bg-black/60 backdrop-blur-sm -m-10 p-10 rounded-[2.5rem] h-full flex flex-col justify-end">
+                    <h3 class="text-2xl font-bold mb-4">Exclusive Membership</h3>
+                    <p class="opacity-80 leading-relaxed max-w-md">Join our inner circle for early access to limited drops and community-only pricing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="shop" class="py-24 bg-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <span class="text-[#818cf8] font-bold tracking-[0.2em] text-sm uppercase">Curated Collection</span>
+                    <h2 class="text-5xl font-extrabold mt-2">New Arrivals.</h2>
+                </div>
+                <div class="flex gap-4">
+                    <button class="p-4 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+                    <button class="p-4 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product Card 1 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-[#111] mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=21" class="product-img w-full h-full object-cover transition-transform duration-700" alt="Product">
+                        <div class="absolute top-6 left-6 glass px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">New Arrival</div>
+                        <div class="absolute bottom-6 left-6 right-6 translate-y-20 group-hover:translate-y-0 transition-transform duration-500">
+                            <button class="w-full bg-white text-black py-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                                Add to Cart — $129
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-xl font-bold">Quantum Core Headphones</h3>
+                            <p class="opacity-50 text-sm">Audio Gear</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-[#111] mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=22" class="product-img w-full h-full object-cover transition-transform duration-700" alt="Product">
+                        <div class="absolute top-6 left-6 glass px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#fb7185]">Sold Out</div>
+                        <div class="absolute bottom-6 left-6 right-6 translate-y-20 group-hover:translate-y-0 transition-transform duration-500">
+                            <button class="w-full bg-white/20 backdrop-blur-md text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 cursor-not-allowed">
+                                Notify Me
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-xl font-bold">Midnight Chronograph</h3>
+                            <p class="opacity-50 text-sm">Accessories</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-[#111] mb-6">
+                        <img src="https://picsum.photos/1920/1080?random=23" class="product-img w-full h-full object-cover transition-transform duration-700" alt="Product">
+                        <div class="absolute top-6 left-6 glass px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Limited</div>
+                        <div class="absolute bottom-6 left-6 right-6 translate-y-20 group-hover:translate-y-0 transition-transform duration-500">
+                            <button class="w-full bg-white text-black py-4 rounded-xl font-bold flex items-center justify-center gap-2">
+                                Add to Cart — $89
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-xl font-bold">Titanium Minimalist Wallet</h3>
+                            <p class="opacity-50 text-sm">Everyday Carry</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission / About -->
+    <section class="py-32 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="reveal-text text-3xl md:text-5xl font-bold leading-tight">
+                "We believe that the tools you use every day should be as <span class="text-gradient">inspiring</span> as the goals you're working toward."
+            </h2>
+            <div class="mt-12 flex flex-col items-center">
+                <img src="https://i.pravatar.cc/150?img=33" class="w-20 h-20 rounded-full mb-4 border-2 border-white/20 p-1" alt="">
+                <p class="font-bold">Julian Vane</p>
+                <p class="opacity-50 text-sm italic">Founder of MartShop</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Payment Section -->
+    <section id="contact" class="py-24 max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div class="glass p-12 rounded-[3rem]">
+                <h2 class="text-4xl font-bold mb-4">Get in Touch.</h2>
+                <p class="opacity-60 mb-8">Have questions about an order or want to collaborate? Drop us a message.</p>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <input type="text" placeholder="Full Name" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:border-[#818cf8] outline-none transition-colors">
+                        <input type="email" placeholder="Email Address" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:border-[#818cf8] outline-none transition-colors">
+                    </div>
+                    <textarea rows="4" placeholder="Your Message" class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 focus:border-[#818cf8] outline-none transition-colors"></textarea>
+                    <button class="w-full bg-white text-black py-4 rounded-2xl font-bold hover:bg-[#818cf8] hover:text-white transition-all">Send Message</button>
+                </form>
+
+                <div class="mt-12 pt-12 border-t border-white/10">
+                    <p class="text-sm font-bold opacity-40 uppercase tracking-widest mb-6">Connect Instantly</p>
+                    <div class="magnetic-wrap">
+                        <a href="https://wa.me/1234567890" target="_blank" class="magnetic-btn flex items-center gap-4 bg-[#25D366] text-white px-8 py-4 rounded-2xl font-bold hover:shadow-[0_0_30px_rgba(37,211,102,0.3)] transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.06 3.973L0 16l4.204-1.102a7.923 7.923 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93a7.898 7.898 0 0 0-2.327-5.607zM7.994 14.52a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                            </svg>
+                            WhatsApp Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-center">
+                <div class="glass p-10 rounded-[3rem] border-dashed border-2 border-white/10">
+                    <h3 class="text-2xl font-bold mb-6">Payment Options</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/5 p-6 rounded-2xl flex items-center justify-center grayscale hover:grayscale-0 transition-all">
+                            <span class="text-xl font-black italic opacity-50">VISA</span>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-2xl flex items-center justify-center grayscale hover:grayscale-0 transition-all">
+                            <span class="text-xl font-black italic opacity-50">MASTER</span>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-2xl flex items-center justify-center grayscale hover:grayscale-0 transition-all">
+                            <span class="text-xl font-black italic opacity-50">PAYPAL</span>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-2xl flex items-center justify-center grayscale hover:grayscale-0 transition-all">
+                            <span class="text-xl font-black italic opacity-50">APPLE PAY</span>
+                        </div>
+                    </div>
+                    <div class="mt-10 space-y-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-2 h-2 rounded-full bg-[#818cf8]"></div>
+                            <p class="text-sm opacity-60">Interest-free installments available.</p>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-2 h-2 rounded-full bg-[#818cf8]"></div>
+                            <p class="text-sm opacity-60">Crypto payments (BTC, ETH) supported.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="text-2xl font-extrabold tracking-tighter flex items-center gap-2">
+                    <span class="bg-[#818cf8] w-8 h-8 rounded-lg flex items-center justify-center text-black">M</span>
+                    MartShop
+                </div>
+                <div class="flex gap-8 text-sm opacity-40">
+                    <a href="#" class="hover:opacity-100 transition-opacity">Privacy</a>
+                    <a href="#" class="hover:opacity-100 transition-opacity">Terms</a>
+                    <a href="#" class="hover:opacity-100 transition-opacity">Returns</a>
+                    <a href="#" class="hover:opacity-100 transition-opacity">Cookie Policy</a>
+                </div>
+                <p class="text-sm opacity-40">© 2024 MartShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Cursor Glow
+        const cursorGlow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursorGlow, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.6,
+                ease: "power2.out"
+            });
+        });
+
+        // Hero Animations
+        const tl = gsap.timeline();
+        tl.from(".hero-title", {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power4.out"
+        })
+        .from(".hero-sub", {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        }, "-=0.8")
+        .from(".hero-img-container", {
+            scale: 0.9,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power2.out"
+        }, "-=1");
+
+        // Scroll Reveal Animations
+        gsap.utils.toArray('.glass').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Reveal Text Animation
+        gsap.from(".reveal-text", {
+            scrollTrigger: {
+                trigger: ".reveal-text",
+                start: "top 85%",
+            },
+            y: 40,
+            opacity: 0,
+            duration: 1.5,
+            ease: "power3.out"
+        });
+
+        // Magnetic Buttons Effect
+        const magneticBtns = document.querySelectorAll('.magnetic-wrap');
+        
+        magneticBtns.forEach(wrap => {
+            const btn = wrap.querySelector('.magnetic-btn');
+            
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Product Cards Parallax
+        gsap.utils.toArray('.product-card').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                },
+                y: 60,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+    </script>
+</body>
+</html>

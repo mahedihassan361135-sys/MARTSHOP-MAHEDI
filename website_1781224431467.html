@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAHEDI HASSAN | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #a855f7;
+            --bg: #050505;
+        }
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .syne {
+            font-family: 'Syne', sans-serif;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease-out;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
+        }
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+        .magnetic-wrap {
+            display: inline-block;
+        }
+        .stamp-container {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="selection:bg-purple-500 selection:text-white">
+    <div class="noise"></div>
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center mix-blend-difference">
+        <a href="#" class="text-2xl font-extrabold syne tracking-tighter uppercase">MH.</a>
+        <div class="hidden md:flex gap-12 text-sm font-medium tracking-widest uppercase">
+            <a href="#work" class="hover:text-purple-500 transition-colors">Work</a>
+            <a href="#about" class="hover:text-purple-500 transition-colors">About</a>
+            <a href="#services" class="hover:text-purple-500 transition-colors">Services</a>
+            <a href="#contact" class="hover:text-purple-500 transition-colors">Contact</a>
+        </div>
+        <div class="magnetic-wrap">
+            <button class="magnetic-btn glass-card px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest">Let's Talk</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <!-- Animated Background Orbs -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="overflow-hidden mb-4">
+                <span class="inline-block translate-y-full hero-subtitle text-purple-500 font-bold tracking-[0.3em] uppercase text-sm">Creative Frontend Developer</span>
+            </div>
+            
+            <h1 class="text-7xl md:text-[12vw] font-extrabold syne leading-[0.85] tracking-tighter uppercase mb-8">
+                <div class="overflow-hidden"><span class="inline-block translate-y-full hero-title">MAHEDI</span></div>
+                <div class="overflow-hidden"><span class="inline-block translate-y-full hero-title text-outline">HASSAN</span></div>
+            </h1>
+
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 mt-12">
+                <p class="max-w-xs text-left text-zinc-400 text-sm leading-relaxed border-l border-purple-500/50 pl-4 opacity-0 hero-fade">
+                    Specializing in building immersive digital experiences that blend aesthetic beauty with technical precision.
+                </p>
+                <div class="magnetic-wrap opacity-0 hero-fade">
+                    <a href="#work" class="magnetic-btn bg-white text-black px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-purple-500 hover:text-white transition-colors duration-500">Explore Projects</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating UI Stamp -->
+        <div class="absolute bottom-10 right-10 hidden lg:block stamp-container opacity-0 hero-fade">
+            <svg class="w-32 h-32" viewBox="0 0 100 100">
+                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                <text class="text-[10px] uppercase font-bold tracking-[0.2em] fill-zinc-500">
+                    <textPath xlink:href="#circlePath">ESTD 2024 • PREMIUM DIGITAL CRAFT •</textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About / Mission Section -->
+    <section id="about" class="py-32 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-purple-500/20 rounded-2xl blur-xl group-hover:bg-purple-500/30 transition-all duration-700"></div>
+                    <img src="https://picsum.photos/1920/1080?random=12" alt="Studio" class="relative rounded-xl grayscale hover:grayscale-0 transition-all duration-1000 object-cover aspect-[4/5] w-full">
+                </div>
+                <div class="reveal-text">
+                    <h2 class="text-4xl md:text-6xl font-bold syne mb-8 leading-tight">Elevating brands through <span class="text-purple-500 italic">intentional</span> design.</h2>
+                    <p class="text-xl text-zinc-400 mb-10 leading-relaxed">
+                        I bridge the gap between complex engineering and human-centric design. Every pixel is placed with purpose, ensuring your brand stands out in the digital noise.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-purple-500 font-bold text-3xl syne mb-2">5+</h4>
+                            <p class="text-xs uppercase tracking-widest text-zinc-500">Years Experience</p>
+                        </div>
+                        <div>
+                            <h4 class="text-purple-500 font-bold text-3xl syne mb-2">120+</h4>
+                            <p class="text-xs uppercase tracking-widest text-zinc-500">Projects Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Bento Grid -->
+    <section id="services" class="py-32 bg-[#080808]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-5xl md:text-7xl font-bold syne tracking-tighter">EXPERTISE</h2>
+                    <p class="text-zinc-500 uppercase tracking-widest mt-4">Core Services & Skills</p>
+                </div>
+                <div class="h-[1px] flex-grow mx-10 bg-zinc-800 hidden md:block"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Bento Item 1 -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-10 hover:border-purple-500/50 transition-colors duration-500 group">
+                    <div class="flex justify-between items-start mb-12">
+                        <div class="p-4 bg-purple-500/10 rounded-2xl">
+                            <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest text-zinc-600">01</span>
+                    </div>
+                    <h3 class="text-3xl font-bold syne mb-4">Frontend Development</h3>
+                    <p class="text-zinc-400 max-w-md leading-relaxed">Building lightning-fast, SEO-optimized, and highly interactive interfaces using React, Next.js, and GSAP.</p>
+                    <div class="flex gap-3 mt-8">
+                        <span class="px-4 py-2 bg-zinc-900 rounded-full text-[10px] font-bold uppercase">React</span>
+                        <span class="px-4 py-2 bg-zinc-900 rounded-full text-[10px] font-bold uppercase">Tailwind</span>
+                        <span class="px-4 py-2 bg-zinc-900 rounded-full text-[10px] font-bold uppercase">GSAP</span>
+                    </div>
+                </div>
+
+                <!-- Bento Item 2 -->
+                <div class="glass-card rounded-3xl p-10 hover:border-blue-500/50 transition-colors duration-500">
+                    <div class="flex justify-between items-start mb-12">
+                        <div class="p-4 bg-blue-500/10 rounded-2xl">
+                            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest text-zinc-600">02</span>
+                    </div>
+                    <h3 class="text-3xl font-bold syne mb-4">UI/UX Design</h3>
+                    <p class="text-zinc-400 leading-relaxed">Crafting visually stunning prototypes and user journeys that convert.</p>
+                </div>
+
+                <!-- Bento Item 3 -->
+                <div class="glass-card rounded-3xl p-10 hover:border-emerald-500/50 transition-colors duration-500">
+                    <div class="flex justify-between items-start mb-12">
+                        <div class="p-4 bg-emerald-500/10 rounded-2xl">
+                            <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest text-zinc-600">03</span>
+                    </div>
+                    <h3 class="text-3xl font-bold syne mb-4">Performance</h3>
+                    <p class="text-zinc-400 leading-relaxed">Optimization for Core Web Vitals and seamless mobile responsiveness.</p>
+                </div>
+
+                <!-- Bento Item 4 -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-10 hover:border-pink-500/50 transition-colors duration-500 flex flex-col md:flex-row gap-10 items-center">
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start mb-12">
+                            <div class="p-4 bg-pink-500/10 rounded-2xl">
+                                <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 0012 20c4.083 0 7.774-2.147 9.412-5.384M7.34 17.908L7 18v3M7 3h5c.276 0 .5.224.5.5v3c0 .276-.224.5-.5.5H7a.5.5 0 01-.5-.5v-3c0-.276.224-.5.5-.5z"></path></svg>
+                            </div>
+                            <span class="text-xs font-bold tracking-widest text-zinc-600">04</span>
+                        </div>
+                        <h3 class="text-3xl font-bold syne mb-4">Web3 & E-commerce</h3>
+                        <p class="text-zinc-400 leading-relaxed">Developing decentralized apps and robust custom e-commerce platforms.</p>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <img src="https://picsum.photos/1920/1080?random=42" class="rounded-xl aspect-video object-cover" alt="Service Detail">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Showcase -->
+    <section id="work" class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col mb-20">
+                <h2 class="text-5xl md:text-8xl font-bold syne tracking-tighter mb-4">SELECTED WORK</h2>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-[1px] bg-purple-500"></div>
+                    <p class="text-zinc-500 font-medium uppercase tracking-[0.3em]">Curation 2023-2024</p>
+                </div>
+            </div>
+
+            <div class="space-y-40">
+                <!-- Project 1 -->
+                <div class="project-item grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 overflow-hidden rounded-2xl">
+                        <div class="project-img-wrapper cursor-pointer group relative">
+                            <div class="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                                <span class="bg-white text-black px-8 py-4 rounded-full font-bold uppercase text-xs tracking-tighter">View Project</span>
+                            </div>
+                            <img src="https://picsum.photos/1920/1080?random=1" alt="Project 1" class="w-full aspect-video object-cover scale-110 project-img">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <span class="text-purple-500 font-bold uppercase tracking-widest text-sm mb-4 block">Visual Identity / Web Design</span>
+                        <h3 class="text-4xl md:text-6xl font-bold syne mb-6">NEBULX CORE</h3>
+                        <p class="text-zinc-400 text-lg mb-8 leading-relaxed">A futuristic dashboard designed for interplanetary logistics management. Minimalist, dark, and powerful.</p>
+                        <div class="magnetic-wrap">
+                            <button class="magnetic-btn px-8 py-4 border border-zinc-800 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-item grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 order-2 lg:order-1">
+                        <span class="text-purple-500 font-bold uppercase tracking-widest text-sm mb-4 block">E-Commerce / Branding</span>
+                        <h3 class="text-4xl md:text-6xl font-bold syne mb-6">ARCTIC SOUL</h3>
+                        <p class="text-zinc-400 text-lg mb-8 leading-relaxed">Premium skincare brand from the North. Focused on high-resolution imagery and smooth-scroll interactions.</p>
+                        <div class="magnetic-wrap">
+                            <button class="magnetic-btn px-8 py-4 border border-zinc-800 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Details</button>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 order-1 lg:order-2 overflow-hidden rounded-2xl">
+                        <div class="project-img-wrapper cursor-pointer group relative">
+                            <div class="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                                <span class="bg-white text-black px-8 py-4 rounded-full font-bold uppercase text-xs tracking-tighter">View Project</span>
+                            </div>
+                            <img src="https://picsum.photos/1920/1080?random=5" alt="Project 2" class="w-full aspect-video object-cover scale-110 project-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-32 bg-white text-black rounded-[3rem] mx-4 md:mx-10 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-7xl font-bold syne tracking-tighter">KIND WORDS</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-10 border border-black/10 rounded-3xl flex flex-col justify-between h-80">
+                    <p class="text-xl font-medium">"Mahedi transformed our complex SaaS product into a masterpiece. The UX is flawless."</p>
+                    <div class="flex items-center gap-4 mt-8">
+                        <img src="https://i.pravatar.cc/150?img=11" class="w-12 h-12 rounded-full" alt="Client">
+                        <div>
+                            <h5 class="font-bold uppercase text-xs tracking-widest">Sarah Jenkins</h5>
+                            <p class="text-[10px] text-zinc-500">CEO @ TechFlow</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-10 border border-black/10 rounded-3xl flex flex-col justify-between h-80">
+                    <p class="text-xl font-medium">"A rare talent who understands both the aesthetic and the engineering aspects of frontend."</p>
+                    <div class="flex items-center gap-4 mt-8">
+                        <img src="https://i.pravatar.cc/150?img=12" class="w-12 h-12 rounded-full" alt="Client">
+                        <div>
+                            <h5 class="font-bold uppercase text-xs tracking-widest">Marcus Chen</h5>
+                            <p class="text-[10px] text-zinc-500">Lead Dev @ Studio9</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-10 border border-black/10 rounded-3xl flex flex-col justify-between h-80">
+                    <p class="text-xl font-medium">"Delivery was ahead of schedule and the code quality was exceptional. Highly recommend."</p>
+                    <div class="flex items-center gap-4 mt-8">
+                        <img src="https://i.pravatar.cc/150?img=14" class="w-12 h-12 rounded-full" alt="Client">
+                        <div>
+                            <h5 class="font-bold uppercase text-xs tracking-widest">Elena Petrova</h5>
+                            <p class="text-[10px] text-zinc-500">Founder @ Luxe</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / CTA -->
+    <footer id="contact" class="pt-32 pb-10 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-32">
+                <h2 class="text-[15vw] font-extrabold syne leading-none tracking-tighter mb-12">LET'S TALK</h2>
+                <div class="magnetic-wrap">
+                    <a href="mailto:hello@mahedi.com" class="magnetic-btn inline-block text-2xl md:text-4xl font-bold border-b-2 border-purple-500 pb-2 hover:text-purple-500 transition-colors">hello@mahedi.com</a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-10 pt-20 border-t border-zinc-900">
+                <div class="col-span-2">
+                    <h3 class="text-2xl font-bold syne mb-6">MAHEDI HASSAN.</h3>
+                    <p class="text-zinc-500 max-w-xs">Building premium digital products for brands that care about quality and detail.</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-6">Socials</h4>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="#" class="hover:text-purple-500">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Twitter</a></li>
+                        <li><a href="#" class="hover:text-purple-500">GitHub</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Behance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-6">Location</h4>
+                    <p class="text-sm font-medium">Dhaka, Bangladesh<br>Global (Remote)</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center mt-32 text-[10px] uppercase font-bold tracking-widest text-zinc-700">
+                <p>© 2024 MAHEDI HASSAN. ALL RIGHTS RESERVED.</p>
+                <p>Designed with passion & precision.</p>
+            </div>
+        </div>
+
+        <!-- Huge Background Text -->
+        <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[30vw] font-black text-white/5 pointer-events-none select-none">M.H.</div>
+    </footer>
+
+    <script>
+        // Initialize GSAP & ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1,
+                ease: "power2.out"
+            });
+        });
+
+        document.querySelectorAll('a, button, .project-img-wrapper').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 3, opacity: 0.5 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, opacity: 1 });
+            });
+        });
+
+        // Hero Animations
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+            tl.to('.hero-subtitle', { y: 0, duration: 1, ease: 'power4.out' })
+              .to('.hero-title', { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 }, "-=0.8")
+              .to('.hero-fade', { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }, "-=0.5");
+        });
+
+        // Magnetic Button Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Scroll Reveal Animations
+        gsap.from('.reveal-text h2', {
+            scrollTrigger: {
+                trigger: '.reveal-text',
+                start: "top 80%",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.utils.toArray('.project-item').forEach(item => {
+            const img = item.querySelector('.project-img');
+            gsap.to(img, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                },
+                y: -100,
+                scale: 1.2
+            });
+        });
+
+        // Horizontal Grid Items reveal
+        gsap.from('.glass-card', {
+            scrollTrigger: {
+                trigger: '#services',
+                start: "top 70%",
+            },
+            y: 100,
+            opacity: 0,
+            stagger: 0.15,
+            duration: 1.2,
+            ease: "expo.out"
+        });
+
+        // Let's Talk Scroll animation
+        gsap.from('footer h2', {
+            scrollTrigger: {
+                trigger: 'footer',
+                start: "top 90%",
+                scrub: 1
+            },
+            y: 200,
+            opacity: 0
+        });
+
+        // Smooth Scroll Logic (Native but enhanced)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAHEDI HASSAN | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #a855f7;
+            --bg: #050505;
+        }
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .syne {
+            font-family: 'Syne', sans-serif;
+        }
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease-out;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%);
+        }
+        .text-outline {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+        .magnetic-wrap {
+            display: inline-block;
+        }
+        .stamp-container {
+            animation: rotate 20s linear infinite;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 50;
+        }
+    </style>
+</head>
+<body class="selection:bg-purple-500 selection:text-white">
+    <div class="noise"></div>
+    <div class="custom-cursor hidden md:block"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-8 flex justify-between items-center mix-blend-difference">
+        <a href="#" class="text-2xl font-extrabold syne tracking-tighter uppercase">MH.</a>
+        <div class="hidden md:flex gap-12 text-sm font-medium tracking-widest uppercase">
+            <a href="#work" class="hover:text-purple-500 transition-colors">Work</a>
+            <a href="#about" class="hover:text-purple-500 transition-colors">About</a>
+            <a href="#services" class="hover:text-purple-500 transition-colors">Services</a>
+            <a href="#contact" class="hover:text-purple-500 transition-colors">Contact</a>
+        </div>
+        <div class="magnetic-wrap">
+            <button class="magnetic-btn glass-card px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest">Let's Talk</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 hero-gradient"></div>
+        
+        <!-- Animated Background Orbs -->
+        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s"></div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <div class="overflow-hidden mb-4">
+                <span class="inline-block translate-y-full hero-subtitle text-purple-500 font-bold tracking-[0.3em] uppercase text-sm">Creative Frontend Developer</span>
+            </div>
+            
+            <h1 class="text-7xl md:text-[12vw] font-extrabold syne leading-[0.85] tracking-tighter uppercase mb-8">
+                <div class="overflow-hidden"><span class="inline-block translate-y-full hero-title">MAHEDI</span></div>
+                <div class="overflow-hidden"><span class="inline-block translate-y-full hero-title text-outline">HASSAN</span></div>
+            </h1>
+
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 mt-12">
+                <p class="max-w-xs text-left text-zinc-400 text-sm leading-relaxed border-l border-purple-500/50 pl-4 opacity-0 hero-fade">
+                    Specializing in building immersive digital experiences that blend aesthetic beauty with technical precision.
+                </p>
+                <div class="magnetic-wrap opacity-0 hero-fade">
+                    <a href="#work" class="magnetic-btn bg-white text-black px-10 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-purple-500 hover:text-white transition-colors duration-500">Explore Projects</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating UI Stamp -->
+        <div class="absolute bottom-10 right-10 hidden lg:block stamp-container opacity-0 hero-fade">
+            <svg class="w-32 h-32" viewBox="0 0 100 100">
+                <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none"/>
+                <text class="text-[10px] uppercase font-bold tracking-[0.2em] fill-zinc-500">
+                    <textPath xlink:href="#circlePath">ESTD 2024 • PREMIUM DIGITAL CRAFT •</textPath>
+                </text>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About / Mission Section -->
+    <section id="about" class="py-32 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative group">
+                    <div class="absolute -inset-4 bg-purple-500/20 rounded-2xl blur-xl group-hover:bg-purple-500/30 transition-all duration-700"></div>
+                    <img src="https://picsum.photos/1920/1080?random=12" alt="Studio" class="relative rounded-xl grayscale hover:grayscale-0 transition-all duration-1000 object-cover aspect-[4/5] w-full">
+                </div>
+                <div class="reveal-text">
+                    <h2 class="text-4xl md:text-6xl font-bold syne mb-8 leading-tight">Elevating brands through <span class="text-purple-500 italic">intentional</span> design.</h2>
+                    <p class="text-xl text-zinc-400 mb-10 leading-relaxed">
+                        I bridge the gap between complex engineering and human-centric design. Every pixel is placed with purpose, ensuring your brand stands out in the digital noise.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="text-purple-500 font-bold text-3xl syne mb-2">5+</h4>
+                            <p class="text-xs uppercase tracking-widest text-zinc-500">Years Experience</p>
+                        </div>
+                        <div>
+                            <h4 class="text-purple-500 font-bold text-3xl syne mb-2">120+</h4>
+                            <p class="text-xs uppercase tracking-widest text-zinc-500">Projects Completed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features / Bento Grid -->
+    <section id="services" class="py-32 bg-[#080808]">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-5xl md:text-7xl font-bold syne tracking-tighter">EXPERTISE</h2>
+                    <p class="text-zinc-500 uppercase tracking-widest mt-4">Core Services & Skills</p>
+                </div>
+                <div class="h-[1px] flex-grow mx-10 bg-zinc-800 hidden md:block"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Bento Item 1 -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-10 hover:border-purple-500/50 transition-colors duration-500 group">
+                    <div class="flex justify-between items-start mb-12">
+                        <div class="p-4 bg-purple-500/10 rounded-2xl">
+                            <svg class="w-8 h-8 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest text-zinc-600">01</span>
+                    </div>
+                    <h3 class="text-3xl font-bold syne mb-4">Frontend Development</h3>
+                    <p class="text-zinc-400 max-w-md leading-relaxed">Building lightning-fast, SEO-optimized, and highly interactive interfaces using React, Next.js, and GSAP.</p>
+                    <div class="flex gap-3 mt-8">
+                        <span class="px-4 py-2 bg-zinc-900 rounded-full text-[10px] font-bold uppercase">React</span>
+                        <span class="px-4 py-2 bg-zinc-900 rounded-full text-[10px] font-bold uppercase">Tailwind</span>
+                        <span class="px-4 py-2 bg-zinc-900 rounded-full text-[10px] font-bold uppercase">GSAP</span>
+                    </div>
+                </div>
+
+                <!-- Bento Item 2 -->
+                <div class="glass-card rounded-3xl p-10 hover:border-blue-500/50 transition-colors duration-500">
+                    <div class="flex justify-between items-start mb-12">
+                        <div class="p-4 bg-blue-500/10 rounded-2xl">
+                            <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path></svg>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest text-zinc-600">02</span>
+                    </div>
+                    <h3 class="text-3xl font-bold syne mb-4">UI/UX Design</h3>
+                    <p class="text-zinc-400 leading-relaxed">Crafting visually stunning prototypes and user journeys that convert.</p>
+                </div>
+
+                <!-- Bento Item 3 -->
+                <div class="glass-card rounded-3xl p-10 hover:border-emerald-500/50 transition-colors duration-500">
+                    <div class="flex justify-between items-start mb-12">
+                        <div class="p-4 bg-emerald-500/10 rounded-2xl">
+                            <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest text-zinc-600">03</span>
+                    </div>
+                    <h3 class="text-3xl font-bold syne mb-4">Performance</h3>
+                    <p class="text-zinc-400 leading-relaxed">Optimization for Core Web Vitals and seamless mobile responsiveness.</p>
+                </div>
+
+                <!-- Bento Item 4 -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-10 hover:border-pink-500/50 transition-colors duration-500 flex flex-col md:flex-row gap-10 items-center">
+                    <div class="flex-1">
+                        <div class="flex justify-between items-start mb-12">
+                            <div class="p-4 bg-pink-500/10 rounded-2xl">
+                                <svg class="w-8 h-8 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A10.003 10.003 0 0012 20c4.083 0 7.774-2.147 9.412-5.384M7.34 17.908L7 18v3M7 3h5c.276 0 .5.224.5.5v3c0 .276-.224.5-.5.5H7a.5.5 0 01-.5-.5v-3c0-.276.224-.5.5-.5z"></path></svg>
+                            </div>
+                            <span class="text-xs font-bold tracking-widest text-zinc-600">04</span>
+                        </div>
+                        <h3 class="text-3xl font-bold syne mb-4">Web3 & E-commerce</h3>
+                        <p class="text-zinc-400 leading-relaxed">Developing decentralized apps and robust custom e-commerce platforms.</p>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <img src="https://picsum.photos/1920/1080?random=42" class="rounded-xl aspect-video object-cover" alt="Service Detail">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Showcase -->
+    <section id="work" class="py-32">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col mb-20">
+                <h2 class="text-5xl md:text-8xl font-bold syne tracking-tighter mb-4">SELECTED WORK</h2>
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-[1px] bg-purple-500"></div>
+                    <p class="text-zinc-500 font-medium uppercase tracking-[0.3em]">Curation 2023-2024</p>
+                </div>
+            </div>
+
+            <div class="space-y-40">
+                <!-- Project 1 -->
+                <div class="project-item grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 overflow-hidden rounded-2xl">
+                        <div class="project-img-wrapper cursor-pointer group relative">
+                            <div class="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                                <span class="bg-white text-black px-8 py-4 rounded-full font-bold uppercase text-xs tracking-tighter">View Project</span>
+                            </div>
+                            <img src="https://picsum.photos/1920/1080?random=1" alt="Project 1" class="w-full aspect-video object-cover scale-110 project-img">
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <span class="text-purple-500 font-bold uppercase tracking-widest text-sm mb-4 block">Visual Identity / Web Design</span>
+                        <h3 class="text-4xl md:text-6xl font-bold syne mb-6">NEBULX CORE</h3>
+                        <p class="text-zinc-400 text-lg mb-8 leading-relaxed">A futuristic dashboard designed for interplanetary logistics management. Minimalist, dark, and powerful.</p>
+                        <div class="magnetic-wrap">
+                            <button class="magnetic-btn px-8 py-4 border border-zinc-800 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-item grid lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-5 order-2 lg:order-1">
+                        <span class="text-purple-500 font-bold uppercase tracking-widest text-sm mb-4 block">E-Commerce / Branding</span>
+                        <h3 class="text-4xl md:text-6xl font-bold syne mb-6">ARCTIC SOUL</h3>
+                        <p class="text-zinc-400 text-lg mb-8 leading-relaxed">Premium skincare brand from the North. Focused on high-resolution imagery and smooth-scroll interactions.</p>
+                        <div class="magnetic-wrap">
+                            <button class="magnetic-btn px-8 py-4 border border-zinc-800 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all">Details</button>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 order-1 lg:order-2 overflow-hidden rounded-2xl">
+                        <div class="project-img-wrapper cursor-pointer group relative">
+                            <div class="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                                <span class="bg-white text-black px-8 py-4 rounded-full font-bold uppercase text-xs tracking-tighter">View Project</span>
+                            </div>
+                            <img src="https://picsum.photos/1920/1080?random=5" alt="Project 2" class="w-full aspect-video object-cover scale-110 project-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-32 bg-white text-black rounded-[3rem] mx-4 md:mx-10 overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-4xl md:text-7xl font-bold syne tracking-tighter">KIND WORDS</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-10 border border-black/10 rounded-3xl flex flex-col justify-between h-80">
+                    <p class="text-xl font-medium">"Mahedi transformed our complex SaaS product into a masterpiece. The UX is flawless."</p>
+                    <div class="flex items-center gap-4 mt-8">
+                        <img src="https://i.pravatar.cc/150?img=11" class="w-12 h-12 rounded-full" alt="Client">
+                        <div>
+                            <h5 class="font-bold uppercase text-xs tracking-widest">Sarah Jenkins</h5>
+                            <p class="text-[10px] text-zinc-500">CEO @ TechFlow</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-10 border border-black/10 rounded-3xl flex flex-col justify-between h-80">
+                    <p class="text-xl font-medium">"A rare talent who understands both the aesthetic and the engineering aspects of frontend."</p>
+                    <div class="flex items-center gap-4 mt-8">
+                        <img src="https://i.pravatar.cc/150?img=12" class="w-12 h-12 rounded-full" alt="Client">
+                        <div>
+                            <h5 class="font-bold uppercase text-xs tracking-widest">Marcus Chen</h5>
+                            <p class="text-[10px] text-zinc-500">Lead Dev @ Studio9</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-10 border border-black/10 rounded-3xl flex flex-col justify-between h-80">
+                    <p class="text-xl font-medium">"Delivery was ahead of schedule and the code quality was exceptional. Highly recommend."</p>
+                    <div class="flex items-center gap-4 mt-8">
+                        <img src="https://i.pravatar.cc/150?img=14" class="w-12 h-12 rounded-full" alt="Client">
+                        <div>
+                            <h5 class="font-bold uppercase text-xs tracking-widest">Elena Petrova</h5>
+                            <p class="text-[10px] text-zinc-500">Founder @ Luxe</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / CTA -->
+    <footer id="contact" class="pt-32 pb-10 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-32">
+                <h2 class="text-[15vw] font-extrabold syne leading-none tracking-tighter mb-12">LET'S TALK</h2>
+                <div class="magnetic-wrap">
+                    <a href="mailto:hello@mahedi.com" class="magnetic-btn inline-block text-2xl md:text-4xl font-bold border-b-2 border-purple-500 pb-2 hover:text-purple-500 transition-colors">hello@mahedi.com</a>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-10 pt-20 border-t border-zinc-900">
+                <div class="col-span-2">
+                    <h3 class="text-2xl font-bold syne mb-6">MAHEDI HASSAN.</h3>
+                    <p class="text-zinc-500 max-w-xs">Building premium digital products for brands that care about quality and detail.</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-6">Socials</h4>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="#" class="hover:text-purple-500">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Twitter</a></li>
+                        <li><a href="#" class="hover:text-purple-500">GitHub</a></li>
+                        <li><a href="#" class="hover:text-purple-500">Behance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-widest text-zinc-600 mb-6">Location</h4>
+                    <p class="text-sm font-medium">Dhaka, Bangladesh<br>Global (Remote)</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center mt-32 text-[10px] uppercase font-bold tracking-widest text-zinc-700">
+                <p>© 2024 MAHEDI HASSAN. ALL RIGHTS RESERVED.</p>
+                <p>Designed with passion & precision.</p>
+            </div>
+        </div>
+
+        <!-- Huge Background Text -->
+        <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[30vw] font-black text-white/5 pointer-events-none select-none">M.H.</div>
+    </footer>
+
+    <script>
+        // Initialize GSAP & ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor Logic
+        const cursor = document.querySelector('.custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1,
+                ease: "power2.out"
+            });
+        });
+
+        document.querySelectorAll('a, button, .project-img-wrapper').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 3, opacity: 0.5 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, opacity: 1 });
+            });
+        });
+
+        // Hero Animations
+        window.addEventListener('load', () => {
+            const tl = gsap.timeline();
+            tl.to('.hero-subtitle', { y: 0, duration: 1, ease: 'power4.out' })
+              .to('.hero-title', { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 }, "-=0.8")
+              .to('.hero-fade', { opacity: 1, y: 0, duration: 1, stagger: 0.2, ease: 'power3.out' }, "-=0.5");
+        });
+
+        // Magnetic Button Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.4,
+                    y: y * 0.4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+            
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+
+        // Scroll Reveal Animations
+        gsap.from('.reveal-text h2', {
+            scrollTrigger: {
+                trigger: '.reveal-text',
+                start: "top 80%",
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        });
+
+        gsap.utils.toArray('.project-item').forEach(item => {
+            const img = item.querySelector('.project-img');
+            gsap.to(img, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                },
+                y: -100,
+                scale: 1.2
+            });
+        });
+
+        // Horizontal Grid Items reveal
+        gsap.from('.glass-card', {
+            scrollTrigger: {
+                trigger: '#services',
+                start: "top 70%",
+            },
+            y: 100,
+            opacity: 0,
+            stagger: 0.15,
+            duration: 1.2,
+            ease: "expo.out"
+        });
+
+        // Let's Talk Scroll animation
+        gsap.from('footer h2', {
+            scrollTrigger: {
+                trigger: 'footer',
+                start: "top 90%",
+                scrub: 1
+            },
+            y: 200,
+            opacity: 0
+        });
+
+        // Smooth Scroll Logic (Native but enhanced)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

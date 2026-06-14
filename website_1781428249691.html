@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MartShop | Premium Digital Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #00f2ff, #006aff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stamp-container {
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .magnetic-wrap {
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.1);
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #333; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-[100] px-6 py-4 flex justify-between items-center glass border-b border-white/5">
+        <div class="text-2xl font-extrabold tracking-tighter uppercase">Mart<span class="text-[#00f2ff]">Shop</span></div>
+        <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest text-white/70">
+            <a href="#hero" class="hover:text-white transition-colors">Home</a>
+            <a href="#products" class="hover:text-white transition-colors">Collection</a>
+            <a href="#payment" class="hover:text-white transition-colors">Secure Pay</a>
+            <a href="#about" class="hover:text-white transition-colors">Philosophy</a>
+        </div>
+        <div class="flex items-center gap-6">
+            <button class="relative group">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                <span class="absolute -top-2 -right-2 bg-[#00f2ff] text-black text-[10px] font-bold px-1.5 rounded-full">3</span>
+            </button>
+            <div class="magnetic-wrap">
+                <button class="magnetic-btn bg-white text-black px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#00f2ff] transition-colors duration-300">Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="glow-orb top-[-10%] left-[-10%]"></div>
+        <div class="glow-orb bottom-[-10%] right-[-10%]"></div>
+        
+        <!-- Rotating Stamp -->
+        <div class="absolute right-10 bottom-10 z-20 pointer-events-none hidden lg:block">
+            <div class="stamp-container relative w-32 h-32 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                    <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="none" />
+                    <text class="text-[10px] uppercase font-bold fill-white/40 tracking-[3px]">
+                        <textPath xlink:href="#circlePath">EST 2024 • PREMIUM QUALITY • MART SHOP • </textPath>
+                    </text>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <svg class="w-8 h-8 text-[#00f2ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="hero-content">
+                <h1 class="text-7xl lg:text-9xl font-extrabold leading-[0.9] tracking-tighter mb-8 overflow-hidden">
+                    <span class="block translate-y-full opacity-0 reveal-text">THE FUTURE</span>
+                    <span class="block translate-y-full opacity-0 reveal-text text-gradient">OF TECH</span>
+                </h1>
+                <p class="text-lg text-white/60 mb-10 max-w-md leading-relaxed reveal-para opacity-0">
+                    Experience a curated collection of next-generation mobile devices, accessories, and audio engineering. Designed for the digital elite.
+                </p>
+                <div class="flex gap-4 reveal-para opacity-0">
+                    <div class="magnetic-wrap">
+                        <button class="magnetic-btn px-8 py-4 bg-[#00f2ff] text-black font-extrabold rounded-full hover:scale-105 transition-transform">SHOP THE COLLECTION</button>
+                    </div>
+                    <button class="px-8 py-4 border border-white/20 rounded-full hover:bg-white hover:text-black transition-all duration-500 font-bold">DISCOVER</button>
+                </div>
+            </div>
+
+            <div class="relative group perspective-1000 hidden lg:block hero-image-container opacity-0 scale-95">
+                <div class="relative overflow-hidden rounded-3xl h-[600px] border border-white/10 shadow-2xl">
+                    <img src="https://picsum.photos/1920/1080?random=1" alt="Hero" class="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                </div>
+                <!-- Floating Glass Card -->
+                <div class="absolute -bottom-6 -left-6 glass p-6 rounded-2xl w-64 shadow-2xl animate-bounce-slow">
+                    <p class="text-xs text-white/50 mb-1 uppercase tracking-widest">Trending Now</p>
+                    <h3 class="text-xl font-bold">X-Pro Bluetooth</h3>
+                    <p class="text-[#00f2ff] font-bold text-lg mt-2">$299.00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Services Section -->
+    <section id="services" class="py-24 px-6 bg-[#080808]">
+        <div class="container mx-auto">
+            <div class="flex flex-col mb-16">
+                <h2 class="text-4xl lg:text-6xl font-bold mb-4 tracking-tighter">OUR ECOSYSTEM</h2>
+                <div class="w-20 h-1 bg-[#00f2ff]"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto lg:h-[600px]">
+                <div class="md:col-span-2 md:row-span-2 glass rounded-3xl p-10 flex flex-col justify-end group overflow-hidden relative">
+                    <img src="https://picsum.photos/1920/1080?random=12" class="absolute inset-0 w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500" alt="">
+                    <h3 class="text-3xl font-bold mb-4 z-10">Mobiles & Flagships</h3>
+                    <p class="text-white/60 mb-6 z-10 max-w-sm">Explore the latest in cutting-edge smartphone technology from global leaders.</p>
+                    <a href="#" class="text-[#00f2ff] font-bold z-10 flex items-center gap-2">View More <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg></a>
+                </div>
+                <div class="md:col-span-2 glass rounded-3xl p-10 group relative overflow-hidden">
+                    <img src="https://picsum.photos/1920/1080?random=15" class="absolute inset-0 w-full h-full object-cover opacity-10 group-hover:opacity-30 transition-opacity" alt="">
+                    <h3 class="text-2xl font-bold mb-2 z-10">Chargers & Power</h3>
+                    <p class="text-white/60 z-10">GaN technology and wireless hyper-chargers for your lifestyle.</p>
+                </div>
+                <div class="glass rounded-3xl p-10 group relative overflow-hidden">
+                    <div class="bg-[#00f2ff]/20 w-12 h-12 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#00f2ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8.111 16.404a5.5 5.5 0 117.778 0M12 20h.01m-7.08-7.071a9.5 9.5 0 1114.142 0"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Audio Pro</h3>
+                    <p class="text-white/40 text-sm">Superior spatial audio and noise cancellation.</p>
+                </div>
+                <div class="glass rounded-3xl p-10 group relative overflow-hidden">
+                    <div class="bg-indigo-500/20 w-12 h-12 rounded-xl mb-6 flex items-center justify-center">
+                        <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Shield Protection</h3>
+                    <p class="text-white/40 text-sm">Military-grade protection for your precious devices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Details Section -->
+    <section id="payment" class="py-24 relative overflow-hidden">
+        <div class="glow-orb top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600/10"></div>
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl lg:text-5xl font-bold mb-6">SECURE TRANSACTIONS</h2>
+                    <p class="text-white/60">We offer enterprise-grade financial channels for your peace of mind.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- International Bank -->
+                    <div class="glass p-8 rounded-[40px] hover:border-[#00f2ff]/50 transition-all duration-500 relative group">
+                        <div class="absolute top-8 right-8">
+                            <img src="https://img.icons8.com/color/48/visa.png" class="w-12 opacity-50 grayscale group-hover:grayscale-0 transition-all" alt="">
+                        </div>
+                        <h4 class="text-white/40 text-xs font-bold tracking-widest uppercase mb-10">Primary Settlement Account</h4>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-xs text-white/30 uppercase tracking-tighter">Bank Institution</p>
+                                <p class="text-xl font-bold">Saudi National Bank (SNB)</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-white/30 uppercase tracking-tighter">International IBAN</p>
+                                <p class="text-lg font-mono tracking-wider text-[#00f2ff]">SA21 8000 0111 6011 7532 3402</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Local Bank -->
+                    <div class="glass p-8 rounded-[40px] hover:border-indigo-500/50 transition-all duration-500 relative group">
+                        <div class="absolute top-8 right-8">
+                            <img src="https://img.icons8.com/color/48/mastercard.png" class="w-12 opacity-50 grayscale group-hover:grayscale-0 transition-all" alt="">
+                        </div>
+                        <h4 class="text-white/40 text-xs font-bold tracking-widest uppercase mb-10">Domestic Operations</h4>
+                        <div class="space-y-6">
+                            <div>
+                                <p class="text-xs text-white/30 uppercase tracking-tighter">Bank Institution</p>
+                                <p class="text-xl font-bold text-indigo-400">Sonali Bank PLC</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-white/30 uppercase tracking-tighter">Account Number</p>
+                                <p class="text-2xl font-mono font-bold tracking-wider">2322020035351</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Wallets -->
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <div class="glass px-8 py-6 rounded-3xl flex items-center gap-6 group hover:bg-pink-600/10 transition-colors">
+                        <div class="w-12 h-12 bg-pink-500 rounded-xl flex items-center justify-center font-extrabold italic text-xs">BKash</div>
+                        <div>
+                            <p class="text-[10px] text-white/40 uppercase font-bold tracking-widest">Mobile Wallet</p>
+                            <p class="font-bold">Active Merchant</p>
+                        </div>
+                    </div>
+                    <div class="glass px-8 py-6 rounded-3xl flex items-center gap-6 group hover:bg-orange-600/10 transition-colors">
+                        <div class="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center font-extrabold italic text-xs text-white">Nagad</div>
+                        <div>
+                            <p class="text-[10px] text-white/40 uppercase font-bold tracking-widest">Mobile Wallet</p>
+                            <p class="font-bold">Active Merchant</p>
+                        </div>
+                    </div>
+                    <div class="glass px-8 py-6 rounded-3xl flex items-center gap-6 group hover:bg-purple-600/10 transition-colors">
+                        <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center font-extrabold italic text-[10px] text-white">ROCKET</div>
+                        <div>
+                            <p class="text-[10px] text-white/40 uppercase font-bold tracking-widest">Mobile Wallet</p>
+                            <p class="font-bold">Active Merchant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section id="products" class="py-24 bg-[#050505]">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-5xl font-extrabold tracking-tighter">BEST SELLERS</h2>
+                    <p class="text-white/40 mt-2 italic font-medium">Curated for excellence.</p>
+                </div>
+                <div class="magnetic-wrap">
+                    <button class="magnetic-btn border border-white/10 px-8 py-3 rounded-full text-sm font-bold hover:bg-white hover:text-black transition-all">VIEW ALL PRODUCTS</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-[32px] aspect-[4/5] glass border-none">
+                        <img src="https://picsum.photos/1920/1080?random=21" class="product-img w-full h-full object-cover transition-transform duration-700" alt="Phone">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                            <button class="bg-white text-black font-bold px-8 py-3 rounded-full translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Add to Cart</button>
+                        </div>
+                        <div class="absolute top-6 left-6 px-4 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-[10px] font-bold uppercase tracking-widest">Smartphone</div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-xl font-bold">Titan-X Pro Max</h3>
+                            <p class="text-white/40 text-sm">Deep Space Black | 1TB</p>
+                        </div>
+                        <p class="text-xl font-bold">$1,299</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card group cursor-pointer translate-y-12">
+                    <div class="relative overflow-hidden rounded-[32px] aspect-[4/5] glass border-none">
+                        <img src="https://picsum.photos/1920/1080?random=22" class="product-img w-full h-full object-cover transition-transform duration-700" alt="Charger">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                            <button class="bg-white text-black font-bold px-8 py-3 rounded-full translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Add to Cart</button>
+                        </div>
+                        <div class="absolute top-6 left-6 px-4 py-1 bg-[#00f2ff]/20 backdrop-blur-md border border-[#00f2ff]/20 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#00f2ff]">New Arrival</div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-xl font-bold">HyperCharge GaN 120W</h3>
+                            <p class="text-white/40 text-sm">Arctic White | 3-Port</p>
+                        </div>
+                        <p class="text-xl font-bold">$89</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-[32px] aspect-[4/5] glass border-none">
+                        <img src="https://picsum.photos/1920/1080?random=23" class="product-img w-full h-full object-cover transition-transform duration-700" alt="Bluetooth">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                            <button class="bg-white text-black font-bold px-8 py-3 rounded-full translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Add to Cart</button>
+                        </div>
+                        <div class="absolute top-6 left-6 px-4 py-1 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-[10px] font-bold uppercase tracking-widest">Audio</div>
+                    </div>
+                    <div class="mt-6 flex justify-between items-start px-2">
+                        <div>
+                            <h3 class="text-xl font-bold">Sonic Buds Air</h3>
+                            <p class="text-white/40 text-sm">Cyber Blue | Active NC</p>
+                        </div>
+                        <p class="text-xl font-bold">$249</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-[#080808]">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-3 gap-12">
+                <div class="glass p-10 rounded-[32px]">
+                    <div class="flex gap-1 text-[#00f2ff] mb-6">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <p class="text-xl italic font-medium leading-relaxed mb-8">"The seamless payment experience through SNB IBAN made my bulk order for the office incredibly efficient."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=12" class="w-12 h-12 rounded-full border border-white/20" alt="">
+                        <div>
+                            <p class="font-bold">Ahmed Al-Sayed</p>
+                            <p class="text-xs text-white/40">Enterprise Client</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass p-10 rounded-[32px] border-[#00f2ff]/30">
+                    <div class="flex gap-1 text-[#00f2ff] mb-6">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <p class="text-xl italic font-medium leading-relaxed mb-8">"Finally a modern tech store in Bangladesh that accepts Nagad and Bkash without any hidden fees. Highly recommended."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=33" class="w-12 h-12 rounded-full border border-[#00f2ff]/40" alt="">
+                        <div>
+                            <p class="font-bold">Tanvir Hossain</p>
+                            <p class="text-xs text-white/40">Loyal Customer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-10 rounded-[32px]">
+                    <div class="flex gap-1 text-[#00f2ff] mb-6">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                    </div>
+                    <p class="text-xl italic font-medium leading-relaxed mb-8">"MartShop is years ahead of the competition in terms of UX and product quality. The Pro-shield protection is a lifesaver."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.pravatar.cc/150?img=44" class="w-12 h-12 rounded-full border border-white/20" alt="">
+                        <div>
+                            <p class="font-bold">Sarah Jenkins</p>
+                            <p class="text-xs text-white/40">Tech Journalist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#050505] pt-24 pb-12 border-t border-white/5">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-4 gap-12 mb-20">
+                <div class="lg:col-span-2">
+                    <h2 class="text-5xl font-extrabold tracking-tighter mb-8">READY TO UPGRADE?</h2>
+                    <div class="flex gap-4">
+                        <div class="magnetic-wrap">
+                            <button class="magnetic-btn bg-[#00f2ff] text-black px-10 py-4 rounded-full font-bold">START SHOPPING</button>
+                        </div>
+                        <div class="magnetic-wrap">
+                            <button class="magnetic-btn border border-white/20 px-10 py-4 rounded-full font-bold">CONTACT SUPPORT</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-white/40">Store</h4>
+                    <ul class="space-y-4 font-medium">
+                        <li><a href="#" class="hover:text-[#00f2ff] transition-colors">Smartphones</a></li>
+                        <li><a href="#" class="hover:text-[#00f2ff] transition-colors">Audio Equipment</a></li>
+                        <li><a href="#" class="hover:text-[#00f2ff] transition-colors">Charging Systems</a></li>
+                        <li><a href="#" class="hover:text-[#00f2ff] transition-colors">Protection Gear</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-white/40">Resources</h4>
+                    <ul class="space-y-4 font-medium">
+                        <li><a href="#" class="hover:text-[#00f2ff] transition-colors">Secure Payment</a></li>
+                        <li><a href="#" class="hover:text-[#00f2ff] transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-[#00f2ff] transition-colors">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-[#00f2ff] transition-colors">Warranty Info</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-6">
+                <div class="text-white/30 text-xs">© 2024 MARTSHOP GLOBAL. ALL RIGHTS RESERVED.</div>
+                <div class="flex gap-8">
+                    <a href="#" class="text-white/30 hover:text-white transition-colors">Instagram</a>
+                    <a href="#" class="text-white/30 hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="text-white/30 hover:text-white transition-colors">LinkedIn</a>
+                </div>
+                <div class="text-[10px] text-white/20 tracking-widest uppercase text-center md:text-right">
+                    SNB: SA218...3402 | Sonali: 2322...5351
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Reveal
+        window.addEventListener('DOMContentLoaded', () => {
+            const tl = gsap.timeline();
+            
+            tl.to('.reveal-text', {
+                y: 0,
+                opacity: 1,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: 'expo.out'
+            })
+            .to('.reveal-para', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: 'power3.out'
+            }, '-=0.8')
+            .to('.hero-image-container', {
+                scale: 1,
+                opacity: 1,
+                duration: 1.5,
+                ease: 'expo.out'
+            }, '-=1.2');
+        });
+
+        // Magnetic Button Logic
+        const magneticBtns = document.querySelectorAll('.magnetic-wrap');
+        
+        magneticBtns.forEach(wrap => {
+            const btn = wrap.querySelector('.magnetic-btn');
+            
+            wrap.addEventListener('mousemove', (e) => {
+                const rect = wrap.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: 'power2.out'
+                });
+            });
+            
+            wrap.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: 'elastic.out(1, 0.3)'
+                });
+            });
+        });
+
+        // Scroll Reveal Animations
+        gsap.utils.toArray('.glass').forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 90%',
+                },
+                opacity: 0,
+                y: 40,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
+        gsap.utils.toArray('.product-card').forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                },
+                opacity: 0,
+                scale: 0.9,
+                y: 50,
+                duration: 1,
+                delay: i * 0.1,
+                ease: 'expo.out'
+            });
+        });
+
+        // Custom Cursor Flair
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.glow-orb');
+            orbs.forEach((orb, i) => {
+                gsap.to(orb, {
+                    x: (e.clientX - window.innerWidth / 2) * (0.05 + (i * 0.02)),
+                    y: (e.clientY - window.innerHeight / 2) * (0.05 + (i * 0.02)),
+                    duration: 2,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
